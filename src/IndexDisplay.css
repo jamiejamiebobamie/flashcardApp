@@ -1,0 +1,74 @@
+
+/* DESKTOP */
+/* bottom right */
+.desktopBottomRight{
+    position:absolute;
+    bottom:2%;
+    right:5%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}
+/* bottom left */
+.desktopBottomLeft{
+    position:absolute;
+    bottom:2%;
+    left:5%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}
+/* top right */
+.desktopTopRight{
+    position:absolute;
+    top:2%;
+    right:5%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}
+/* top left */
+.desktopTopLeft{
+    position:absolute;
+    top:2%;
+    left:5%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}
+/* MOBILE */
+.mobileBottomRight{
+    position:absolute;
+    bottom:-1%;
+    right:15%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}
+/* bottom left */
+.mobileBottomLeft{
+    position:absolute;
+    bottom:-1%;
+    left:15%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}
+/* top right */
+.mobileTopRight{
+    position:absolute;
+    top:1%;
+    left:75%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}
+/* top left */
+.mobileTopLeft{
+    position:absolute;
+    top:2%;
+    left:5%;
+    font-size:20px;
+    color:black;
+    z-index:1;
+}

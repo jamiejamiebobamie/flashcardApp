@@ -1,0 +1,56 @@
+.buttonMobileLandscape{
+    color: black;
+    background-color: transparent;
+    border-style: none;
+    width: 10vw;
+    height: 10vw;
+    align-self: center;
+    border-radius: 10px;
+    font-size: 5vw;
+
+}
+
+.buttonMobilePortrait{
+    color: black;
+    background-color: transparent;
+    border-style: none;
+    width: 10vh;
+    height: 10vh;
+    align-self: center;
+    border-radius: 10px;
+    font-size: 10vw;
+
+}
+
+.buttonDesktopLandscape{
+    color: black;
+    background-color: transparent;
+    border-style: none;
+    width: 8vw;
+    height: 8vw;
+    align-self: center;
+    border-radius: 10px;
+    font-size: 3.5vw;
+    max-height: 75px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.buttonDesktopPortrait{
+    color: black;
+    background-color: transparent;
+    border-style: none;
+    width: 8vw;
+    height: 8vw;
+    align-self: center;
+    border-radius: 10px;
+    font-size: 3.5vw;
+    max-height: 75px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+
+}
+
+.buttonDesktopPortrait:hover, .buttonDesktopLandscape:hover, .buttonMobileLandscape:hover, .buttonMobilePortrait:hover{
+    color: red;
+}

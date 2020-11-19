@@ -1,0 +1,30 @@
+.buttonGroupingPortrait{
+    display:flex;
+    justify-content: center;
+    height:12vh;
+    /* min-height: 10vh; */
+    background-color: grey;
+    border-radius: 30px;
+    margin-top: 1vh;
+    margin-bottom:1vh;
+    margin-left: 1vw;
+    margin-right:1vw;
+    border-style: solid;
+    border-color: black;
+    border-width: medium;
+}
+.buttonGroupingLandscape{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width:20vw;
+    height:90vh;
+    max-width: 200px;
+    background-color: grey;
+    border-radius: 30px;
+    margin-left: 1vw;
+    margin-right:1vw;
+    border-style: solid;
+    border-color: black;
+    border-width: medium;
+}
