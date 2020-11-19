@@ -1,15 +1,23 @@
-.AppLandscape {
+.AppLandscapeMobile {
     display:flex;
     justify-content: center;
     /* height: 80vh; */
-    margin-top: 3.5vh;
-    background-color: darkGrey;
+    /* margin-top: 3.5vh; */
+    background-color: #17223B;
+    margin:auto;
 }
 
-.AppPortrait {
+.AppPortraitMobile {
     display:flex;
     flex-direction: column;
     justify-content: center;
     /* height: 80vh; */
-    background-color: darkGrey;
+    background-color: #17223B;
+}
+
+.AppDesktop{
+    display:flex;
+    justify-content: center;
+    background-color: #17223B;
+    margin:auto;
 }

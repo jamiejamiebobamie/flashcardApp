@@ -112,223 +112,48 @@ class App extends React.Component{
     componentWillUnmount() {
      window.addEventListener("resize", this.handleResize);
     }
-    hey(){
-        console.log("hi")
-    }
     render(){
-        let appContent = this.state.isPortrait ?
-                this.state.isMobile ?
-            <div className="AppPortrait">
-                <Flashcard
-                      isPortrait = { this.state.isPortrait }
-                      cardContent = { this.state.currentCardContent }
-                />
-                <ButtonGrouping
-                      isMobile= { this.state.isMobile }
-                      isPortrait = { this.state.isPortrait }
-                      buttons = {
-                          [
-                              {
-                               onClick:this.decrementDefinitionIndex,
-                               content:String.fromCharCode(0x2296)//"-"
-                              },{
-                               onClick:this.incrementDefinitionIndex,
-                               content:String.fromCharCode(0x2295)//"+"
-                              }
-                          ]
-                      }
-                />
-                <ButtonGrouping
-                      isMobile={this.state.isMobile}
-                      isPortrait = { this.state.isPortrait }
-                      buttons = {
-                          [
-                              {
-                               onClick:this.decrementCardIndex,
-                               content:String.fromCharCode(0x2190)//"<-"
-                              },{
-                               onClick:this.incrementCardIndex,
-                               content:String.fromCharCode(0x2192)//"->"
-                              }
-                          ]
-                      }
-                />
-                <CardNumbers
-                      isMobile = { this.state.isMobile }
-                      stats = {
-                          [
-                              {
-                               currentIndex:this.state.definitionIndex - 1,
-                               length:this.state.cards[this.state.cardIndex].length
-                                                                              - 1
-                              },{
-                                currentIndex:this.state.cardIndex + 1,
-                                length:this.state.cards.length
-                              }
-                          ]
-                      }
-                />
+        let appContent = this.state.isMobile ?
+            this.state.isPortrait ?
+            <div className="AppPortraitMobile">
+
             </div>
             :
-            <div className="AppPortrait">
-                <Flashcard
-                      isPortrait = { this.state.isPortrait }
-                      cardContent = { this.state.currentCardContent }
-                />
-                <ButtonGrouping
-                      isMobile= { this.state.isMobile }
-                      isPortrait = { this.state.isPortrait }
-                      buttons = {
-                          [
-                              {
-                               onClick:this.decrementDefinitionIndex,
-                               content:String.fromCharCode(0x2296)//"-"
-                              },{
-                               onClick:this.incrementDefinitionIndex,
-                               content:String.fromCharCode(0x2295)//"+"
-                              }
-                          ]
-                      }
-                />
-                <ButtonGrouping
-                      isMobile={this.state.isMobile}
-                      isPortrait = { this.state.isPortrait }
-                      buttons = {
-                          [
-                              {
-                               onClick:this.decrementCardIndex,
-                               content:String.fromCharCode(0x2190)//"<-"
-                              },{
-                               onClick:this.incrementCardIndex,
-                               content:String.fromCharCode(0x2192)//"->"
-                              }
-                          ]
-                      }
-                />
-                <CardNumbers
-                      isMobile = { this.state.isMobile }
-                      stats = {
-                          [
-                              {
-                               currentIndex:this.state.definitionIndex - 1,
-                               length:this.state.cards[this.state.cardIndex].length
-                                                                              - 1
-                              },{
-                                currentIndex:this.state.cardIndex + 1,
-                                length:this.state.cards.length
-                              }
-                          ]
-                      }
-                />
+            <div className="AppPortraitDesktop">
+
             </div>
         :
-            this.state.isMobile ?
-                <div className="AppLandscape">
-                    <ButtonGrouping
-                          isMobile={this.state.isMobile}
-                          isPortrait = { this.state.isPortrait }
-                          buttons = {
-                              [
-                                  {
-                                   onClick:this.decrementDefinitionIndex,
-                                   content:String.fromCharCode(0x2296)//"-"
-                                  },{
-                                   onClick:this.decrementCardIndex,
-                                   content:String.fromCharCode(0x2190)//"<-"
-                                  }
-                              ]
-                          }
-                    />
-                    <Flashcard
-                          isPortrait = { this.state.isPortrait }
-                          cardContent = { this.state.currentCardContent }
-                    />
-                    <ButtonGrouping
-                          isMobile={this.state.isMobile}
-                          isPortrait = { this.state.isPortrait }
-                          buttons = {
-                              [
-                                  {
-                                   onClick:this.incrementDefinitionIndex,content:String.fromCharCode(0x2295)//"+"
-                                  },{
-                                   onClick:this.incrementCardIndex,content:String.fromCharCode(0x2192)//"->"
-                                  }
-                              ]
-                          }
-                    />
-                    <CardNumbers
-                          isMobile = { this.state.isMobile }
-                          stats = {
-                              [
-                                  {
-                                   currentIndex:this.state.definitionIndex - 1,
-                                   length:this.state.cards[this.state.cardIndex].length
-                                                                                  - 1
-                                  },{
-                                    currentIndex:this.state.cardIndex + 1,
-                                    length:this.state.cards.length
-                                  }
-                              ]
-                          }
-                    />
+        <div className="AppDesktop">
+            <div style={{display:"flex",flexDirection:"column",height:"90vh",width:"60vw",marginTop:"5vh",minHeight:"300px"}}>
+                <div style={{display:"flex",backgroundColor:"purple",height:"70%",width:"90%",marginLeft:"10%"}}></div>
+                <div style={{display:"flex",backgroundColor:"#0a161b",height:"30%",width:"90%",marginLeft:"10%"}}></div>
+            </div>
+            <div style={{display:"flex",flexDirection:"column",height:"100vh",width:"40vw",marginTop:"5vh",minHeight:"333px"}}>
+                <div style={{display:"flex",backgroundColor:"#1E2C34",flexDirection:"column",height:"90%",width:"70%",justifyContent:"center",marginLeft:"1vw"}}>
+                    <div style={{display:"flex",backgroundColor:"#101d25",minHeight:"120px",maxHeight:"150px",height:"30vh",width:"90%",marginTop:"3vh",marginBottom:"3vh",alignSelf:"center",justifyContent:"space-around",borderStyle:"solid",borderColor:"#9ba3a5",borderRadius:"30px",borderWidth:"thin"}}>
+                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+                            {String.fromCharCode(0x2296)}
+                        </button>
+                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+                            {String.fromCharCode(0x2295)}
+                        </button>
+                    </div>
+                    <div style={{display:"flex",backgroundColor:"#101d25",minHeight:"120px",maxHeight:"150px",height:"30vh",width:"90%",marginTop:"3vh",marginBottom:"3vh",alignSelf:"center",justifyContent:"space-around",borderStyle:"solid",borderColor:"#9ba3a5",borderRadius:"30px",borderWidth:"thin"}}>
+                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+                            {String.fromCharCode(0x2190)}
+                        </button>
+                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+                            {String.fromCharCode(0x2192)}
+                        </button>
+                    </div>
                 </div>
-                :
-                <div className="AppLandscape">
-                    <Flashcard
-                          isPortrait = { this.state.isPortrait }
-                          cardContent = { this.state.currentCardContent }
-                    />
-                    <ButtonGrouping
-                          isMobile={this.state.isMobile}
-                          isPortrait = { this.state.isPortrait }
-                          buttons = {
-                              [
-                                  {
-                                   onClick:this.decrementDefinitionIndex,
-                                   content:String.fromCharCode(0x2296)//"-"
-                                  },{
-                                   onClick:this.decrementCardIndex,
-                                   content:String.fromCharCode(0x2190)//"<-"
-                                  }
-                              ]
-                          }
-                    />
-                    <ButtonGrouping
-                          isMobile={this.state.isMobile}
-                          isPortrait = { this.state.isPortrait }
-                          buttons = {
-                              [
-                                  {
-                                   onClick:this.incrementDefinitionIndex,content:String.fromCharCode(0x2295)//"+"
-                                  },{
-                                   onClick:this.incrementCardIndex,content:String.fromCharCode(0x2192)//"->"
-                                  }
-                              ]
-                          }
-                    />
-                    <CardNumbers
-                          isMobile = { this.state.isMobile }
-                          stats = {
-                              [
-                                  {
-                                   currentIndex:this.state.definitionIndex - 1,
-                                   length:this.state.cards[this.state.cardIndex].length
-                                                                                  - 1
-                                  },{
-                                    currentIndex:this.state.cardIndex + 1,
-                                    length:this.state.cards.length
-                                  }
-                              ]
-                          }
-                    />
-                </div>
+            </div>
+        </div>
         return appContent;
     }
 }
 
 export default App;
-
-
 
 //
 //
