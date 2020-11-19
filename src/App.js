@@ -5,6 +5,7 @@ import ButtonGrouping from './ButtonGrouping';
 import isMobile  from "react-device-detect";
 import Button from "./Button.jsx"
 import IndexDisplay from './IndexDisplay';
+import Switch from 'react-input-switch'
 
 import React from 'react';
 
@@ -29,12 +30,26 @@ class App extends React.Component{
                                        && window.innerHeight <= 420),
            isPortrait: window.innerWidth < window.innerHeight,
            currentCardContent:"",
+           darkMode:1,
+           shouldDisplayMenuModal:false,
+           menuModalDisplay:'none',
         };
      this.handleResize = this.handleResize.bind(this);
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
      this.decrementCardIndex = this.decrementCardIndex.bind(this);
      this.incrementDefinitionIndex = this.incrementDefinitionIndex.bind(this);
      this.decrementDefinitionIndex = this.decrementDefinitionIndex.bind(this);
+     this.toggleMenuModal = this.toggleMenuModal.bind(this);
+
+     }
+     toggleMenuModal(){
+         if (this.state.shouldDisplayMenuModal){
+             this.setState({shouldDisplayMenuModal:false})
+             this.setState({menuModalDisplay:'none'})
+         } else {
+             this.setState({shouldDisplayMenuModal:true})
+             this.setState({menuModalDisplay:'flex'})
+         }
      }
      incrementCardIndex(){
       if ( this.state.cardIndex < this.state.cards.length - 1){
@@ -113,20 +128,44 @@ class App extends React.Component{
      window.addEventListener("resize", this.handleResize);
     }
     render(){
+        let menuModalDisplay = this.state.menuModalDisplay
         let appContent = this.state.isMobile ?
             this.state.isPortrait ?
             <div className="AppPortraitMobile">
 
             </div>
             :
-            <div className="AppPortraitDesktop">
+            <div className="AppLandscapeMobile">
 
             </div>
         :
         <div className="AppDesktop">
+            <div style={{position:"absolute",display:menuModalDisplay,backgroundColor:"black",width:"90vw",height:"90vh",margin:"auto",marginTop:"5vh",zIndex:'1',overflow:'scroll',opacity:'.8',justifyContent:'center'}}>
+                <button
+                    onClick = {this.toggleMenuModal}
+                    style={{textAlign:"center",backgroundColor:"transparent",marginLeft:"10vw",marginRight:"10vw",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+                    {String.fromCharCode(0x274F)}
+                </button>
+            </div>
             <div style={{display:"flex",flexDirection:"column",height:"90vh",width:"60vw",marginTop:"5vh",minHeight:"300px"}}>
-                <div style={{display:"flex",backgroundColor:"purple",height:"70%",width:"90%",marginLeft:"10%"}}></div>
-                <div style={{display:"flex",backgroundColor:"#0a161b",height:"30%",width:"90%",marginLeft:"10%"}}></div>
+                <div style={{display:"flex",backgroundColor:"#0a161b",height:"70%",marginBottom:"1vh",width:"90%",marginLeft:"10%"}}></div>
+                <div style={{display:"flex",color:"#9ba3a5",justifyContent:"center",backgroundColor:"#0a161b",height:"30%",marginTop:"1vh",width:"90%",marginLeft:"10%"}}>
+                    <button
+                        onClick = {this.toggleMenuModal}
+                        style={{textAlign:"center",backgroundColor:"transparent",marginLeft:"10vw",marginRight:"10vw",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+                        {String.fromCharCode(0x274F)}
+                    </button>
+                    <Switch
+                        style = {{
+                                alignSelf:'center',
+                                transform: 'scale(3)',
+                                marginLeft:"10vw",
+                                marginRight:"10vw",
+                              }}
+                        value = { this.state.darkMode }
+                        onChange = { () =>{ this.setState({ darkMode: ~this.state.darkMode }) } }
+                        />
+                </div>
             </div>
             <div style={{display:"flex",flexDirection:"column",height:"100vh",width:"40vw",marginTop:"5vh",minHeight:"333px"}}>
                 <div style={{display:"flex",backgroundColor:"#1E2C34",flexDirection:"column",height:"90%",width:"70%",justifyContent:"center",marginLeft:"1vw"}}>
