@@ -6,8 +6,49 @@ import isMobile  from "react-device-detect";
 import Button from "./Button.jsx"
 import IndexDisplay from './IndexDisplay';
 import Switch from 'react-input-switch'
+import AccordianTab from './AccordianTab.jsx'
 
 import React from 'react';
+
+
+/*
+response: flashcards => a flashcard:
+
+    {
+        "domain" : "Programming languages",
+        "subdomain" : "C++",
+        "topic" : "operators",
+        "front of card" : "arrow operator",
+        "back of card" : "A means of accessing a class member from outside the
+                            class.&#09;Automatically dereferences the pointer
+                            variable that points to the class."
+    }
+    back of card may be composed of multiple terms separated by a TAB
+        ascii / javascript character: &#09; or \t whichever is better (?)
+
+    when the app first loads, it asks the backend for all of the domains,
+        subdomains, and topics.
+
+    create nested accordians.
+    2 accordians, one nested within the other (domain > subdomain)
+
+    when you click on a topic in the subdomain, it is added to your "cart" on
+        the right.
+
+    cart items show subdomain and topic.
+
+    when you close the modal, the frontend looks at what you've selected,
+    compares it with what you already have in your flashcard deck and
+    asks the backend for the new / missing cards if there are any.
+
+    maybe display a fetching / loading graphic if the flashcard deck
+        is currently empty.
+
+    buttons to implement:
+        shuffle flashcards.
+        remove current flashcard from deck.
+        light / dark mode buttons
+*/
 
 class App extends React.Component{
     constructor(props) {
@@ -31,8 +72,9 @@ class App extends React.Component{
            isPortrait: window.innerWidth < window.innerHeight,
            currentCardContent:"",
            darkMode:1,
-           shouldDisplayMenuModal:false,
-           menuModalDisplay:'none',
+           shouldDisplayMenuModal:true,
+           menuModalDisplay:'flex',
+
         };
      this.handleResize = this.handleResize.bind(this);
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
@@ -40,7 +82,6 @@ class App extends React.Component{
      this.incrementDefinitionIndex = this.incrementDefinitionIndex.bind(this);
      this.decrementDefinitionIndex = this.decrementDefinitionIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
-
      }
      toggleMenuModal(){
          if (this.state.shouldDisplayMenuModal){
@@ -140,49 +181,57 @@ class App extends React.Component{
             </div>
         :
         <div className="AppDesktop">
-            <div style={{position:"absolute",display:menuModalDisplay,backgroundColor:"black",width:"90vw",height:"90vh",margin:"auto",marginTop:"5vh",zIndex:'1',overflow:'scroll',opacity:'.8',justifyContent:'center'}}>
-                <button
-                    onClick = {this.toggleMenuModal}
-                    style={{textAlign:"center",backgroundColor:"transparent",marginLeft:"10vw",marginRight:"10vw",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                    {String.fromCharCode(0x274F)}
-                </button>
+            <div style={{position:"absolute",display:"flex",display:menuModalDisplay,backgroundColor:"#0a161b",top:"5vh",left:"6vw",width:"83vw",height:"90vh",zIndex:'1',overflow:'scroll',opacity:'.9',justifyContent:'left',minHeight:"300px"}}>
+                <div style={{backgroundColor:"blue",flexDirection:"column",height:"61.5vh",width:"54vw",overflow:"scroll"}}>
+                    < AccordianTab
+                        tabName={"lol"}
+                        content={ [  { tabName:"red",
+                                            content: [
+                                                    {tabName:"red"},
+                                                    {tabName:"blue",
+                                                     content:  [
+                                                                {tabName:"red"},
+                                                                {tabName:"blue"},
+                                                                {tabName:"green"}
+                                                                ]
+                                                    },
+                                                    {tabName:"green"}
+                                                    ]
+                                        }
+                                    ] }
+                     />
+                    < AccordianTab tabName={"lol"} content={[{tabName:"red",content:[{tabName:"hi"}]},{tabName:"blue"},{tabName:"green"}]} />
+                    < AccordianTab tabName={"lol"} content={[{tabName:"red"},{tabName:"blue"},{tabName:"green"}]} />
+
+                </div>
+                <div style={{backgroundColor:"red",flexDirection:"column",marginLeft:"1vw",height:"90vh",width:"28vw",overflow:"scroll"}}></div>
             </div>
             <div style={{display:"flex",flexDirection:"column",height:"90vh",width:"60vw",marginTop:"5vh",minHeight:"300px"}}>
                 <div style={{display:"flex",backgroundColor:"#0a161b",height:"70%",marginBottom:"1vh",width:"90%",marginLeft:"10%"}}></div>
                 <div style={{display:"flex",color:"#9ba3a5",justifyContent:"center",backgroundColor:"#0a161b",height:"30%",marginTop:"1vh",width:"90%",marginLeft:"10%"}}>
                     <button
                         onClick = {this.toggleMenuModal}
-                        style={{textAlign:"center",backgroundColor:"transparent",marginLeft:"10vw",marginRight:"10vw",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                        {String.fromCharCode(0x274F)}
+                        style={{position:"absolute",zIndex:"1",textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+                        &#9776;
                     </button>
-                    <Switch
-                        style = {{
-                                alignSelf:'center',
-                                transform: 'scale(3)',
-                                marginLeft:"10vw",
-                                marginRight:"10vw",
-                              }}
-                        value = { this.state.darkMode }
-                        onChange = { () =>{ this.setState({ darkMode: ~this.state.darkMode }) } }
-                        />
                 </div>
             </div>
             <div style={{display:"flex",flexDirection:"column",height:"100vh",width:"40vw",marginTop:"5vh",minHeight:"333px"}}>
                 <div style={{display:"flex",backgroundColor:"#1E2C34",flexDirection:"column",height:"90%",width:"70%",justifyContent:"center",marginLeft:"1vw"}}>
                     <div style={{display:"flex",backgroundColor:"#101d25",minHeight:"120px",maxHeight:"150px",height:"30vh",width:"90%",marginTop:"3vh",marginBottom:"3vh",alignSelf:"center",justifyContent:"space-around",borderStyle:"solid",borderColor:"#9ba3a5",borderRadius:"30px",borderWidth:"thin"}}>
                         <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            {String.fromCharCode(0x2296)}
+                            &#x2296;
                         </button>
                         <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            {String.fromCharCode(0x2295)}
+                            &#x2295;
                         </button>
                     </div>
                     <div style={{display:"flex",backgroundColor:"#101d25",minHeight:"120px",maxHeight:"150px",height:"30vh",width:"90%",marginTop:"3vh",marginBottom:"3vh",alignSelf:"center",justifyContent:"space-around",borderStyle:"solid",borderColor:"#9ba3a5",borderRadius:"30px",borderWidth:"thin"}}>
                         <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            {String.fromCharCode(0x2190)}
+                            &#x2190;
                         </button>
                         <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            {String.fromCharCode(0x2192)}
+                            &#x2192;
                         </button>
                     </div>
                 </div>
