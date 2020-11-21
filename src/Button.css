@@ -22,35 +22,26 @@
 
 }
 
-.buttonDesktopLandscape{
-    color: black;
-    background-color: transparent;
-    border-style: none;
-    width: 8vw;
-    height: 8vw;
-    align-self: center;
-    border-radius: 10px;
-    font-size: 3.5vw;
-    max-height: 75px;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-}
-
-.buttonDesktopPortrait{
-    color: black;
-    background-color: transparent;
-    border-style: none;
-    width: 8vw;
-    height: 8vw;
-    align-self: center;
-    border-radius: 10px;
-    font-size: 3.5vw;
-    max-height: 75px;
-    margin-left: 5vw;
-    margin-right: 5vw;
+.button{
+    text-align:center;
+    background-color:transparent;
+    color:#9ba3a5;
+    min-height:70px;
+    min-width:70px;
+    width:5vw;
+    height:5vw;
+    border-radius:1vw;
+    align-self:center;
+    font-size:3em;
+    border-style:none
 
 }
 
-.buttonDesktopPortrait:hover, .buttonDesktopLandscape:hover, .buttonMobileLandscape:hover, .buttonMobilePortrait:hover{
-    color: red;
+.button:hover, .buttonDesktopPortrait:hover, .buttonDesktopLandscape:hover, .buttonMobileLandscape:hover, .buttonMobilePortrait:hover{
+    /* color: #1baf9d; */
+    /* color: #FF8F0D; */
+    /* color: #303F9F; */
+    color:#e07322;
+
+
 }

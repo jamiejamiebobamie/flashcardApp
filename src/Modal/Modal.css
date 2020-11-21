@@ -1,0 +1,14 @@
+.modal{
+    position:absolute;
+    display:flex;
+    /* background-color:#0a161b; */
+    top:5vh;
+    left:6vw;
+    width:83vw;
+    height:90vh;
+    z-index:1;
+    overflow:scroll;
+    /* opacity:.9; */
+    justify-content:left;
+    min-height:300px;
+}

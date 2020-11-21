@@ -3,19 +3,16 @@ import Button from "./Button.jsx"
 
 // two buttons per group
 export default function ButtonGrouping(props) {
-    return <div className =
-                { props.isPortrait ?
-                    "buttonGroupingPortrait" : "buttonGroupingLandscape"
-                } >
-                <Button
-                    isPortrait = {props.isPortrait }
-                    isMobile = { props.isMobile }
-                    onClick = { props.buttons[0].onClick }
-                    content = { props.buttons[0].content } />
-                <Button
-                    isPortrait = {props.isPortrait }
-                    isMobile = { props.isMobile }
-                    onClick = { props.buttons[1].onClick }
-                    content = { props.buttons[1].content } />
+    let index = 0
+    const buttons = props.buttons.map(
+                            (button)=>
+                                <Button
+                                    key= { index++ }
+                                    clickFunc = { button.clickFunc }
+                                    content = { button.content } />
+                            )
+    // styling won't work for buttons more than 2...
+    return <div className ="buttonGrouping">
+            {buttons}
           </div>
 }

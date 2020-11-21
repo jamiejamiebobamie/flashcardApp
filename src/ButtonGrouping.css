@@ -28,3 +28,20 @@
     border-color: black;
     border-width: medium;
 }
+
+.buttonGrouping{
+    display:flex;
+    background-color:#101d25;
+    min-height:120px;
+    max-height:150px;
+    height:30vh;
+    width:90%;
+    margin-top:3vh;
+    margin-bottom:3vh;
+    align-self:center;
+    justify-content:space-around;
+    border-style:solid;
+    border-color:#9ba3a5;
+    border-radius:30px;
+    border-width:thin
+}

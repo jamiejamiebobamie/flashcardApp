@@ -1,0 +1,22 @@
+.selectedSubject{
+    /* background-color:#0a161b; */
+    background-color:transparent;
+
+    color:#e07322;
+    min-height:70px;
+    width:95%;
+    height:5vw;
+    align-self:center;
+    font-size:2vw;
+    border-color:#e07322;
+    border-width: normal;
+    border-style:solid;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+
+}
+.selectedSubject:hover{
+    background-color:#e07322;
+    color: #0a161b;
+
+    }

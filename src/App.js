@@ -6,7 +6,13 @@ import isMobile  from "react-device-detect";
 import Button from "./Button.jsx"
 import IndexDisplay from './IndexDisplay';
 import Switch from 'react-input-switch'
-import AccordianTab from './AccordianTab.jsx'
+import AccordianTab from './Modal/AccordianTab.jsx'
+import TabHolder from './Modal/TabHolder.jsx'
+import SelectedSubjectsHolder from './Modal/SelectedSubjectsHolder'
+import Modal from './Modal/Modal'
+
+
+
 
 import React from 'react';
 
@@ -74,7 +80,7 @@ class App extends React.Component{
            darkMode:1,
            shouldDisplayMenuModal:true,
            menuModalDisplay:'flex',
-
+           selectedSubjects: []
         };
      this.handleResize = this.handleResize.bind(this);
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
@@ -82,6 +88,7 @@ class App extends React.Component{
      this.incrementDefinitionIndex = this.incrementDefinitionIndex.bind(this);
      this.decrementDefinitionIndex = this.decrementDefinitionIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
+     this.addOrRemoveSubject = this.addOrRemoveSubject.bind(this);
      }
      toggleMenuModal(){
          if (this.state.shouldDisplayMenuModal){
@@ -92,12 +99,35 @@ class App extends React.Component{
              this.setState({menuModalDisplay:'flex'})
          }
      }
+     addOrRemoveSubject(subject){
+         console.log(this.state.selectedSubjects)
+         let subjectIsPresent = false;
+         let newSelectedSubjects = [...this.state.selectedSubjects]
+         if (newSelectedSubjects.length>0){
+             for (let i = 0; newSelectedSubjects.length; i++){
+                 if ( newSelectedSubjects[i] === subject ){
+                     // remove the entry
+                     subjectIsPresent = true;
+                     newSelectedSubjects.splice(i,1)
+                     this.setState({selectedSubjects: newSelectedSubjects})
+                 }
+             }
+         }
+         if (!subjectIsPresent){
+             // add the entry
+             newSelectedSubjects.push(subject)
+             this.setState({selectedSubjects: newSelectedSubjects})
+         }
+         // setTimeout is used so that the React state has time to update.
+         setTimeout(()=>console.log(this.state.selectedSubjects),100)
+     }
      incrementCardIndex(){
       if ( this.state.cardIndex < this.state.cards.length - 1){
           this.setState({ cardIndex: this.state.cardIndex+1 })
           this.setState({ definitionIndex: 1 })
       }
       setTimeout(()=>{this.updateTerms()},100)
+      console.log('hi')
   }
   decrementCardIndex(){
       if ( this.state.cardIndex > 0){
@@ -105,6 +135,8 @@ class App extends React.Component{
           this.setState({ definitionIndex: 1 })
       }
       setTimeout(()=>{this.updateTerms()},100)
+      console.log('yo')
+
 
   }
   incrementDefinitionIndex(){
@@ -113,6 +145,8 @@ class App extends React.Component{
      this.setState({ definitionIndex: this.state.definitionIndex + 1 })
       }
       setTimeout(()=>{this.updateTerms()},100)
+      console.log('hehehe')
+
   }
   decrementDefinitionIndex(){
       if ( this.state.definitionIndex > 1 ){
@@ -123,6 +157,8 @@ class App extends React.Component{
                         )
       }
       setTimeout(()=>{this.updateTerms()},100)
+      console.log('ha')
+
   }
   updateTerms(){
           let terms = []
@@ -169,7 +205,64 @@ class App extends React.Component{
      window.addEventListener("resize", this.handleResize);
     }
     render(){
-        let menuModalDisplay = this.state.menuModalDisplay
+        const tabs = [ { tabName: "lol", content:
+                                        [
+                                            {
+                                                tabName:"hi",
+                                                content: [
+                                                            {tabName:"hi"},
+                                                            {tabName:"hi"}
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"hi",
+                                                content: [
+                                                            {tabName:"hi"},
+                                                            {tabName:"hi"}
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"hi",
+                                                content: [
+                                                            {tabName:"hi"},
+                                                            {tabName:"hi"}
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"hi",
+                                                content: [
+                                                            {tabName:"hi"},
+                                                            {tabName:"hi"}
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"hi",
+                                                content: [
+                                                            {tabName:"hi"},
+                                                            {tabName:"hi"}
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"hi",
+                                                content: [
+                                                            {tabName:"hi"},
+                                                            {tabName:"hi"}
+                                                        ]
+                                            },
+                                        ]
+                        },
+                        { tabName: "lol", content:
+                                           [
+                                               {
+                                                   tabName:"hi",
+                                                   content: [
+                                                               {tabName:"hi"},
+                                                               {tabName:"hi"}
+                                                           ]
+                                               }
+                                           ]
+                       },
+                    ]
         let appContent = this.state.isMobile ?
             this.state.isPortrait ?
             <div className="AppPortraitMobile">
@@ -181,31 +274,12 @@ class App extends React.Component{
             </div>
         :
         <div className="AppDesktop">
-            <div style={{position:"absolute",display:"flex",display:menuModalDisplay,backgroundColor:"#0a161b",top:"5vh",left:"6vw",width:"83vw",height:"90vh",zIndex:'1',overflow:'scroll',opacity:'.9',justifyContent:'left',minHeight:"300px"}}>
-                <div style={{backgroundColor:"blue",flexDirection:"column",height:"61.5vh",width:"54vw",overflow:"scroll"}}>
-                    < AccordianTab
-                        tabName={"lol"}
-                        content={ [  { tabName:"red",
-                                            content: [
-                                                    {tabName:"red"},
-                                                    {tabName:"blue",
-                                                     content:  [
-                                                                {tabName:"red"},
-                                                                {tabName:"blue"},
-                                                                {tabName:"green"}
-                                                                ]
-                                                    },
-                                                    {tabName:"green"}
-                                                    ]
-                                        }
-                                    ] }
-                     />
-                    < AccordianTab tabName={"lol"} content={[{tabName:"red",content:[{tabName:"hi"}]},{tabName:"blue"},{tabName:"green"}]} />
-                    < AccordianTab tabName={"lol"} content={[{tabName:"red"},{tabName:"blue"},{tabName:"green"}]} />
-
-                </div>
-                <div style={{backgroundColor:"red",flexDirection:"column",marginLeft:"1vw",height:"90vh",width:"28vw",overflow:"scroll"}}></div>
-            </div>
+            <Modal
+                tabs={tabs}
+                clickFunc={this.addOrRemoveSubject}
+                selectedSubjects={this.state.selectedSubjects}
+                menuModalDisplay={this.state.menuModalDisplay}
+                />
             <div style={{display:"flex",flexDirection:"column",height:"90vh",width:"60vw",marginTop:"5vh",minHeight:"300px"}}>
                 <div style={{display:"flex",backgroundColor:"#0a161b",height:"70%",marginBottom:"1vh",width:"90%",marginLeft:"10%"}}></div>
                 <div style={{display:"flex",color:"#9ba3a5",justifyContent:"center",backgroundColor:"#0a161b",height:"30%",marginTop:"1vh",width:"90%",marginLeft:"10%"}}>
@@ -218,22 +292,26 @@ class App extends React.Component{
             </div>
             <div style={{display:"flex",flexDirection:"column",height:"100vh",width:"40vw",marginTop:"5vh",minHeight:"333px"}}>
                 <div style={{display:"flex",backgroundColor:"#1E2C34",flexDirection:"column",height:"90%",width:"70%",justifyContent:"center",marginLeft:"1vw"}}>
-                    <div style={{display:"flex",backgroundColor:"#101d25",minHeight:"120px",maxHeight:"150px",height:"30vh",width:"90%",marginTop:"3vh",marginBottom:"3vh",alignSelf:"center",justifyContent:"space-around",borderStyle:"solid",borderColor:"#9ba3a5",borderRadius:"30px",borderWidth:"thin"}}>
-                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            &#x2296;
-                        </button>
-                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            &#x2295;
-                        </button>
-                    </div>
-                    <div style={{display:"flex",backgroundColor:"#101d25",minHeight:"120px",maxHeight:"150px",height:"30vh",width:"90%",marginTop:"3vh",marginBottom:"3vh",alignSelf:"center",justifyContent:"space-around",borderStyle:"solid",borderColor:"#9ba3a5",borderRadius:"30px",borderWidth:"thin"}}>
-                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            &#x2190;
-                        </button>
-                        <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                            &#x2192;
-                        </button>
-                    </div>
+                    <ButtonGrouping
+                        buttons= {
+                            [
+                                {content:'&#x2296;',
+                                    clickFunc:this.incrementDefinitionIndex},
+                                {content:'&#x2295;',
+                                    clickFunc:this.decrementDefinitionIndex},
+                            ]
+                        }
+                    />
+                    <ButtonGrouping
+                        buttons= {
+                            [
+                                {content:'&#x2190;',
+                                    clickFunc:this.incrementCardIndex},
+                                {content:'&#x2192;',
+                                    clickFunc:this.decrementCardIndex},
+                            ]
+                        }
+                    />
                 </div>
             </div>
         </div>
@@ -242,6 +320,44 @@ class App extends React.Component{
 }
 
 export default App;
+
+
+// <div style={{display:"flex",backgroundColor:"#101d25",minHeight:"120px",maxHeight:"150px",height:"30vh",width:"90%",marginTop:"3vh",marginBottom:"3vh",alignSelf:"center",justifyContent:"space-around",borderStyle:"solid",borderColor:"#9ba3a5",borderRadius:"30px",borderWidth:"thin"}}>
+//     <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+//         &#x2190;
+//     </button>
+//     <button style={{textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
+//         &#x2192;
+//     </button>
+// </div>
+
+// <div style={{position:"absolute",display:"flex",display:menuModalDisplay,backgroundColor:"#0a161b",top:"5vh",left:"6vw",width:"83vw",height:"90vh",zIndex:'1',overflow:'scroll',opacity:'.9',justifyContent:'left',minHeight:"300px"}}>
+//     <TabHolder tabs={tabs} clickFunc={this.addOrRemoveSubject}/>
+//     <SelectedSubjectsHolder selectedSubjects={[]} clickFunc={this.addOrRemoveSubject}/>
+// </div>
+
+
+// < AccordianTab
+//     tabName={"lol"}
+//     content={ [  { tabName:"red",
+//                         content: [
+//                                 {tabName:"red"},
+//                                 {tabName:"blue",
+//                                  content:  [
+//                                             {tabName:"red"},
+//                                             {tabName:"blue"},
+//                                             {tabName:"green"}
+//                                             ]
+//                                 },
+//                                 {tabName:"green"}
+//                                 ]
+//                     }
+//                 ] }
+//  />
+// < AccordianTab tabName={"lol"} content={[{tabName:"red",content:[{tabName:"hi"}]},{tabName:"blue"},{tabName:"green"}]} />
+// < AccordianTab tabName={"lol"} content={[{tabName:"red"},{tabName:"blue"},{tabName:"green"}]} />
+// </div>
+// <div style={{backgroundColor:"red",flexDirection:"column",marginLeft:"1vw",height:"90vh",width:"28vw",overflow:"scroll"}}>
 
 //
 //

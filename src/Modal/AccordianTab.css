@@ -1,12 +1,15 @@
 .accordion {
-  background-color: #eee;
-  color: #444;
+  /* background-color: #eee; */
+  /* color: #444; */
   cursor: pointer;
   padding: 18px;
   width: 100%;
   border: solid;
   border-color: black;
   border-width: thin;
+
+  background-color:transparent;
+  color:#e07322;
 
 
   text-align: left;
@@ -17,7 +20,9 @@
 }
 
 .accordion:hover {
-  background-color: #ccc;
+  /* background-color: #ccc; */
+  background-color:#e07322;
+  color: #0a161b;
   /* position:absolute; */
 }
 
@@ -26,6 +31,10 @@
   display: none;
   /* background-color: white; */
   overflow: hidden;
+
+  background-color:#e07322;
+  color: #0a161b;
+
 }
 
 .showPanel {
@@ -33,4 +42,8 @@
   display: block;
   /* background-color: white; */
   overflow: hidden;
+
+  border-color:#e07322;
+  border-width: thin;
+  border-style:solid;
 }

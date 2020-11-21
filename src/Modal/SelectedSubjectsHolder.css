@@ -1,0 +1,18 @@
+.selectedSubjectsHolder{
+    display: flex;
+    flex-direction: column;
+
+    /* background-color:transparent; */
+    margin-left:1vw;
+    height:90vh;
+    width:28vw;
+    overflow:scroll;
+    background-color:#0a161b;
+    min-height:300px;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.selectedSubjectsHolder::-webkit-scrollbar {
+  display: none;
+}

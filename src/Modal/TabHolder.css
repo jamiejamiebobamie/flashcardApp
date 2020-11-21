@@ -1,0 +1,7 @@
+.tabHolder{
+/* background-color:blue; */
+flex-direction:column;
+height:61.5vh;
+width:54vw;
+overflow:scroll;
+}
