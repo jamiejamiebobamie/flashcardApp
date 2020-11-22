@@ -2,6 +2,8 @@
     position:absolute;
     display:flex;
     /* background-color:#0a161b; */
+    /* background-color:white; */
+
     top:5vh;
     left:6vw;
     width:83vw;
@@ -10,5 +12,5 @@
     overflow:scroll;
     /* opacity:.9; */
     justify-content:left;
-    min-height:300px;
+    min-height:666px;
 }

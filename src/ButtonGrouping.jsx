@@ -7,12 +7,19 @@ export default function ButtonGrouping(props) {
     const buttons = props.buttons.map(
                             (button)=>
                                 <Button
+                                    moreThanTwoButtonsInGroup= { props.moreThanTwoButtons}
                                     key= { index++ }
+                                    title = {button.title}
                                     clickFunc = { button.clickFunc }
                                     content = { button.content } />
                             )
-    // styling won't work for buttons more than 2...
-    return <div className ="buttonGrouping">
-            {buttons}
+    return <div className = {
+                        buttons.length <= 2
+                                ?
+                                "buttonGroupingTwoOrLess"
+                                :
+                                "buttonGroupingThreeOrMore"
+                            }>
+            { buttons }
           </div>
 }

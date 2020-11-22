@@ -7,7 +7,7 @@ export default function TabHolder(props){
     if (props.tabs){
         const tabs = props.tabs.map((tab) =>
                                     <AccordianTab
-                                        key={index++}
+                                        key={tab.tabName}
                                         tabName={tab.tabName}
                                         content={tab.content}
                                         hash={""+tab.tabName}

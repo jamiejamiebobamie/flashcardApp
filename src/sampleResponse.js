@@ -205,45 +205,46 @@ const response = {
             "back of card" : ":("
         },
     ],
-    
+
 // map, filter, reduce: subjects into tabs
-tabs: [ { tabName: "Domain", content:
-                                [
-                                    {
-                                        tabName:"Subdomain",
-                                        content: [
-                                                    {tabName:"Topic"},
-                                                    {tabName:"Topic"}
-                                                ]
-                                    },
-                                    {
-                                        tabName:"Subdomain",
-                                        content: [
-                                                    {tabName:"Topic"},
-                                                    {tabName:"Topic"}
-                                                ]
-                                    },
-                                ]
-                },
-        { tabName: "Domain", content:
-                                        [
-                                            {
-                                                tabName:"Subdomain",
-                                                content: [
-                                                            {tabName:"Topic"},
-                                                            {tabName:"Topic"}
-                                                        ]
-                                            },
-                                            {
-                                                tabName:"Subdomain",
-                                                content: [
-                                                            {tabName:"Topic"},
-                                                            {tabName:"Topic"}
-                                                        ]
-                                            },
-                                        ]
-                        },
-           ],
+// tabs: [ { tabName: "Domain", content:
+//                                 [
+//                                     {
+//                                         tabName:"Subdomain",
+//                                         content: [
+//                                                     {tabName:"Topic"},
+//                                                     {tabName:"Topic"}
+//                                                 ]
+//                                     },
+//                                     {
+//                                         tabName:"Subdomain",
+//                                         content: [
+//                                                     {tabName:"Topic"},
+//                                                     {tabName:"Topic"}
+//                                                 ]
+//                                     },
+//                                 ]
+//                 },
+//         { tabName: "Domain", content:
+//                                         [
+//                                             {
+//                                                 tabName:"Subdomain",
+//                                                 content: [
+//                                                             {tabName:"Topic"},
+//                                                             {tabName:"Topic"}
+//                                                         ]
+//                                             },
+//                                             {
+//                                                 tabName:"Subdomain",
+//                                                 content: [
+//                                                             {tabName:"Topic"},
+//                                                             {tabName:"Topic"}
+//                                                         ]
+//                                             },
+//                                         ]
+//                         },
+//            ],
+
     subjects:[
         {
             "Domain" : "Programming languages",
@@ -390,5 +391,201 @@ tabs: [ { tabName: "Domain", content:
             "Subdomain" : "JSON",
             "Topic" : "General",
         },
+    ],
+
+// let Domains = new Set()
+// // filter by domain to create an array of objects:
+//      // [{tabName:"Domain1"}, {tabName:"Domain2"}, ...]
+// // for each object.tabName in arr
+//
+// for (let i = 0 ; i < response.subjects.length; i++){
+//     // Domains.add(response.subjects[i].Domain)
+//
+// }
+//
+// console.log(Domains)
+//
+// for (let i = 0 ; i < Domains.length; i++){
+//
+// }
+//
+// let tabs = []
+// function addTabAndContent(next){
+//     if (next.content){
+//
+//     }
+// }
+
+// map, filter, reduce: subjects into tabs
+tabs: [ { tabName: "Domain", content:
+                                [
+                                    {
+                                        tabName:"Subdomain",
+                                        content: [
+                                                    {tabName:"Topic"},
+                                                    {tabName:"Topic"}
+                                                ]
+                                    },
+                                    {
+                                        tabName:"Subdomain",
+                                        content: [
+                                                    {tabName:"Topic"},
+                                                    {tabName:"Topic"}
+                                                ]
+                                    },
+                                ]
+                },
+        { tabName: "Domain", content:
+                                        [
+                                            {
+                                                tabName:"Subdomain",
+                                                content: [
+                                                            {tabName:"Topic"},
+                                                            {tabName:"Topic"}
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"Subdomain",
+                                                content: [
+                                                            {tabName:"Topic"},
+                                                            {tabName:"Topic"}
+                                                        ]
+                                            },
+                                        ]
+                        },
+           ],
+
+tabs:[
+    { tabName: "Programming languages", content:
+                                    [
+                                        {
+                                            tabName:"C++",
+                                            content: [
+                                                        {tabName:"Operators"},
+                                                        {tabName:"Variables"}
+                                                    ]
+                                        },
+                                        {
+                                            tabName:"Python",
+                                            content: [
+                                                        {tabName:"Decorators"},
+                                                        {tabName:"Classes"}
+                                                    ]
+                                        },
+                                        {
+                                            tabName:"C#",
+                                            content: [
+                                                        {tabName:"Garbage collection"},
+                                                        {tabName:"Variables"}
+                                                    ]
+                                        },
+                                    ]
+                    },
+    { tabName: "Game engines", content:
+                                    [
+                                        {
+                                            tabName:"Unity",
+                                            content: [
+                                                        {tabName:"UI"},
+                                                    ]
+                                        },
+                                        {
+                                            tabName:"Unreal",
+                                            content: [
+                                                        {tabName:"UI"},
+                                                        {tabName:"General"}
+                                                    ]
+                                        },
+                                    ]
+                    },
+    { tabName: "General programming", content:
+                                    [
+                                        {
+                                            tabName:"Design patterns",
+                                            content: [
+                                                        {tabName:"Strategy"},
+                                                        {tabName:"Decorator"},
+                                                        {tabName:"Abstract Factory"},
+                                                        {tabName:"Factory"},
+                                                        {tabName:"Bridge"},
+                                                        {tabName:"Observer"},
+                                                        {tabName:"Singleton"},
+                                                        {tabName:"State"},
+                                                        {tabName:"Chain of command"},
+                                                    ]
+                                        },
+                                    ]
+                    },
+    { tabName: "Databases", content:
+                                    [
+                                        {
+                                            tabName:"MongoDB",
+                                            content: [
+                                                        {tabName:"Queries"},
+                                                        {tabName:"General"},
+
+                                                    ]
+                                        },
+                                        {
+                                            tabName:"SQL",
+                                            content: [
+                                                        {tabName:"Queries"},
+                                                    ]
+                                        },
+                                    ]
+                    },
+        { tabName: "Data science", content:
+                                        [
+                                            {
+                                                tabName:"Deep learning",
+                                                content: [
+                                                            {tabName:"General"},
+                                                        ]
+                                            },
+                                        ]
+        },
+        { tabName: "Web development", content:
+                                        [
+                                            {
+                                                tabName:"HTML",
+                                                content: [
+                                                            {tabName:"General"},
+                                                            {tabName:"Tags"},
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"CSS",
+                                                content: [
+                                                            {tabName:"General"},
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"React.js",
+                                                content: [
+                                                            {tabName:"General"},
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"Agile",
+                                                content: [
+                                                            {tabName:"General"},
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"Babel",
+                                                content: [
+                                                            {tabName:"General"},
+                                                        ]
+                                            },
+                                            {
+                                                tabName:"JSON",
+                                                content: [
+                                                            {tabName:"General"},
+                                                        ]
+                                            },
+                                        ]
+        }
     ]
 }
+
+export default response

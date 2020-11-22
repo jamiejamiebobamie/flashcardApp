@@ -1,49 +1,30 @@
 .accordion {
-  /* background-color: #eee; */
-  /* color: #444; */
   cursor: pointer;
   padding: 18px;
   width: 100%;
-  border: solid;
-  border-color: black;
-  border-width: thin;
-
+  border: none;
   background-color:transparent;
-  color:#e07322;
-
-
+  color: #9ba3a5;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 20px;
   transition: 0.4s;
-  padding-left: 1vw;
+  padding-left: 5vw;
 }
 
-.accordion:hover {
-  /* background-color: #ccc; */
-  background-color:#e07322;
-  color: #0a161b;
-  /* position:absolute; */
+.accordion:hover{
+  color:#84e8b0;
 }
 
 .hidePanel {
   padding: 0 18px;
   display: none;
-  /* background-color: white; */
   overflow: hidden;
-
-  background-color:#e07322;
-  color: #0a161b;
-
 }
 
 .showPanel {
   padding: 0 18px;
   display: block;
-  /* background-color: white; */
   overflow: hidden;
-
-  border-color:#e07322;
-  border-width: thin;
-  border-style:solid;
 }
+/* #84e8b0 */

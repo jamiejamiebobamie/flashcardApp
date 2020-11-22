@@ -10,10 +10,10 @@ import AccordianTab from './Modal/AccordianTab.jsx'
 import TabHolder from './Modal/TabHolder.jsx'
 import SelectedSubjectsHolder from './Modal/SelectedSubjectsHolder'
 import Modal from './Modal/Modal'
+import response from './sampleResponse'
 
 
-
-
+// #9ba3a5
 import React from 'react';
 
 
@@ -78,9 +78,10 @@ class App extends React.Component{
            isPortrait: window.innerWidth < window.innerHeight,
            currentCardContent:"",
            darkMode:1,
-           shouldDisplayMenuModal:true,
-           menuModalDisplay:'flex',
-           selectedSubjects: []
+           shouldDisplayMenuModal:false,
+           menuModalDisplay:'none',
+           selectedSubjects: ['i*click*on','i*subjects*to','i*add*cards'],
+           possibleSubjects:response.tabs
         };
      this.handleResize = this.handleResize.bind(this);
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
@@ -100,11 +101,15 @@ class App extends React.Component{
          }
      }
      addOrRemoveSubject(subject){
-         console.log(this.state.selectedSubjects)
+         if (this.state.selectedSubjects){
+             if (this.state.selectedSubjects[0]==='i*click*on'){
+                 this.setState({selectedSubjects: []})
+             }
+         }
          let subjectIsPresent = false;
          let newSelectedSubjects = [...this.state.selectedSubjects]
          if (newSelectedSubjects.length>0){
-             for (let i = 0; newSelectedSubjects.length; i++){
+             for (let i = 0; i < newSelectedSubjects.length; i++){
                  if ( newSelectedSubjects[i] === subject ){
                      // remove the entry
                      subjectIsPresent = true;
@@ -136,8 +141,6 @@ class App extends React.Component{
       }
       setTimeout(()=>{this.updateTerms()},100)
       console.log('yo')
-
-
   }
   incrementDefinitionIndex(){
       if ( this.state.definitionIndex
@@ -146,7 +149,6 @@ class App extends React.Component{
       }
       setTimeout(()=>{this.updateTerms()},100)
       console.log('hehehe')
-
   }
   decrementDefinitionIndex(){
       if ( this.state.definitionIndex > 1 ){
@@ -205,64 +207,64 @@ class App extends React.Component{
      window.addEventListener("resize", this.handleResize);
     }
     render(){
-        const tabs = [ { tabName: "lol", content:
-                                        [
-                                            {
-                                                tabName:"hi",
-                                                content: [
-                                                            {tabName:"hi"},
-                                                            {tabName:"hi"}
-                                                        ]
-                                            },
-                                            {
-                                                tabName:"hi",
-                                                content: [
-                                                            {tabName:"hi"},
-                                                            {tabName:"hi"}
-                                                        ]
-                                            },
-                                            {
-                                                tabName:"hi",
-                                                content: [
-                                                            {tabName:"hi"},
-                                                            {tabName:"hi"}
-                                                        ]
-                                            },
-                                            {
-                                                tabName:"hi",
-                                                content: [
-                                                            {tabName:"hi"},
-                                                            {tabName:"hi"}
-                                                        ]
-                                            },
-                                            {
-                                                tabName:"hi",
-                                                content: [
-                                                            {tabName:"hi"},
-                                                            {tabName:"hi"}
-                                                        ]
-                                            },
-                                            {
-                                                tabName:"hi",
-                                                content: [
-                                                            {tabName:"hi"},
-                                                            {tabName:"hi"}
-                                                        ]
-                                            },
-                                        ]
-                        },
-                        { tabName: "lol", content:
-                                           [
-                                               {
-                                                   tabName:"hi",
-                                                   content: [
-                                                               {tabName:"hi"},
-                                                               {tabName:"hi"}
-                                                           ]
-                                               }
-                                           ]
-                       },
-                    ]
+        // const tabs = [ { tabName: "lol", content:
+        //                                 [
+        //                                     {
+        //                                         tabName:"hi",
+        //                                         content: [
+        //                                                     {tabName:"hi"},
+        //                                                     {tabName:"hi"}
+        //                                                 ]
+        //                                     },
+        //                                     {
+        //                                         tabName:"hi",
+        //                                         content: [
+        //                                                     {tabName:"hi"},
+        //                                                     {tabName:"hi"}
+        //                                                 ]
+        //                                     },
+        //                                     {
+        //                                         tabName:"hi",
+        //                                         content: [
+        //                                                     {tabName:"hi"},
+        //                                                     {tabName:"hi"}
+        //                                                 ]
+        //                                     },
+        //                                     {
+        //                                         tabName:"hi",
+        //                                         content: [
+        //                                                     {tabName:"hi"},
+        //                                                     {tabName:"hi"}
+        //                                                 ]
+        //                                     },
+        //                                     {
+        //                                         tabName:"hi",
+        //                                         content: [
+        //                                                     {tabName:"hi"},
+        //                                                     {tabName:"hi"}
+        //                                                 ]
+        //                                     },
+        //                                     {
+        //                                         tabName:"hi",
+        //                                         content: [
+        //                                                     {tabName:"hi"},
+        //                                                     {tabName:"hi"}
+        //                                                 ]
+        //                                     },
+        //                                 ]
+        //                 },
+        //                 { tabName: "lol", content:
+        //                                    [
+        //                                        {
+        //                                            tabName:"hi",
+        //                                            content: [
+        //                                                        {tabName:"hi"},
+        //                                                        {tabName:"hi"}
+        //                                                    ]
+        //                                        }
+        //                                    ]
+        //                },
+        //             ]
         let appContent = this.state.isMobile ?
             this.state.isPortrait ?
             <div className="AppPortraitMobile">
@@ -275,29 +277,30 @@ class App extends React.Component{
         :
         <div className="AppDesktop">
             <Modal
-                tabs={tabs}
+                tabs={this.state.possibleSubjects}
                 clickFunc={this.addOrRemoveSubject}
                 selectedSubjects={this.state.selectedSubjects}
                 menuModalDisplay={this.state.menuModalDisplay}
                 />
-            <div style={{display:"flex",flexDirection:"column",height:"90vh",width:"60vw",marginTop:"5vh",minHeight:"300px"}}>
+            <div style={{display:"flex",flexDirection:"column",height:"90vh",width:"60vw",marginTop:"5vh",minHeight:"666px"}}>
                 <div style={{display:"flex",backgroundColor:"#0a161b",height:"70%",marginBottom:"1vh",width:"90%",marginLeft:"10%"}}></div>
                 <div style={{display:"flex",color:"#9ba3a5",justifyContent:"center",backgroundColor:"#0a161b",height:"30%",marginTop:"1vh",width:"90%",marginLeft:"10%"}}>
-                    <button
-                        onClick = {this.toggleMenuModal}
-                        style={{position:"absolute",zIndex:"1",textAlign:"center",backgroundColor:"transparent",color:"#9ba3a5",minHeight:"70px",minWidth:"70px",width:"5vw",height:"5vw",borderRadius:"1vw",alignSelf:"center",fontSize:"3em",borderStyle:"none"}}>
-                        &#9776;
-                    </button>
+                    <Button
+                        title = "Select Cards"
+                        clickFunc = { this.toggleMenuModal }
+                        content = { 0x2630 }
+                        menuButton = { true }
+                    />
                 </div>
             </div>
-            <div style={{display:"flex",flexDirection:"column",height:"100vh",width:"40vw",marginTop:"5vh",minHeight:"333px"}}>
-                <div style={{display:"flex",backgroundColor:"#1E2C34",flexDirection:"column",height:"90%",width:"70%",justifyContent:"center",marginLeft:"1vw"}}>
+            <div style={{display:"flex",flexDirection:"column",height:"100vh",width:"40vw",marginTop:"5vh",minHeight:"740px"}}>
+                <div style={{display:"flex",backgroundColor:"#1E2C34",flexDirection:"column",height:"90%",width:"70%",justifyContent:"flex-end",marginLeft:"1vw"}}>
                     <ButtonGrouping
                         buttons= {
                             [
-                                {content:'&#x2296;',
+                                {content:0x2296, title:'Less Terms',
                                     clickFunc:this.incrementDefinitionIndex},
-                                {content:'&#x2295;',
+                                {content:0x2295,  title:'More Terms',
                                     clickFunc:this.decrementDefinitionIndex},
                             ]
                         }
@@ -305,9 +308,24 @@ class App extends React.Component{
                     <ButtonGrouping
                         buttons= {
                             [
-                                {content:'&#x2190;',
+                                {content:0x2190,  title:'Last Card',
                                     clickFunc:this.incrementCardIndex},
-                                {content:'&#x2192;',
+                                {content:0x2192, title:'Next Card',
+                                    clickFunc:this.decrementCardIndex},
+                            ]
+                        }
+                    />
+                    <ButtonGrouping
+                        moreThanTwoButtons = {true}
+                        buttons= {
+                            [
+                                {content:0x2600, title:'Light Mode',
+                                    clickFunc:this.incrementCardIndex},
+                                {content:0x263E, title:'Dark Mode',
+                                    clickFunc:this.decrementCardIndex},
+                                {content:0x21bb, title:'Shuffle',
+                                    clickFunc:this.incrementCardIndex},
+                                {content:0x293C, title:'Remove Card',
                                     clickFunc:this.decrementCardIndex},
                             ]
                         }
