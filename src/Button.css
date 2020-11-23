@@ -36,13 +36,6 @@
     border-style:none
 }
 
-.button:hover, .largeButtonGroup:hover, .buttonDesktopPortrait:hover, .buttonDesktopLandscape:hover, .buttonMobileLandscape:hover, .buttonMobilePortrait:hover, .menuButton:hover{
-    /* color: #1baf9d; */
-    /* color: #FF8F0D; */
-    /* color: #303F9F; */
-    color:#84e8b0;
-}
-
 .largeButtonGroup{
     text-align:center;
     background-color:transparent;
@@ -73,4 +66,11 @@
     align-self:center;
     font-size:3em;
     border-style:none
+}
+
+.active, .button:hover, .largeButtonGroup:hover, .buttonDesktopPortrait:hover, .buttonDesktopLandscape:hover, .buttonMobileLandscape:hover, .buttonMobilePortrait:hover, .menuButton:hover{
+    /* color: #1baf9d; */
+    /* color: #FF8F0D; */
+    /* color: #303F9F; */
+    color:#84e8b0;
 }

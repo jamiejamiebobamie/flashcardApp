@@ -1,0 +1,10 @@
+.flashcardHolder{
+    display:flex;
+    background-color:#0a161b;
+    height:70%;
+    margin-bottom:5px;
+    width:90%;
+    margin-left:10%;
+    color:#9ba3a5;
+    justify-content:center;
+}

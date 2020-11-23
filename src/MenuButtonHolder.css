@@ -1,0 +1,10 @@
+.menuButtonHolder{
+    display:flex;
+    color:#9ba3a5;
+    justify-content:center;
+    background-color:#0a161b;
+    height:30%;
+    margin-top:5px;
+    width:90%;
+    margin-left:10%;
+}

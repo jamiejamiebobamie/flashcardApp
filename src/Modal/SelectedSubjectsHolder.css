@@ -1,12 +1,13 @@
 .selectedSubjectsHolder{
     display: flex;
     flex-direction: column;
-    margin-left:1vw;
+    margin-left:10px;
     height:100%;
-    width:28vw;
+    width:25vw;
     overflow:scroll;
     background-color:#0a161b;
-    
+    min-height: 100%;
+
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }

@@ -2,9 +2,9 @@ import { React, useState } from 'react';
 import "./AccordianTab.css"
 
 export default function AccordianTab(props){
-    const [accordianDisplay, togglePanel] = useState('hidePanel');
+    const [display, togglePanel] = useState(['accordionInactive','hidePanel']);
     let displayContent;
-    
+
     if (props.content){
         displayContent = props.content.map(
                                 (anotherTab) =>
@@ -26,19 +26,21 @@ export default function AccordianTab(props){
                                     // subjects.
                                 props.clickFunc(props.hash);
                                 e.stopPropagation();
+                                togglePanel( display[0] === 'accordionInactive' ?
+                                                ['accordionActive','showPanel'] : ['accordionInactive','hidePanel'] );
                             }
                             :
                             (e) => {
                                 // if domain or subdomain:
                                     // open the tab to show the next level.
                                 e.stopPropagation();
-                                togglePanel( accordianDisplay === 'hidePanel' ?
-                                                'showPanel' : 'hidePanel' );
+                                togglePanel( display[0] === 'accordionInactive' ?
+                                                ['accordionActive','showPanel'] : ['accordionInactive','hidePanel'] );
                             }
                         }
-            className = "accordion">
+            className = {display[0]}>
                 {props.tabName}
-            <p className= {accordianDisplay}>
+            <p className= {display[1]}>
                 {displayContent}
             </p>
         </button>

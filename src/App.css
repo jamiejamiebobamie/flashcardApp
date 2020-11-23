@@ -21,3 +21,22 @@
     background-color: #17223B;
     margin:auto;
 }
+
+.leftColumn, .rightColumn{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    margin-top: 5vh;
+    min-height: 850px;
+}
+
+.leftColumn{
+    width: 60vw;
+}
+
+.rightColumn{
+    width:25vw;
+    background-color:#1E2C34;
+    justify-content:flex-end;
+    margin-left:10px;
+}

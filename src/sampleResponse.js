@@ -4,205 +4,205 @@ const response = {
         {
             "Domain" : "Programming languages",
             "Subdomain" : "C++",
-            "Topic" : "operators",
-            "front of card" : "arrow operator",
-            "back of card" : "A means of accessing a class member from outside the class.&#09;Automatically dereferences the pointer variable that points to the class."
+            "Topic" : "Operators",
+            "front" : "arrow operator",
+            "back" : "A means of accessing a class member from outside the class.&#09;Automatically dereferences the pointer variable that points to the class."
         },
         {
             "Domain" : "Programming languages",
             "Subdomain" : "Python",
-            "Topic" : "decorators",
-            "front of card" : "decorators",
-            "back of card" : "wrappers that extend the functionality of the object it wraps."
+            "Topic" : "Decorators",
+            "front" : "decorators",
+            "back" : "wrappers that extend the functionality of the object it wraps."
         },
         {
             "Domain" : "Programming languages",
             "Subdomain" : "C#",
-            "Topic" : "garbage collection",
-            "front of card" : "garbage collection",
-            "back of card" : "no idea."
+            "Topic" : "Garbage collection",
+            "front" : "garbage collection",
+            "back" : "no idea."
         },
         {
             "Domain" : "Programming languages",
             "Subdomain" : "C++",
-            "Topic" : "variables",
-            "front of card" : "ha",
-            "back of card" : "he"
+            "Topic" : "Variables",
+            "front" : "ha",
+            "back" : "he"
         },
         {
             "Domain" : "Programming languages",
             "Subdomain" : "Python",
-            "Topic" : "classes",
-            "front of card" : "lawl",
-            "back of card" : "lol"
+            "Topic" : "Classes",
+            "front" : "lawl",
+            "back" : "lol"
         },
         {
             "Domain" : "Programming languages",
             "Subdomain" : "C#",
-            "Topic" : "variables",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Variables",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "Game engines",
             "Subdomain" : "Unity",
             "Topic" : "UI",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "Game engines",
             "Subdomain" : "Unreal",
             "Topic" : "UI",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "Game engines",
             "Subdomain" : "Unreal",
-            "Topic" : "general",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Strategy pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Strategy",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Decorator pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Decorator",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Abstract Factory pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Abstract Factory",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Factory pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Factory",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Bridge pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Bridge",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Observer pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Observer",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Singleton pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Singleton",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "State pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "State",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "General programming",
             "Subdomain" : "Design patterns",
-            "Topic" : "Chain of command pattern",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Chain of command",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "Databases",
             "Subdomain" : "MongoDB",
-            "Topic" : "queries",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Queries",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "Databases",
             "Subdomain" : "MongoDB",
-            "Topic" : "general facts",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "Databases",
             "Subdomain" : "SQL",
-            "Topic" : "queries",
-            "front of card" : ":)",
-            "back of card" : ":("
+            "Topic" : "Queries",
+            "front" : ":)",
+            "back" : ":("
         },
         {
             "Domain" : "Data science",
             "Subdomain" : "Deep learning",
-            "Topic" : "General terms",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ";)",
+            "back" : ":("
         },
         {
             "Domain" : "Web development",
             "Subdomain" : "HTML",
-            "Topic" : "General info",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ";)",
+            "back" : ":("
         },
         {
             "Domain" : "Web development",
             "Subdomain" : "HTML",
             "Topic" : "Tags",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "front" : ";)",
+            "back" : ":("
         },
         {
             "Domain" : "Web development",
             "Subdomain" : "CSS",
-            "Topic" : "General terms",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ";)",
+            "back" : ":("
         },
         {
             "Domain" : "Web development",
             "Subdomain" : "React.js",
-            "Topic" : "General terms",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ";)",
+            "back" : ":("
         },
         {
             "Domain" : "Web development",
             "Subdomain" : "Agile",
-            "Topic" : "General terms",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ";)",
+            "back" : ":("
         },
         {
             "Domain" : "Web development",
             "Subdomain" : "Babel",
-            "Topic" : "General terms",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ";)",
+            "back" : ":("
         },
         {
             "Domain" : "Web development",
             "Subdomain" : "JSON",
-            "Topic" : "General terms",
-            "front of card" : ";)",
-            "back of card" : ":("
+            "Topic" : "General",
+            "front" : ";)",
+            "back" : ":("
         },
     ],
 
