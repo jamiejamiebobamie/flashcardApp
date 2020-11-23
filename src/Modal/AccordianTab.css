@@ -1,4 +1,4 @@
-.accordionActive {
+.accordionActive, .accordionInactive {
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -12,25 +12,8 @@
   padding-left: 5vw;
 }
 
-.accordionInactive {
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  background-color:transparent;
-  color: #9ba3a5;
-  text-align: left;
-  outline: none;
-  font-size: 20px;
-  transition: 0.4s;
-  padding-left: 5vw;
-}
 
-.accordionInactive:hover{
-  color:#84e8b0;
-}
-
-.hidePanel {
+.hidePanel, .showPanel  {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -38,8 +21,14 @@
 }
 
 .showPanel {
-  padding: 0 18px;
   display: block;
-  overflow: hidden;
   color: #84e8b0;
+}
+
+.accordionInactive {
+  color: #9ba3a5;
+}
+
+.accordionInactive:hover, .showPanel{
+  color:#84e8b0;
 }

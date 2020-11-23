@@ -1,9 +1,9 @@
 .tabHolder{
     background-color:#0a161b;
     flex-direction:column;
-    height:68%;
+    height:62vh;
     width:54vw;
     overflow:scroll;
-    /* min-height:300px; */
+    min-height:300px;
     scrollbar-color: #84e8b0;
 }

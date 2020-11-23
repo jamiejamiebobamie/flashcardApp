@@ -12,6 +12,7 @@ export default function TabHolder(props){
                                         content={tab.content}
                                         hash={""+tab.tabName}
                                         clickFunc={props.clickFunc}
+                                        selectedSubjects={props.selectedSubjects}
                                         />
                                 )
         return (

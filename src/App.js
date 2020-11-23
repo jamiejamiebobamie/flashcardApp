@@ -76,7 +76,7 @@ class App extends Component{
                      card.Topic === selectedSubjects[i][2]
                  )
                  if (temp.length){
-                     filteredCards.push(temp)
+                     filteredCards.push(...temp)
                  }
              }
              this.setState({cards: filteredCards})
@@ -213,9 +213,9 @@ class App extends Component{
             <div className='leftColumn'>
                 <FlashcardHolder
                     content = { this.state.cards.length ?
-                                    this.state.cards[this.state.cardIndex].front
+                                    this.state.cards[this.state.cardIndex]
                                     :
-                                    'Click on the menu button below to select subjects to study.'
+                                    {front:'Click on the menu button below to select subjects to study.'}
                                 }
                  />
                  <MenuButtonHolder

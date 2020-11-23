@@ -10,6 +10,13 @@ const response = {
         },
         {
             "Domain" : "Programming languages",
+            "Subdomain" : "C++",
+            "Topic" : "Operators",
+            "front" : "dot operator",
+            "back" : "A means of accessing member variables and methods from a public class or from a dereferenced class variable."
+        },
+        {
+            "Domain" : "Programming languages",
             "Subdomain" : "Python",
             "Topic" : "Decorators",
             "front" : "decorators",
