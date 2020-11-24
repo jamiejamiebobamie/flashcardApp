@@ -14,7 +14,7 @@
     border-style:solid;
     margin-top: 1vh;
     margin-bottom: 1vh;
-
+    min-height:100px;
 }
 .selectedSubject:hover{
     background-color:#84e8b0;

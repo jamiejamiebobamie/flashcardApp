@@ -50,6 +50,8 @@ class App extends Component{
      this.toggleDarkAndLightMode = this.toggleDarkAndLightMode.bind(this);
      this.addOrRemoveSubject = this.addOrRemoveSubject.bind(this);
      this.toggleFullScreen = this.toggleFullScreen.bind(this);
+     this.shuffleCards = this.shuffleCards.bind(this);
+     this.removeCard = this.removeCard.bind(this);
      }
      toggleMenuModal(){
          if (this.state.shouldDisplayMenuModal){
@@ -145,6 +147,27 @@ class App extends Component{
       }
       setTimeout(()=>{this.updateTerms()},100)
   }
+  shuffleCards(){
+      if (this.state.cards.length){
+          let shuffleCards = [...this.state.cards]
+          for(let i = shuffleCards.length - 1; i >= 0; i--){
+              let randomIndex = Math.floor(Math.random()*i)
+              let temp = shuffleCards[i]
+              shuffleCards[i] = shuffleCards[randomIndex]
+              shuffleCards[randomIndex] = temp
+          }
+          this.setState({cards: shuffleCards})
+      }
+      setTimeout(()=>console.log(this.state.cards),100)
+  }
+  removeCard(){
+      if (this.state.cards.length){
+          let shuffleCards = [...this.state.cards]
+              shuffleCards.splice(this.state.cardIndex,1)
+              this.setState({cards: shuffleCards})
+              setTimeout(()=>console.log(this.state.cards),100)
+      }
+  }
   updateTerms(){
       if (this.state.cards.length){
           let terms = []
@@ -215,8 +238,19 @@ class App extends Component{
                     content = { this.state.cards.length ?
                                     this.state.cards[this.state.cardIndex]
                                     :
-                                    {front:'Click on the menu button below to select subjects to study.'}
+                                    {front:'Click on the menu button below to select subjects to study.',
+                                    back:'Click on the menu button below to select subjects to study.',
+                                    Domain:'CS',
+                                    Subdomain:'Refresh',
+                                    Topic:'',
+
+
                                 }
+                                }
+                    functions={{incrementCardIndex:this.incrementCardIndex,
+                                decrementCardIndex:this.decrementCardIndex,
+                                shuffleCards:this.shuffleCards,
+                                removeCard:this.removeCard}}
                  />
                  <MenuButtonHolder
                     menuButton = {true}

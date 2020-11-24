@@ -1,0 +1,56 @@
+.Card{
+    display:flex;
+    justify-content:center;
+    /* margin-top: 22.5vh; */
+}
+
+.c {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align:center;
+
+  /* background-color: white; */
+  background-color:#1E2C34;
+  border-style:solid;
+  border-width: thin;
+
+  width: 80vw;
+  min-width: 500px;
+  height: 45vw;
+  min-height: 300px;
+
+  max-width: 750px;
+  max-height: 450px;
+  will-change: transform, opacity;
+
+  cursor: pointer;
+
+  /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+  -webkit-touch-callout: none; /* iOS Safari */
+   -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+       -ms-user-select: none; /* Internet Explorer/Edge */
+           user-select: none; /* Non-prefixed version, currently
+                                 supported by Chrome, Edge, Opera and Firefox */
+}
+
+.label{
+    display: flex;
+    text-align:flex-start;
+    font-size:10px;
+    margin-left:10px;
+}
+
+.content{
+    display: flex;
+    text-align:center;
+    font-size:30px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:auto;
+    margin-bottom:auto;
+}
