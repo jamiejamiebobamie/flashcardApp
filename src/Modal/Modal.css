@@ -1,17 +1,17 @@
 .modal{
     position:absolute;
+    z-index:2;
+
     display:flex;
-    /* background-color:#0a161b; */
-    /* top:5vh;
-    left:13.1%; */
-    width:82vw;
-    /* height:90vh; */
-    z-index:1;
-    overflow:scroll;
-    /* opacity:.3; */
-    justify-content:center;
-    min-height:666px;
-    margin-left: 3vw;
-    margin-top: 5vh;
-    min-height: 666px;
+    justify-content:space-between;
+
+    /* background-color: yellow; */
+    background-color: #0a161b;
+
+    width:90%;
+    height:70%;
+    min-height: 700px;
+    max-width: 1100px;
+
+    overflow: hidden;
 }

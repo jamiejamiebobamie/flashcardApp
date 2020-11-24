@@ -1,42 +1,6 @@
-.AppLandscapeMobile {
+.App{
     display:flex;
     justify-content: center;
-    /* height: 80vh; */
-    /* margin-top: 3.5vh; */
-    background-color: #17223B;
-    margin:auto;
-}
-
-.AppPortraitMobile {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    /* height: 80vh; */
-    background-color: #17223B;
-}
-
-.AppDesktop{
-    display:flex;
-    justify-content: center;
-    background-color: #17223B;
-    margin:auto;
-}
-
-.leftColumn, .rightColumn{
-    display: flex;
-    flex-direction: column;
-    height: 90vh;
+    align-self: center;
     margin-top: 5vh;
-    min-height: 850px;
-}
-
-.leftColumn{
-    width: 60vw;
-}
-
-.rightColumn{
-    width:25vw;
-    background-color:#1E2C34;
-    justify-content:flex-end;
-    margin-left:10px;
 }

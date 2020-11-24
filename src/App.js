@@ -9,6 +9,9 @@ import Modal from './Modal/Modal'
 import FlashcardHolder from './FlashcardHolder'
 import MenuButtonHolder from './MenuButtonHolder'
 
+import "./FlashcardHolder.css"
+import Card from "./Card"
+
 class App extends Component{
     constructor(props) {
     super(props);
@@ -216,26 +219,18 @@ class App extends Component{
      window.addEventListener("resize", this.handleResize);
     }
     render(){
-        let appContent = this.state.isMobile ?
-            this.state.isPortrait ?
-            <div className="AppPortraitMobile">
+        return (
 
-            </div>
-            :
-            <div className="AppLandscapeMobile">
+            <div className="App">
 
-            </div>
-        :
-        <div className="AppDesktop">
             <Modal
                 tabs={this.state.possibleSubjects}
                 clickFunc={this.addOrRemoveSubject}
                 selectedSubjects={this.state.selectedSubjects}
                 menuModalDisplay={this.state.menuModalDisplay}
             />
-            <div className='leftColumn'>
                 <FlashcardHolder
-                    content = { this.state.cards.length ?
+                    cardContent = { this.state.cards.length ?
                                     this.state.cards[this.state.cardIndex]
                                     :
                                     {front:'Click on the menu button below to select subjects to study.',
@@ -243,76 +238,104 @@ class App extends Component{
                                     Domain:'CS',
                                     Subdomain:'Refresh',
                                     Topic:'',
-
-
                                 }
                                 }
+                    stats = {{currentIndex:this.state.cardIndex,length:this.state.cards.length}}
                     functions={{incrementCardIndex:this.incrementCardIndex,
                                 decrementCardIndex:this.decrementCardIndex,
                                 shuffleCards:this.shuffleCards,
                                 removeCard:this.removeCard}}
                  />
-                 <MenuButtonHolder
-                    menuButton = {true}
-                     title = "Select Cards"
-                     clickFunc = { this.toggleMenuModal }
-                     content = { 0x2630 }
-                     active = {this.state.shouldDisplayMenuModal}
-                  />
+                  <MenuButtonHolder
+                     menuButton = {true}
+                      title = "Select Cards"
+                      clickFunc = { this.toggleMenuModal }
+                      content = { 0x2630 }
+                      active = {this.state.shouldDisplayMenuModal}
+                   />
             </div>
-            <div className='rightColumn'>
-                    <ButtonGrouping
-                        buttons = {
-                            [
-                                {content:0x2921, title:'Full Screen',
-                                    clickFunc:this.toggleFullScreen,
-                                    active: this.state.fullScreen
-                                }
-                            ]
-                        }
-                    />
-                    <ButtonGrouping
-                        buttons = {
-                            [
-                                {content:0x2296, title:'Less Terms',
-                                    clickFunc:this.decrementDefinitionIndex},
-                                {content:0x2295,  title:'More Terms',
-                                    clickFunc:this.incrementDefinitionIndex},
-                            ]
-                        }
-                    />
-                    <ButtonGrouping
-                        buttons = {
-                            [
-                                {content:0x2190,  title:'Last Card',
-                                    clickFunc:this.decrementCardIndex},
-                                {content:0x2192, title:'Next Card',
-                                    clickFunc:this.incrementCardIndex},
-                            ]
-                        }
-                    />
-                    <ButtonGrouping
-                        buttons = {
-                            [
-                                {content:0x2600, title:'Light Mode',
-                                    clickFunc:this.toggleDarkAndLightMode,
-                                    active: !this.state.darkMode
-                                },
-                                {content:0x263E, title:'Dark Mode',
-                                    clickFunc:this.toggleDarkAndLightMode,
-                                    active: this.state.darkMode
-                                },
-                                {content:0x21bb, title:'Shuffle',
-                                    clickFunc:this.incrementCardIndex},
-                                {content:0x293C, title:'Remove Card',
-                                    clickFunc:this.decrementCardIndex},
-                            ]
-                        }
-                    />
-            </div>
-        </div>
-        return appContent;
+
+        )
+
     }
 }
 
 export default App;
+
+//
+
+
+// <div className='leftColumn'>
+//     <FlashcardHolder
+//         content = { this.state.cards.length ?
+//                         this.state.cards[this.state.cardIndex]
+//                         :
+//                         {front:'Click on the menu button below to select subjects to study.',
+//                         back:'Click on the menu button below to select subjects to study.',
+//                         Domain:'CS',
+//                         Subdomain:'Refresh',
+//                         Topic:'',
+//
+//
+//                     }
+//                     }
+//         functions={{incrementCardIndex:this.incrementCardIndex,
+//                     decrementCardIndex:this.decrementCardIndex,
+//                     shuffleCards:this.shuffleCards,
+//                     removeCard:this.removeCard}}
+//      />
+//      <MenuButtonHolder
+//         menuButton = {true}
+//          title = "Select Cards"
+//          clickFunc = { this.toggleMenuModal }
+//          content = { 0x2630 }
+//          active = {this.state.shouldDisplayMenuModal}
+//       />
+// </div>
+// <div className='rightColumn'>
+//         <ButtonGrouping
+//             buttons = {
+//                 [
+//                     {content:0x2921, title:'Full Screen',
+//                         clickFunc:this.toggleFullScreen,
+//                         active: this.state.fullScreen
+//                     }
+//                 ]
+//             }
+//         />
+//         <ButtonGrouping
+//             buttons = {
+//                 [
+//                     {content:0x2296, title:'Less Terms',
+//                         clickFunc:this.decrementDefinitionIndex},
+//                     {content:0x2295,  title:'More Terms',
+//                         clickFunc:this.incrementDefinitionIndex},
+//                 ]
+//             }
+//         />
+//         <ButtonGrouping
+//             buttons = {
+//                 [
+
+//                 ]
+//             }
+//         />
+//         <ButtonGrouping
+//             buttons = {
+//                 [
+//                     {content:0x2600, title:'Light Mode',
+//                         clickFunc:this.toggleDarkAndLightMode,
+//                         active: !this.state.darkMode
+//                     },
+//                     {content:0x263E, title:'Dark Mode',
+//                         clickFunc:this.toggleDarkAndLightMode,
+//                         active: this.state.darkMode
+//                     },
+//                     {content:0x21bb, title:'Shuffle',
+//                         clickFunc:this.incrementCardIndex},
+//                     {content:0x293C, title:'Remove Card',
+//                         clickFunc:this.decrementCardIndex},
+//                 ]
+//             }
+//         />
+// </div>

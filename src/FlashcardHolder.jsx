@@ -1,49 +1,83 @@
 import "./FlashcardHolder.css"
-import Flashcard from "./Flashcard.jsx"
 import Card from "./Card"
 
+import IndexDisplay from './IndexDisplay';
+import './IndexDisplay.css';
 
-// two buttons per group
+import Button from './Button';
+import './Button.css';
+
 export default function FlashcardHolder(props) {
-    return <div className='flashcardHolder'>
-                <Card
-                front={props.content.front}
-                back={props.content.back}
-                Domain={props.content.Domain}
-                Subdomain={props.content.Subdomain}
-                Topic={props.content.Topic}
-                onReleaseFunction={(dir)=>{
-                    const {x,y} = dir
-                    if (x){
-                        if (x>0){
-                            console.log('decrement card index')
-                            props.functions.decrementCardIndex()
-                        }else if (x<0){
-                            console.log('increment card index')
-                            props.functions.incrementCardIndex()
+    const content = props.cardContent ?
+        <Card
+            front = { props.cardContent.front }
+            back = { props.cardContent.back }
+            Domain = { props.stats.length ?
+                            props.cardContent.Domain
+                            :
+                            null
                         }
-                    }else if (y){
-                        if (y>0){
-                            console.log('shuffle this card only')
-                            // functions.
-                            props.functions.shuffleCards()
-                        }else if (y<0){
-                            console.log('remove this card')
-                            // functions.
-                            props.functions.removeCard()
+            Subdomain = { props.stats.length ?
+                            props.cardContent.Subdomain
+                            :
+                            null
+                        }
+            Topic = { props.stats.length ?
+                            props.cardContent.Topic
+                            :
+                            null
+                        }
+            onReleaseFunction = { (dir) => {
+                        const {x,y} = dir
+                        if (x){
+                            if (x>0){
+                                console.log('decrement card index')
+                                props.functions.decrementCardIndex()
+                            }else if (x<0){
+                                console.log('increment card index')
+                                props.functions.incrementCardIndex()
+                            }
+                        }else if (y){
+                            if (y>0){
+                                console.log('shuffle this card only')
+                                props.functions.shuffleCards()
+                            }else if (y<0){
+                                console.log('remove this card')
+                                props.functions.removeCard()
+                            }
                         }
                     }
-                }}
-                />
+                }
+        />
+        :
+        null
+    const controls = props.stats.length ?
+            <div
+                style = {{ display:'flex',
+                           alignSelf:'center',
+                           margin:'10px',
+                           justifyContent:'space-around',
+                           width:'300px'
+                        }}>
+                            <Button
+                                content={0x2190}
+                                title={'Last Card'}
+                                clickFunc={props.functions.decrementCardIndex}
+                            />
+                            <IndexDisplay
+                                currentIndex={props.stats.currentIndex+1}
+                                length={props.stats.length}
+                            />
+                            <Button
+                                content={0x2192}
+                                title={'Next Card'}
+                                clickFunc={props.functions.incrementCardIndex}
+                            />
+            </div>
+            :
+            null
+    return <div className='flashcardHolder'>
+                { content }
+                { controls }
           </div>
 }
-//
-// <div style={{display:"flex",backgroundColor:"#0a161b",height:"70%",marginBottom:"1vh",width:"90%",marginLeft:"10%",color:'#9ba3a5',justifyContent:'center'}}>
-//     <p style={{alignSelf:'center',fontSize:'20px'}}>
-//         { this.state.cards.length ?
-//             this.state.cards[this.state.cardIndex].front
-//             :
-//             'Click on the menu button below to select subjects to study.'
-//         }
-//     </p>
-// </div>
