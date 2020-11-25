@@ -25,7 +25,6 @@
 }
 
 .backgroundMessage{
-
     position: absolute;
     z-index: 0;
 
@@ -36,6 +35,7 @@
 
     margin-top: -5vh;
     margin-bottom: auto;
+    text-align: center;
 
     opacity: .3;
 }

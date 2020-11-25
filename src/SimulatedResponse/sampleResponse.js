@@ -20,7 +20,7 @@ const response = {
             "Subdomain" : "Python",
             "Topic" : "Decorators",
             "front" : "decorators",
-            "back" : "wrappers that extend the functionality of the object it wraps."
+            "back" : "wrappers that extend the functionality of the objects they wraps."
         },
         {
             "Domain" : "Programming languages",
