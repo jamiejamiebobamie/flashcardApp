@@ -1,12 +1,17 @@
 .selectedSubjectsHolder{
     display: flex;
     flex-direction: column;
-    margin-left:10px;
+    /* margin-left:5px; */
     width:35%;
     background-color:#0a161b;
     overflow:scroll;
     height:70vh;
     min-height: 700px;
+    /* background-color: red; */
+    min-width: 150px;
+    padding-right: 3vw;
+
+
 }
 .selectedSubjectsHolder::-webkit-scrollbar {
   display: none;

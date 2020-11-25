@@ -1,3 +1,5 @@
+import {useState} from 'react'
+
 import "./FlashcardHolder.css"
 import Card from "./Card"
 
@@ -8,7 +10,12 @@ import Button from './Button';
 import './Button.css';
 
 export default function FlashcardHolder(props) {
-    const content = props.cardContent ?
+    const [calledFunction,setBackgroundMessage] = useState(null)
+    const showMessage = (message) => {
+        setTimeout(()=>{setBackgroundMessage(message)},100)
+        setTimeout(()=>{setBackgroundMessage(null)},1000)
+    }
+    const card = props.cardContent ?
         <Card
             front = { props.cardContent.front }
             back = { props.cardContent.back }
@@ -31,19 +38,19 @@ export default function FlashcardHolder(props) {
                         const {x,y} = dir
                         if (x){
                             if (x>0){
-                                console.log('decrement card index')
                                 props.functions.decrementCardIndex()
+                                showMessage("PREVIOUS")
                             }else if (x<0){
-                                console.log('increment card index')
                                 props.functions.incrementCardIndex()
+                                showMessage("NEXT")
                             }
-                        }else if (y){
+                        } else if (y){
                             if (y>0){
-                                console.log('shuffle this card only')
                                 props.functions.shuffleCards()
+                                showMessage("SHUFFLE")
                             }else if (y<0){
-                                console.log('remove this card')
                                 props.functions.removeCard()
+                                showMessage("REMOVE")
                             }
                         }
                     }
@@ -51,6 +58,17 @@ export default function FlashcardHolder(props) {
         />
         :
         null
+    const backgroundMessage = calledFunction ?
+          <div style = {{ position:'absolute',
+                           zIndex:'0',
+                           fontSize:'40px',
+                           display:'flex',
+                           alignSelf:'center',
+                           marginTop:'-5vh',
+                           marginBottom:'auto',
+                           verticalAlign:'text-top'}}>{calledFunction}</div>
+                           :
+                           null
     const controls = props.stats.length ?
             <div
                 style = {{ display:'flex',
@@ -77,7 +95,8 @@ export default function FlashcardHolder(props) {
             :
             null
     return <div className='flashcardHolder'>
-                { content }
+                { card }
+                { backgroundMessage }
                 { controls }
           </div>
 }

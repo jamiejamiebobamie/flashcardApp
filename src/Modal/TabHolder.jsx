@@ -2,8 +2,6 @@ import "./TabHolder.css"
 import AccordianTab from './AccordianTab.jsx'
 
 export default function TabHolder(props){
-    // key={tab.tabName}
-    let index = 0;
     if (props.tabs){
         const tabs = props.tabs.map((tab) =>
                                     <AccordianTab
@@ -11,12 +9,11 @@ export default function TabHolder(props){
                                         tabName={tab.tabName}
                                         content={tab.content}
                                         hash={""+tab.tabName}
-                                        clickFunc={props.clickFunc}
+                                        addOrRemoveSubject={props.addOrRemoveSubject}
                                         selectedSubjects={props.selectedSubjects}
-                                        />
+                                    />
                                 )
         return (
-
             <div className="tabHolder">
                 {tabs}
             </div>

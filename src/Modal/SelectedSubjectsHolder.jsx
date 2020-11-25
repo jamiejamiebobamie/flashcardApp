@@ -5,7 +5,7 @@ export default function SelectedSubjectsHolder(props){
 
     const selectedSubjects = props.selectedSubjects.map( (selectedSubject)=>
                                             <SelectedSubject
-                                                clickFunc= {props.clickFunc}
+                                                addOrRemoveSubject= {props.addOrRemoveSubject}
                                                 subject= {selectedSubject}
                                             />
                                         )

@@ -13,7 +13,7 @@ export default function AccordianTab(props){
                                         hash={props.hash+"*"+anotherTab.tabName}
                                         tabName={anotherTab.tabName}
                                         content={anotherTab.content}
-                                        clickFunc={props.clickFunc}
+                                        addOrRemoveSubject={props.addOrRemoveSubject}
                                         selectedSubjects={props.selectedSubjects}
                                         />)
     }
@@ -26,7 +26,7 @@ export default function AccordianTab(props){
                                 // if topic:
                                     // add the topic to the list of selected
                                     // subjects.
-                                props.clickFunc(props.hash);
+                                props.addOrRemoveSubject(props.hash);
                                 e.stopPropagation();
                                 togglePanel( panelClassName === 'hidePanel' ?
                                                 'showPanel' : 'hidePanel' );

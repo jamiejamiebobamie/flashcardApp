@@ -47,17 +47,16 @@ class App extends Component{
      this.handleResize = this.handleResize.bind(this);
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
      this.decrementCardIndex = this.decrementCardIndex.bind(this);
-     this.incrementDefinitionIndex = this.incrementDefinitionIndex.bind(this);
-     this.decrementDefinitionIndex = this.decrementDefinitionIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
      this.toggleDarkAndLightMode = this.toggleDarkAndLightMode.bind(this);
-     this.addOrRemoveSubject = this.addOrRemoveSubject.bind(this);
+     this.addOrRemoveSubjectFromSelectedSubjects = this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
      this.toggleFullScreen = this.toggleFullScreen.bind(this);
      this.shuffleCards = this.shuffleCards.bind(this);
      this.removeCard = this.removeCard.bind(this);
      }
      toggleMenuModal(){
          if (this.state.shouldDisplayMenuModal){
+             // close menu modal
              this.setState({shouldDisplayMenuModal:false})
              this.setState({menuModalDisplay:'none'})
              // query backend for cards for selected subjects
@@ -86,7 +85,6 @@ class App extends Component{
              }
              this.setState({cards: filteredCards})
          }
-         setTimeout(()=>console.log(this.state.cards),100)
      }
      toggleDarkAndLightMode(){
          this.state.darkMode ?
@@ -100,7 +98,7 @@ class App extends Component{
             :
              this.setState({fullScreen:true})
      }
-     addOrRemoveSubject(subject){
+     addOrRemoveSubjectFromSelectedSubjects(subject){
          let subjectIsPresent = false;
          let newSelectedSubjects = [...this.state.selectedSubjects]
          if (newSelectedSubjects.length>0){
@@ -119,36 +117,21 @@ class App extends Component{
              this.setState({selectedSubjects: newSelectedSubjects})
          }
      }
-     incrementCardIndex(){
-      if ( this.state.cardIndex < this.state.cards.length - 1){
-          this.setState({ cardIndex: this.state.cardIndex+1 })
-          this.setState({ definitionIndex: 1 })
-      }
-      setTimeout(()=>{this.updateTerms()},100)
+ incrementCardIndex(){
+     if (this.state.cards.length){
+         if ( this.state.cardIndex < this.state.cards.length - 1)
+             this.setState({ cardIndex: this.state.cardIndex+1 })
+         else
+             this.setState({ cardIndex: 0 })
+     }
   }
   decrementCardIndex(){
-      if ( this.state.cardIndex > 0){
-          this.setState({ cardIndex: this.state.cardIndex-1 })
-          this.setState({ definitionIndex: 1 })
+      if (this.state.cards.length){
+          if (this.state.cardIndex > 0)
+              this.setState({ cardIndex: this.state.cardIndex-1 })
+          else
+            this.setState({ cardIndex: this.state.cards.length - 1 })
       }
-      setTimeout(()=>{this.updateTerms()},100)
-  }
-  incrementDefinitionIndex(){
-      if ( this.state.definitionIndex
-              < this.state.cards[this.state.cardIndex].length ){
-     this.setState({ definitionIndex: this.state.definitionIndex + 1 })
-      }
-      setTimeout(()=>{this.updateTerms()},100)
-  }
-  decrementDefinitionIndex(){
-      if ( this.state.definitionIndex > 1 ){
-          this.setState(
-                          { definitionIndex:
-                              this.state.definitionIndex - 1
-                          }
-                        )
-      }
-      setTimeout(()=>{this.updateTerms()},100)
   }
   shuffleCards(){
       if (this.state.cards.length){
@@ -161,43 +144,17 @@ class App extends Component{
           }
           this.setState({cards: shuffleCards})
       }
-      setTimeout(()=>console.log(this.state.cards),100)
   }
-  removeCard(){
-      if (this.state.cards.length){
-          let shuffleCards = [...this.state.cards]
-              shuffleCards.splice(this.state.cardIndex,1)
-              this.setState({cards: shuffleCards})
-              setTimeout(()=>console.log(this.state.cards),100)
-      }
-  }
-  updateTerms(){
-      if (this.state.cards.length){
-          let terms = []
-          let fontSize, color, term, termStyle
-          fontSize = this.state.isMobile ?
-                        this.state.isPortrait ?
-                                "10vw" : "7vw"
-                                    : this.state.isPortrait ? "7vw": "3vw";
-
-          for (let i = 0; i < this.state.definitionIndex;i++){
-              color = i%2?"grey":"darkGrey";
-              termStyle = {
-                          marginTop:"1vh",
-                          backgroundColor:color,
-                          fontSize:fontSize,
-                          paddingLeft:"3vw",
-                          paddingRight:"3vw",
-                          color:"white",
-                      }
-              term = <h3 key={i} style={termStyle}>
-                          { this.state.cards[this.state.cardIndex][i] }
-                     </h3>
-              terms.push(term)
-      }
-      this.setState({ currentCardContent : terms })
-  }
-  }
+    removeCard(){
+    if (this.state.cards.length){
+        let cards = [...this.state.cards]
+        cards.splice(this.state.cardIndex,1)
+        if (this.state.cardIndex === this.state.cards.length-1){
+            this.setState({cardIndex: 0})
+        }
+        this.setState({cards: cards})
+        }
+    }
     handleResize(e){
      this.setState({ windowWidth: window.innerWidth });
      this.setState({ windowHeight: window.innerHeight });
@@ -209,36 +166,35 @@ class App extends Component{
                              });
      this.setState({ isPortrait: window.innerWidth <
                                     window.innerHeight });
-    this.updateTerms()
     };
     componentDidMount() {
-     window.addEventListener("resize", this.handleResize);
-     this.updateTerms()
+        window.addEventListener("resize", this.handleResize);
     }
     componentWillUnmount() {
-     window.addEventListener("resize", this.handleResize);
+        window.addEventListener("resize", this.handleResize);
     }
     render(){
         return (
 
             <div className="App">
-
-            <Modal
-                tabs={this.state.possibleSubjects}
-                clickFunc={this.addOrRemoveSubject}
-                selectedSubjects={this.state.selectedSubjects}
-                menuModalDisplay={this.state.menuModalDisplay}
-            />
+                <Modal
+                    tabs={this.state.possibleSubjects}
+                    addOrRemoveSubject={this.addOrRemoveSubjectFromSelectedSubjects}
+                    selectedSubjects={this.state.selectedSubjects}
+                    menuModalDisplay={this.state.menuModalDisplay}
+                    toggleDarkAndLightMode={this.toggleDarkAndLightMode}
+                />
                 <FlashcardHolder
                     cardContent = { this.state.cards.length ?
                                     this.state.cards[this.state.cardIndex]
                                     :
-                                    {front:'Click on the menu button below to select subjects to study.',
-                                    back:'Click on the menu button below to select subjects to study.',
-                                    Domain:'CS',
-                                    Subdomain:'Refresh',
-                                    Topic:'',
-                                }
+                                    {
+                                        front:'Click on the menu button below to select subjects to study.',
+                                        back:'Click on the menu button below to select subjects to study.',
+                                        Domain:'CS',
+                                        Subdomain:'Refresh',
+                                        Topic:'',
+                                    }
                                 }
                     stats = {{currentIndex:this.state.cardIndex,length:this.state.cards.length}}
                     functions={{incrementCardIndex:this.incrementCardIndex,
@@ -254,88 +210,8 @@ class App extends Component{
                       active = {this.state.shouldDisplayMenuModal}
                    />
             </div>
-
         )
-
     }
 }
 
 export default App;
-
-//
-
-
-// <div className='leftColumn'>
-//     <FlashcardHolder
-//         content = { this.state.cards.length ?
-//                         this.state.cards[this.state.cardIndex]
-//                         :
-//                         {front:'Click on the menu button below to select subjects to study.',
-//                         back:'Click on the menu button below to select subjects to study.',
-//                         Domain:'CS',
-//                         Subdomain:'Refresh',
-//                         Topic:'',
-//
-//
-//                     }
-//                     }
-//         functions={{incrementCardIndex:this.incrementCardIndex,
-//                     decrementCardIndex:this.decrementCardIndex,
-//                     shuffleCards:this.shuffleCards,
-//                     removeCard:this.removeCard}}
-//      />
-//      <MenuButtonHolder
-//         menuButton = {true}
-//          title = "Select Cards"
-//          clickFunc = { this.toggleMenuModal }
-//          content = { 0x2630 }
-//          active = {this.state.shouldDisplayMenuModal}
-//       />
-// </div>
-// <div className='rightColumn'>
-//         <ButtonGrouping
-//             buttons = {
-//                 [
-//                     {content:0x2921, title:'Full Screen',
-//                         clickFunc:this.toggleFullScreen,
-//                         active: this.state.fullScreen
-//                     }
-//                 ]
-//             }
-//         />
-//         <ButtonGrouping
-//             buttons = {
-//                 [
-//                     {content:0x2296, title:'Less Terms',
-//                         clickFunc:this.decrementDefinitionIndex},
-//                     {content:0x2295,  title:'More Terms',
-//                         clickFunc:this.incrementDefinitionIndex},
-//                 ]
-//             }
-//         />
-//         <ButtonGrouping
-//             buttons = {
-//                 [
-
-//                 ]
-//             }
-//         />
-//         <ButtonGrouping
-//             buttons = {
-//                 [
-//                     {content:0x2600, title:'Light Mode',
-//                         clickFunc:this.toggleDarkAndLightMode,
-//                         active: !this.state.darkMode
-//                     },
-//                     {content:0x263E, title:'Dark Mode',
-//                         clickFunc:this.toggleDarkAndLightMode,
-//                         active: this.state.darkMode
-//                     },
-//                     {content:0x21bb, title:'Shuffle',
-//                         clickFunc:this.incrementCardIndex},
-//                     {content:0x293C, title:'Remove Card',
-//                         clickFunc:this.decrementCardIndex},
-//                 ]
-//             }
-//         />
-// </div>

@@ -31,7 +31,7 @@ export default function Card(props) {
       },
       // controls if card is thrown.
       onDragEnd: ({ down, delta: [xDelta,yDelta], distance, direction: [xDir,yDir], velocity }) => {
-          const trigger = velocity > .5 // If you flick hard enough it should trigger the card to fly out
+          const trigger = velocity > .2 // If you flick hard enough it should trigger the card to fly out
           const dir = {
                         x: Math.abs(xDir) > Math.abs(yDir) ?
                                                     Math.round(xDir)
