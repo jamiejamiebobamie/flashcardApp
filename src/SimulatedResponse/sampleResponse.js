@@ -212,46 +212,6 @@ const response = {
             "back" : ":("
         },
     ],
-
-// map, filter, reduce: subjects into tabs
-// tabs: [ { tabName: "Domain", content:
-//                                 [
-//                                     {
-//                                         tabName:"Subdomain",
-//                                         content: [
-//                                                     {tabName:"Topic"},
-//                                                     {tabName:"Topic"}
-//                                                 ]
-//                                     },
-//                                     {
-//                                         tabName:"Subdomain",
-//                                         content: [
-//                                                     {tabName:"Topic"},
-//                                                     {tabName:"Topic"}
-//                                                 ]
-//                                     },
-//                                 ]
-//                 },
-//         { tabName: "Domain", content:
-//                                         [
-//                                             {
-//                                                 tabName:"Subdomain",
-//                                                 content: [
-//                                                             {tabName:"Topic"},
-//                                                             {tabName:"Topic"}
-//                                                         ]
-//                                             },
-//                                             {
-//                                                 tabName:"Subdomain",
-//                                                 content: [
-//                                                             {tabName:"Topic"},
-//                                                             {tabName:"Topic"}
-//                                                         ]
-//                                             },
-//                                         ]
-//                         },
-//            ],
-
     subjects:[
         {
             "Domain" : "Programming languages",
@@ -399,69 +359,6 @@ const response = {
             "Topic" : "General",
         },
     ],
-
-// let Domains = new Set()
-// // filter by domain to create an array of objects:
-//      // [{tabName:"Domain1"}, {tabName:"Domain2"}, ...]
-// // for each object.tabName in arr
-//
-// for (let i = 0 ; i < response.subjects.length; i++){
-//     // Domains.add(response.subjects[i].Domain)
-//
-// }
-//
-// console.log(Domains)
-//
-// for (let i = 0 ; i < Domains.length; i++){
-//
-// }
-//
-// let tabs = []
-// function addTabAndContent(next){
-//     if (next.content){
-//
-//     }
-// }
-
-// map, filter, reduce: subjects into tabs
-tabs: [ { tabName: "Domain", content:
-                                [
-                                    {
-                                        tabName:"Subdomain",
-                                        content: [
-                                                    {tabName:"Topic"},
-                                                    {tabName:"Topic"}
-                                                ]
-                                    },
-                                    {
-                                        tabName:"Subdomain",
-                                        content: [
-                                                    {tabName:"Topic"},
-                                                    {tabName:"Topic"}
-                                                ]
-                                    },
-                                ]
-                },
-        { tabName: "Domain", content:
-                                        [
-                                            {
-                                                tabName:"Subdomain",
-                                                content: [
-                                                            {tabName:"Topic"},
-                                                            {tabName:"Topic"}
-                                                        ]
-                                            },
-                                            {
-                                                tabName:"Subdomain",
-                                                content: [
-                                                            {tabName:"Topic"},
-                                                            {tabName:"Topic"}
-                                                        ]
-                                            },
-                                        ]
-                        },
-           ],
-
 tabs:[
     { tabName: "Programming languages", content:
                                     [

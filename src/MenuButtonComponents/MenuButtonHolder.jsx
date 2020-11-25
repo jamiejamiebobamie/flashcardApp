@@ -1,7 +1,6 @@
 import "./MenuButtonHolder.css"
 import Button from "./Button.jsx"
 
-// two buttons per group
 export default function MenuButtonHolder(props) {
     return <div className='menuButtonHolder'>
             <Button

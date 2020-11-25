@@ -1,13 +1,14 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
 import "./FlashcardHolder.css"
+
 import Card from "./Card"
 
 import IndexDisplay from './IndexDisplay';
 import './IndexDisplay.css';
 
-import Button from './Button';
-import './Button.css';
+import Button from '../MenuButtonComponents/Button';
+import '../MenuButtonComponents/Button.css';
 
 export default function FlashcardHolder(props) {
     const [calledFunction,setBackgroundMessage] = useState(null)
@@ -15,6 +16,8 @@ export default function FlashcardHolder(props) {
         setTimeout(()=>{setBackgroundMessage(message)},100)
         setTimeout(()=>{setBackgroundMessage(null)},1000)
     }
+    const blankCardContent =
+        'Click on the menu button below to select subjects to study.'
     const card = props.cardContent ?
         <Card
             front = { props.cardContent.front }
@@ -57,26 +60,20 @@ export default function FlashcardHolder(props) {
                 }
         />
         :
-        null
+        <Card
+            front = { blankCardContent }
+            back = { blankCardContent }
+            Domain = { null }
+            Subdomain = { null }
+            Topic = { null }
+            onReleaseFunction = { (dir) => { } }
+        />
     const backgroundMessage = calledFunction ?
-          <div style = {{ position:'absolute',
-                           zIndex:'0',
-                           fontSize:'40px',
-                           display:'flex',
-                           alignSelf:'center',
-                           marginTop:'-5vh',
-                           marginBottom:'auto',
-                           verticalAlign:'text-top'}}>{calledFunction}</div>
+          <div className='backgroundMessage' >{calledFunction}</div>
                            :
                            null
     const controls = props.stats.length ?
-            <div
-                style = {{ display:'flex',
-                           alignSelf:'center',
-                           margin:'10px',
-                           justifyContent:'space-around',
-                           width:'300px'
-                        }}>
+            <div className='controls'>
                             <Button
                                 content={0x2190}
                                 title={'Last Card'}

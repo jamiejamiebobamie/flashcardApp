@@ -23,3 +23,27 @@
              user-select: none; /* Non-prefixed version, currently
                                    supported by Chrome, Edge, Opera and Firefox */
 }
+
+.backgroundMessage{
+
+    position: absolute;
+    z-index: 0;
+
+    font-size: 40px;
+
+    display: flex;
+    align-self: center;
+
+    margin-top: -5vh;
+    margin-bottom: auto;
+
+    opacity: .3;
+}
+
+.controls{
+    display: flex;
+    align-self: center;
+    margin: 10px;
+    justify-content: space-around;
+    width: 300px;
+}

@@ -14,7 +14,7 @@ export default function Card(props) {
   const [dragFunctionCalled, setDragFunctionCalled] = useState(false)
   const [entireCardOpacity, setCardOpacity] = useState(1)
 
-  // controls onClick card front/back spin and opacity of card content.
+  // controls onClick card spin and opacity of card content.
   const {transform, opacity } = useSpring({
     opacity: flipped ? 0 : 1,
     transform: `perspective(75vw) rotateY(${flipped ? 0 : 180}deg)`,
@@ -30,8 +30,10 @@ export default function Card(props) {
           set({ x: down ? mx : 0, y: down ? my : 0 })
       },
       // controls if card is thrown.
-      onDragEnd: ({ down, delta: [xDelta,yDelta], distance, direction: [xDir,yDir], velocity }) => {
-          const trigger = velocity > .2 // If you flick hard enough it should trigger the card to fly out
+      onDragEnd: ({ down, delta: [xDelta,yDelta],
+                    distance, direction: [xDir,yDir], velocity }) => {
+          // If you flick hard enough it should trigger the card to fly out
+          const trigger = velocity > .2
           const dir = {
                         x: Math.abs(xDir) > Math.abs(yDir) ?
                                                     Math.round(xDir)
@@ -88,14 +90,20 @@ export default function Card(props) {
         style={{ x, y, opacity: entireCardOpacity }}
         >
           <a.div className="c"
-                 style={{ opacity, transform: transform.interpolate(t => `${t} rotateY(180deg)`) }}>
+                 style={{ opacity,
+                          transform:
+                            transform.interpolate(t => `${t} rotateY(180deg)`)
+            }}>
               <div className="label">
                   <p>{props.Domain} {props.Subdomain} {props.Topic}</p>
                   <p>front</p>
               </div>
               <p className="content">{props.front}</p>
           </a.div>
-          <a.div className="c" style={{ opacity: opacity.interpolate(o => 1 - o), transform }}>
+          <a.div className="c"
+                  style={{ opacity: opacity.interpolate(o => 1 - o),
+                           transform
+           }}>
               <div className="label">
                   <p>{props.Domain} {props.Subdomain} {props.Topic}</p>
                   <p>back</p>
