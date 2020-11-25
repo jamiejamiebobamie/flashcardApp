@@ -13,6 +13,16 @@ class App extends Component{
            responseCards: response.flashcards,
            possibleSubjects:response.tabs,
 
+           windowWidth: window.innerWidth,
+           windowHeight: window.innerHeight,
+
+           isMobile: (window.innerWidth <= 420
+                                        && window.innerHeight <= 750)
+                                      ||
+                                      (window.innerWidth <= 750
+                                        && window.innerHeight <= 420),
+           isPortrait: window.innerWidth < window.innerHeight,
+
            selectedSubjects: [],
            cards:[],
            cardIndex:0,
@@ -24,9 +34,11 @@ class App extends Component{
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
      this.toggleDarkAndLightMode = this.toggleDarkAndLightMode.bind(this);
      this.addOrRemoveSubjectFromSelectedSubjects =
-        this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
+     this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
      this.shuffleCards = this.shuffleCards.bind(this);
      this.removeCard = this.removeCard.bind(this);
+     this.handleResize = this.handleResize.bind(this);
+
      }
      toggleMenuModal(){
          if (this.state.menuModalDisplay === 'flex'){
@@ -121,44 +133,63 @@ class App extends Component{
         this.setState({cards: cards})
         }
     }
+    handleResize(e){
+     this.setState({ windowWidth: window.innerWidth });
+     this.setState({ windowHeight: window.innerHeight });
+     this.setState({ isMobile: (window.innerWidth <= 420
+                                 && window.innerHeight <= 750)
+                               ||
+                               (window.innerWidth <= 750
+                                 && window.innerHeight <= 420)
+                             });
+     this.setState({ isPortrait: window.innerWidth <
+                                    window.innerHeight });
+    };
+    componentDidMount() {
+     window.addEventListener("resize", this.handleResize);
+    }
+    componentWillUnmount() {
+     window.addEventListener("resize", this.handleResize);
+    }
     render(){
         return (
-            <div className="App">
-                <Modal
-                    tabs = { this.state.possibleSubjects }
-                    selectedSubjects = { this.state.selectedSubjects }
-                    menuModalDisplay = { this.state.menuModalDisplay }
-                    functions = {
-                        {
-                          addOrRemoveSubject:
-                                this.addOrRemoveSubjectFromSelectedSubjects,
-                          toggleDarkAndLightMode:
-                                this.toggleDarkAndLightMode
-                        }
-                  }
-                />
-                <FlashcardHolder
-                    cardContent = { this.state.cards.length ?
-                                        this.state.cards[this.state.cardIndex]
-                                        :
-                                        null
-                                }
-                    stats = { { currentIndex: this.state.cardIndex,
-                                length: this.state.cards.length }
+            <div className='App' style={{position:this.state.isMobile?'relative':'absolute',overflow:this.state.isMobile?'none':'scroll',overflowX:this.state.isMobile?'hidden':'scroll'}}>
+            <Modal
+                tabs = { this.state.possibleSubjects }
+                selectedSubjects = { this.state.selectedSubjects }
+                menuModalDisplay = { this.state.menuModalDisplay }
+                functions = {
+                    {
+                      addOrRemoveSubject:
+                            this.addOrRemoveSubjectFromSelectedSubjects,
+                      toggleDarkAndLightMode:
+                            this.toggleDarkAndLightMode
+                    }
+              }
+            />
+            <FlashcardHolder
+                isMobile = {this.state.isMobile}
+                cardContent = { this.state.cards.length ?
+                                    this.state.cards[this.state.cardIndex]
+                                    :
+                                    null
                             }
-                    functions={ { incrementCardIndex: this.incrementCardIndex,
-                                  decrementCardIndex: this.decrementCardIndex,
-                                  shuffleCards: this.shuffleCards,
-                                  removeCard: this.removeCard }
-                              }
-                 />
-                  <MenuButtonHolder
-                     menuButton = { true }
-                      title = "Select Cards"
-                      clickFunc = { this.toggleMenuModal }
-                      content = { 0x2630 }
-                      active = { this.state.menuModalDisplay === 'flex' }
-                   />
+                stats = { { currentIndex: this.state.cardIndex,
+                            length: this.state.cards.length }
+                        }
+                functions={ { incrementCardIndex: this.incrementCardIndex,
+                              decrementCardIndex: this.decrementCardIndex,
+                              shuffleCards: this.shuffleCards,
+                              removeCard: this.removeCard }
+                          }
+             />
+              <MenuButtonHolder
+                 menuButton = { true }
+                  title = "Select Cards"
+                  clickFunc = { this.toggleMenuModal }
+                  content = { 0x2630 }
+                  active = { this.state.menuModalDisplay === 'flex' }
+               />
             </div>
         )
     }

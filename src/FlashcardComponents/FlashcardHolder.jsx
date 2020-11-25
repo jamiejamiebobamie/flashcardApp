@@ -73,24 +73,31 @@ export default function FlashcardHolder(props) {
                            :
                            null
     const controls = props.stats.length ?
-            <div className='controls'>
-                            <Button
-                                content={0x2190}
-                                title={'Last Card'}
-                                clickFunc={props.functions.decrementCardIndex}
-                            />
-                            <IndexDisplay
-                                currentIndex={props.stats.currentIndex+1}
-                                length={props.stats.length}
-                            />
-                            <Button
-                                content={0x2192}
-                                title={'Next Card'}
-                                clickFunc={props.functions.incrementCardIndex}
-                            />
-            </div>
-            :
-            null
+                        props.isMobile ?
+                        <IndexDisplay
+                            currentIndex={props.stats.currentIndex+1}
+                            length={props.stats.length}
+                        />
+                        :
+                        <div className='controls'>
+                                        <Button
+                                            content={0x2190}
+                                            title={'Last Card'}
+                                            clickFunc={props.functions.decrementCardIndex}
+                                        />
+                                        <IndexDisplay
+                                            isMobile={props.isMobile}
+                                            currentIndex={props.stats.currentIndex+1}
+                                            length={props.stats.length}
+                                        />
+                                        <Button
+                                            content={0x2192}
+                                            title={'Next Card'}
+                                            clickFunc={props.functions.incrementCardIndex}
+                                        />
+                        </div>
+                    :
+                    null
     return <div className='flashcardHolder'>
                 { card }
                 { backgroundMessage }

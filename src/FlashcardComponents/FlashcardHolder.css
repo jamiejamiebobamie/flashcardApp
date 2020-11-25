@@ -47,3 +47,30 @@
     justify-content: space-around;
     width: 300px;
 }
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .flashcardHolder{
+        height: 550px;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .flashcardHolder{
+        min-height: 90vh;
+    }
+    .controls{
+        margin-bottom: 1vh;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+    .flashcardHolder{
+        min-height: 90vh;
+    }
+}

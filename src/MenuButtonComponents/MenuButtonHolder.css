@@ -27,3 +27,44 @@
              user-select: none; /* Non-prefixed version, currently
                                    supported by Chrome, Edge, Opera and Firefox */
 }
+
+
+/* https://www.w3schools.com/howto/howto_css_media_query_breakpoints.asp */
+
+/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 600px) {
+    .App{
+        background-color:black;
+    }
+} */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {
+    .App{
+        background-color:green;
+    }
+} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {
+    .App{
+        background-color:blue;
+    }
+} */
+
+
+/* Normal to me */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {
+    .App{
+        background-color:pink;
+    }
+} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {
+    .App{
+        background-color:orange;
+    }
+} */

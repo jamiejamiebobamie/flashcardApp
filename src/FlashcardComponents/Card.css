@@ -62,3 +62,38 @@
     padding-right: 50px;
     padding-bottom: 50px;
 }
+
+/* https://www.w3schools.com/howto/howto_css_media_query_breakpoints.asp */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .Card{
+        margin-top: 0vh;
+    }
+    .c {
+      width: 90vw;
+      height: 45vw;
+      min-width: 100px;
+      min-height: 275px;
+
+      max-width: 750px;
+      max-height: 450px;
+    }
+    .label{
+        margin-left:2vw;
+        font-size:10px;
+
+    }
+    .content{
+        font-size:15px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .Card{
+        margin-top: 5vh;
+    }
+}

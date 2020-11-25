@@ -2,5 +2,8 @@
     display:flex;
     justify-content: center;
     align-self: center;
-    margin-top: 5vh;
+    padding-top: 5vh;
+    width:100vw;
+    height:100vh;
+    background-color:#17223B;
 }
