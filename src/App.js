@@ -1,16 +1,11 @@
 import {Component, React} from 'react';
-
 import './App.css';
-
 import response from './sampleResponse'
-
-import ButtonGrouping from './ButtonGrouping';
 import Modal from './Modal/Modal'
 import FlashcardHolder from './FlashcardHolder'
 import MenuButtonHolder from './MenuButtonHolder'
 
 import "./FlashcardHolder.css"
-import Card from "./Card"
 
 class App extends Component{
     constructor(props) {
@@ -175,14 +170,17 @@ class App extends Component{
     }
     render(){
         return (
-
             <div className="App">
                 <Modal
                     tabs={this.state.possibleSubjects}
-                    addOrRemoveSubject={this.addOrRemoveSubjectFromSelectedSubjects}
                     selectedSubjects={this.state.selectedSubjects}
                     menuModalDisplay={this.state.menuModalDisplay}
-                    toggleDarkAndLightMode={this.toggleDarkAndLightMode}
+                    functions={
+                        {
+                          addOrRemoveSubject:this.addOrRemoveSubjectFromSelectedSubjects,
+                          toggleDarkAndLightMode:this.toggleDarkAndLightMode
+                        }
+                  }
                 />
                 <FlashcardHolder
                     cardContent = { this.state.cards.length ?
