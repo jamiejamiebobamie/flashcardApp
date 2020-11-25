@@ -10,7 +10,7 @@
   font-size: 20px;
   transition: 0.4s;
   padding-left: 5vw;
-  
+
   /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
   -webkit-touch-callout: none; /* iOS Safari */
    -webkit-user-select: none; /* Safari */
@@ -41,3 +41,20 @@
 .accordionInactive:hover, .showPanel{
   color:#84e8b0;
 }
+
+/* mobile portrait */
+@media only screen and (max-width: 768px) and (orientation: portrait)  {
+.accordionActive, .accordionInactive {
+    font-size: 15px;
+    word-wrap: break-word;
+    width:100vw;
+    }
+}
+
+/* mobile landscape */
+/* @media only screen and (max-width: 768px) and (orientation: landscape)  {
+    .accordionActive, .accordionInactive {
+    font-size: 15px;
+    word-wrap: break-word;
+    }
+} */

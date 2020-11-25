@@ -2,7 +2,7 @@
     display:flex;
     justify-content:center;
     margin-bottom: auto;
-    margin-top: 10vh;
+    margin-top: 9vh;
 }
 
 .c {
@@ -35,8 +35,6 @@
        -ms-user-select: none; /* Internet Explorer/Edge */
            user-select: none; /* Non-prefixed version, currently
                                  supported by Chrome, Edge, Opera and Firefox */
-  box-shadow: 0 18px 30px 0 rgba(0, 0, 0, 0.2),  0 30px 100px 0 rgba(0, 0, 0, 0.2);
-
 }
 
 .label{

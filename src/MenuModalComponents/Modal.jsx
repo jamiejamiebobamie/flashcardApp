@@ -4,7 +4,15 @@ import TabHolder from './TabHolder.jsx';
 import SelectedSubjectsHolder from './SelectedSubjectsHolder';
 
 export default function Modal(props){
-    return (
+
+    const menuContent = props.isMobile ?
+        <div className="modal" style= {{ display: props.menuModalDisplay }}>
+            <TabHolder
+                selectedSubjects = { props.selectedSubjects }
+                tabs = { props.tabs }
+                addOrRemoveSubject = { props.functions.addOrRemoveSubject }/>
+        </div>
+        :
         <div className="modal" style= {{ display: props.menuModalDisplay }}>
             <TabHolder
                 selectedSubjects = { props.selectedSubjects }
@@ -14,5 +22,5 @@ export default function Modal(props){
                 selectedSubjects = { props.selectedSubjects }
                 addOrRemoveSubject = { props.functions.addOrRemoveSubject }/>
         </div>
-    );
+    return menuContent
 }

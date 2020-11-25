@@ -27,3 +27,24 @@
     background-color:#84e8b0;
     color: #0a161b;
 }
+
+/* mobile portrait */
+@media only screen and (max-width: 768px) and (orientation: portrait)  {
+    .selectedSubject{
+        font-size:12px;
+        height:75px;
+        min-height:75px;
+        width:100%;
+        word-wrap: break-word;
+        
+    }
+}
+
+/* mobile landscape */
+@media only screen and (max-width: 768px) and (orientation: landscape)  {
+    .selectedSubject{
+        font-size:15px;
+        height:75px;
+        min-height:75px;
+    }
+}

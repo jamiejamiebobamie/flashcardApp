@@ -26,19 +26,16 @@ class App extends Component{
            selectedSubjects: [],
            cards:[],
            cardIndex:0,
-           darkMode:true,
            menuModalDisplay:'none',
         };
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
      this.decrementCardIndex = this.decrementCardIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
-     this.toggleDarkAndLightMode = this.toggleDarkAndLightMode.bind(this);
      this.addOrRemoveSubjectFromSelectedSubjects =
-     this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
+        this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
      this.shuffleCards = this.shuffleCards.bind(this);
      this.removeCard = this.removeCard.bind(this);
      this.handleResize = this.handleResize.bind(this);
-
      }
      toggleMenuModal(){
          if (this.state.menuModalDisplay === 'flex'){
@@ -69,12 +66,6 @@ class App extends Component{
              }
              this.setState({cards: filteredCards})
          }
-     }
-     toggleDarkAndLightMode(){
-         this.state.darkMode ?
-            this.setState({darkMode:false})
-            :
-            this.setState({darkMode:true})
      }
      addOrRemoveSubjectFromSelectedSubjects(subject){
          let subjectIsPresent = false;
@@ -155,6 +146,7 @@ class App extends Component{
         return (
             <div className='App'>
                 <Modal
+                    isMobile = {this.state.isMobile}
                     tabs = { this.state.possibleSubjects }
                     selectedSubjects = { this.state.selectedSubjects }
                     menuModalDisplay = { this.state.menuModalDisplay }

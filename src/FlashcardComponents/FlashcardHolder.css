@@ -5,7 +5,9 @@
     width:90%;
 
     height:70%;
-    min-height: 550px;
+    /* min-height: 550px; */
+    min-height: 630px;
+
     max-width: 1100px;
 
     color:#9ba3a5;
@@ -37,7 +39,6 @@
     margin-top: -5vh;
     margin-bottom: auto;
     text-align: center;
-
     opacity: .3;
 }
 
