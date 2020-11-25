@@ -3,8 +3,9 @@
     z-index: 0;
 
     width:90%;
+
     height:70%;
-    min-height: 700px;
+    min-height: 550px;
     max-width: 1100px;
 
     color:#9ba3a5;
@@ -48,29 +49,8 @@
     width: 300px;
 }
 
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
     .flashcardHolder{
-        height: 550px;
-    }
-}
-
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .flashcardHolder{
-        min-height: 90vh;
-    }
-    .controls{
-        margin-bottom: 1vh;
-    }
-}
-
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-    .flashcardHolder{
-        min-height: 90vh;
+        min-height: 88vh;
     }
 }

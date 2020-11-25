@@ -1,4 +1,4 @@
-.button{
+.button, .menuButton{
     text-align:center;
     background-color:transparent;
     color:#9ba3a5;
@@ -20,6 +20,41 @@
                                    supported by Chrome, Edge, Opera and Firefox */
 
 }
+
 .active, .button:hover{
     color:#84e8b0;
+}
+
+
+.menuButton{
+    position: absolute;
+    z-index: 4;
+    bottom: 5vh;
+    right: 8vw;
+    height:70px;
+    width:80px;
+
+    border-style: solid;
+    border-width: thin;
+    border-color:#9ba3a5;
+
+    background-color:#1E2C34;
+    padding-bottom: 75px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .menuButton{
+        bottom: 8vh;
+        right: 8vw;
+        background-color:#17223B;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .menuButton{
+        bottom: 1vh;
+        right: 1vw;
+        background-color:#17223B;
+    }
 }

@@ -10,13 +10,21 @@ export default function Button(props) {
     let active = props.active ? ' active' : ''
   return <a.button
             title= { props.title }
-            className= { "button" + active }
+            className= { props.className ?
+                                props.className + active
+                                :
+                                "button" + active }
             onClick={ () => {
                         props.clickFunc();
                         toggle(!state);
                     }
                 }
+            onMouseOver={ () => {
+                        toggle(!state);
+                    }
+                }
             style={{
+
               transform: x
                 .interpolate({
                   range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],

@@ -3,7 +3,7 @@ import './App.css';
 import response from './SimulatedResponse/sampleResponse'
 import Modal from './MenuModalComponents/Modal'
 import FlashcardHolder from './FlashcardComponents/FlashcardHolder'
-import MenuButtonHolder from './MenuButtonComponents/MenuButtonHolder'
+import Button from "./Button.jsx"
 
 class App extends Component{
     constructor(props) {
@@ -153,43 +153,43 @@ class App extends Component{
     }
     render(){
         return (
-            <div className='App' style={{position:this.state.isMobile?'relative':'absolute',overflow:this.state.isMobile?'none':'scroll',overflowX:this.state.isMobile?'hidden':'scroll'}}>
-            <Modal
-                tabs = { this.state.possibleSubjects }
-                selectedSubjects = { this.state.selectedSubjects }
-                menuModalDisplay = { this.state.menuModalDisplay }
-                functions = {
-                    {
-                      addOrRemoveSubject:
-                            this.addOrRemoveSubjectFromSelectedSubjects,
-                      toggleDarkAndLightMode:
-                            this.toggleDarkAndLightMode
-                    }
-              }
-            />
-            <FlashcardHolder
-                isMobile = {this.state.isMobile}
-                cardContent = { this.state.cards.length ?
-                                    this.state.cards[this.state.cardIndex]
-                                    :
-                                    null
-                            }
-                stats = { { currentIndex: this.state.cardIndex,
-                            length: this.state.cards.length }
+            <div className='App'>
+                <Modal
+                    tabs = { this.state.possibleSubjects }
+                    selectedSubjects = { this.state.selectedSubjects }
+                    menuModalDisplay = { this.state.menuModalDisplay }
+                    functions = {
+                        {
+                          addOrRemoveSubject:
+                                this.addOrRemoveSubjectFromSelectedSubjects,
+                          toggleDarkAndLightMode:
+                                this.toggleDarkAndLightMode
                         }
-                functions={ { incrementCardIndex: this.incrementCardIndex,
-                              decrementCardIndex: this.decrementCardIndex,
-                              shuffleCards: this.shuffleCards,
-                              removeCard: this.removeCard }
-                          }
-             />
-              <MenuButtonHolder
-                 menuButton = { true }
-                  title = "Select Cards"
-                  clickFunc = { this.toggleMenuModal }
-                  content = { 0x2630 }
-                  active = { this.state.menuModalDisplay === 'flex' }
-               />
+                  }
+                />
+                <FlashcardHolder
+                    isMobile = {this.state.isMobile}
+                    cardContent = { this.state.cards.length ?
+                                        this.state.cards[this.state.cardIndex]
+                                        :
+                                        null
+                                }
+                    stats = { { currentIndex: this.state.cardIndex,
+                                length: this.state.cards.length }
+                            }
+                    functions={ { incrementCardIndex: this.incrementCardIndex,
+                                  decrementCardIndex: this.decrementCardIndex,
+                                  shuffleCards: this.shuffleCards,
+                                  removeCard: this.removeCard }
+                              }
+                 />
+                 <Button
+                      className = 'menuButton'
+                      title = "Select Cards"
+                      clickFunc = { this.toggleMenuModal }
+                      content = { 0x2630 }
+                      active = { this.state.menuModalDisplay === 'flex' }
+                 />
             </div>
         )
     }

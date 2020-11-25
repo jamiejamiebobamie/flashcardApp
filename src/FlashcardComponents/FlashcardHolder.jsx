@@ -7,8 +7,8 @@ import Card from "./Card"
 import IndexDisplay from './IndexDisplay';
 import './IndexDisplay.css';
 
-import Button from '../MenuButtonComponents/Button';
-import '../MenuButtonComponents/Button.css';
+import Button from '../Button';
+import '../Button.css';
 
 export default function FlashcardHolder(props) {
     const [calledFunction,setBackgroundMessage] = useState(null)
