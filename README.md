@@ -2,6 +2,8 @@
 
 This is a flashcard web app, built with react and node.
 
+Here's a [recorded demo](https://www.youtube.com/watch?v=nuvaG-IUBWo) of the site.
+
 Users select which computer science topics to review.
 ![flashcard app](public/_menu.gif)
 
