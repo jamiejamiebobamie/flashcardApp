@@ -8,13 +8,13 @@ Users select which computer science topics to review.
 And then cycle through the cards with touch gestures.
 ![flashcard app](public/_cycleCards.gif)
 
-<ol>
 There are five gestures:
-&nbsp;&nbsp;&nbsp;<li>swipe card right: go back to the previous card in the deck</li>
-&nbsp;&nbsp;&nbsp;<li>swipe card left: go to the next card in the deck</li>
-&nbsp;&nbsp;&nbsp;<li>swipe card up: remove the card from the deck</li>
-&nbsp;&nbsp;&nbsp;<li>swipe card down: shuffle cards</li>
-&nbsp;&nbsp;&nbsp;<li>and tap card: flip card to see front or back.</li>
+<ol>
+<li>swipe card right: go back to the previous card in the deck</li>
+<li>swipe card left: go to the next card in the deck</li>
+<li>swipe card up: remove the card from the deck</li>
+<li>swipe card down: shuffle cards</li>
+<li>and tap card: flip card to see front or back.</li>
 </ol>
 
 The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gesture) and [react-spring](https://www.react-spring.io) for the animations and interactivity, which are unfortunately not working on the [live site](https://cs-refresh.herokuapp.com).
