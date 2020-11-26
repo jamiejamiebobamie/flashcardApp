@@ -21,3 +21,4 @@ The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gestur
 
 Heroku: [https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)
 Netlify: [https://cs-refresh.netlify.app](https://cs-refresh.netlify.app)
+Github: [https://jamiejamiebobamie.github.io/flashcardApp/](https://jamiejamiebobamie.github.io/flashcardApp/)
