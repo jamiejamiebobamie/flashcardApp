@@ -8,23 +8,33 @@ import { useGesture  } from 'react-use-gesture'
 import './Card.css'
 
 export default function Card(props) {
+
+  const [{ rotX, rotY, cScale },setMouseOverTrans] = useState({rotX:0,rotY:0,cScale:1})
+
   // show front / back of card state.
   const [flipped, setFlip] = useState(false)
 
   const [dragFunctionCalled, setDragFunctionCalled] = useState(false)
   const [entireCardOpacity, setCardOpacity] = useState(1)
 
-  // controls onClick card spin and opacity of card content.
-  const {transform, opacity } = useSpring({
-    opacity: flipped ? 0 : 1,
-    transform: `perspective(75vw) rotateY(${flipped ? 0 : 180}deg)`,
-    config: { mass: 5, tension: 500, friction: 80 }
-  })
-
   // x,y position of card state. spring controls interpolation of values.
   const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }))
 
+  const calcX = (x) => (-(y - window.innerHeight / 2) / 20)
+  const calcY = (y) => ((x - window.innerWidth / 2) / 20)
+
+  // controls onClick card spin and opacity of card content.
+  const {transform, opacity, transform2} = useSpring({
+    opacity: flipped ? 0 : 1,
+    transform: `perspective(75vw) rotateY(${flipped ? 0 : 180}deg)`,
+    transform2: `perspective(600px) scale(1})`,
+    config: { mass: 5, tension: 500, friction: 80 }
+  })
+
   const bind = useGesture({
+      // onMouseMove: ({xy: [x, y]})=>{
+      //     setMouseOverTrans({rotX:x,rotY:y,scale:2})
+      // },
       // controls drag of card from position.
       onDrag: ({down, movement: [mx, my], velocity})=>{
           set({ x: down ? mx : 0, y: down ? my : 0 })
@@ -86,9 +96,14 @@ export default function Card(props) {
                     :
                     setFlip(!flipped)
                 } }
+        // onMouseOver={()=>{
+        //     setMouseOverTrans({scale:2.2})
+        // }}
+        onMouseEnter={()=>{setMouseOverTrans({cScale:1.1})}}
+        onMouseLeave={()=>{setMouseOverTrans({cScale:1})}}
         {...bind()}
-        style={{ x, y, opacity: entireCardOpacity }}
-        >
+        style={{ x, y, opacity: entireCardOpacity
+        }}>
           <a.div className="c"
                  style={{ opacity,
                           transform:
@@ -101,7 +116,7 @@ export default function Card(props) {
               <p className="content">{props.front}</p>
           </a.div>
           <a.div className="c"
-                  style={{ opacity: opacity.interpolate(o => 1 - o),
+                  style={{ opacity: opacity.interpolate(o => 1 - o), transform:
                            transform
            }}>
               <div className="label">
@@ -113,3 +128,4 @@ export default function Card(props) {
     </a.div>
   )
 }
+// transform: transform2.interpolate(t => `perspective(600px) rotateX(${-calcX(rotX)}deg) rotateY(${-calcY(rotY)}deg) scale(${scale})`)

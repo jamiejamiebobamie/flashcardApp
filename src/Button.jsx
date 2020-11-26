@@ -24,7 +24,6 @@ export default function Button(props) {
                     }
                 }
             style={{
-
               transform: x
                 .interpolate({
                   range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],

@@ -21,7 +21,7 @@
 
 }
 
-.active, .button:hover{
+.active, .button:hover, .menuButton:hover{
     color:#84e8b0;
 }
 

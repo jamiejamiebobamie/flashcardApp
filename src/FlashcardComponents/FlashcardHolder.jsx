@@ -20,6 +20,7 @@ export default function FlashcardHolder(props) {
         'Click on the menu button below to select subjects to study.'
     const card = props.cardContent ?
         <Card
+            isMobile = {props.isMobile}
             front = { props.cardContent.front }
             back = { props.cardContent.back }
             Domain = { props.stats.length ?
@@ -61,6 +62,7 @@ export default function FlashcardHolder(props) {
         />
         :
         <Card
+            isMobile = {props.isMobile}
             front = { blankCardContent }
             back = { blankCardContent }
             Domain = { null }
