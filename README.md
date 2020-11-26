@@ -18,3 +18,6 @@ There are five gestures:
 </ol>
 
 The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gesture) and [react-spring](https://www.react-spring.io) for the animations and interactivity, which are unfortunately not working on the [live site](https://cs-refresh.herokuapp.com).
+
+Heroku: [https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)
+Netlify: [https://cs-refresh.netlify.app](https://cs-refresh.netlify.app)
