@@ -6,4 +6,17 @@
     width:100vw;
     height:95vh;
     background-color:#17223B;
+
+    position: absolute;
+
+}
+
+body{
+    align-items: center;
+    /* justify-content: center; */
+    overflow: hidden;
+    position: relative;
+    background-color: #17223B;
+    /* should disable double tapping zoom action on mobile */
+    touch-action: manipulation;
 }
