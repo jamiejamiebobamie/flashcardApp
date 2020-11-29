@@ -9,8 +9,6 @@ import './Card.css'
 
 export default function Card(props) {
 
-  const [{ rotX, rotY, cScale },setMouseOverTrans] = useState({rotX:0,rotY:0,cScale:1})
-
   // show front / back of card state.
   const [flipped, setFlip] = useState(false)
 
@@ -18,26 +16,21 @@ export default function Card(props) {
   const [entireCardOpacity, setCardOpacity] = useState(1)
 
   // x,y position of card state. spring controls interpolation of values.
-  const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }))
+  // const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }))
+  const [{ xy }, set] = useSpring(() => ({ xy: [0 , 0] }))
 
-  const calcX = (x) => (-(y - window.innerHeight / 2) / 20)
-  const calcY = (y) => ((x - window.innerWidth / 2) / 20)
 
   // controls onClick card spin and opacity of card content.
-  const {transform, opacity, transform2} = useSpring({
+  const {transform, opacity} = useSpring({
     opacity: flipped ? 0 : 1,
     transform: `perspective(75vw) rotateY(${flipped ? 0 : 180}deg)`,
-    transform2: `perspective(600px) scale(1})`,
     config: { mass: 5, tension: 500, friction: 80 }
   })
 
   const bind = useGesture({
-      // onMouseMove: ({xy: [x, y]})=>{
-      //     setMouseOverTrans({rotX:x,rotY:y,scale:2})
-      // },
       // controls drag of card from position.
-      onDrag: ({down, movement: [mx, my], velocity})=>{
-          set({ x: down ? mx : 0, y: down ? my : 0 })
+      onDrag: ({down, movement, velocity})=>{
+          set({ xy: down ? movement : [0,0] })
       },
       // controls if card is thrown.
       onDragEnd: ({ down, delta: [xDelta,yDelta],
@@ -62,7 +55,9 @@ export default function Card(props) {
                     (200 + window.innerHeight) * dir.y
                     :
                     down ? yDelta : 0
-          set({ x: x, y: y })
+          // set({ x: x, y: y })
+          set({ xy: [x,y] })
+
           if (props.onReleaseFunction && trigger){
               // no matter the function called,
                   // display the card front-facing
@@ -76,12 +71,15 @@ export default function Card(props) {
                   // make the card invisible and bring it to the opposite side
                   // of the screen to come in from offscreen
                   setCardOpacity(0)
-                  set({ x: dir.x*-3000, y: dir.y*-3000 })
+                  set({ xy: [dir.x*-3000,dir.y*-3000] })
+
+                  // set({ x: dir.x*-3000, y: dir.y*-3000 })
+
                   // make the card visible and bring it back on screen
                     // from the opposite direction from which it was thrown.
                   setTimeout(()=>{
                       setCardOpacity(1)
-                      set({ x: 0, y: 0 })},500)
+                      set({ xy: [0,0] })},500)
               },500)
           }
       },
@@ -96,13 +94,9 @@ export default function Card(props) {
                     :
                     setFlip(!flipped)
                 } }
-        // onMouseOver={()=>{
-        //     setMouseOverTrans({scale:2.2})
-        // }}
-        onMouseEnter={()=>{setMouseOverTrans({cScale:1.1})}}
-        onMouseLeave={()=>{setMouseOverTrans({cScale:1})}}
         {...bind()}
-        style={{ x, y, opacity: entireCardOpacity
+        style={{ opacity: entireCardOpacity,
+            transform: xy.interpolate((x, y) => `translate3d(${x}px, ${y}px, 0)`)
         }}>
           <a.div className="c"
                  style={{ opacity,
@@ -128,4 +122,3 @@ export default function Card(props) {
     </a.div>
   )
 }
-// transform: transform2.interpolate(t => `perspective(600px) rotateX(${-calcX(rotX)}deg) rotateY(${-calcY(rotY)}deg) scale(${scale})`)
