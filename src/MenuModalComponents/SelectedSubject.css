@@ -36,7 +36,7 @@
         min-height:75px;
         width:100%;
         word-wrap: break-word;
-        
+
     }
 }
 
@@ -45,6 +45,6 @@
     .selectedSubject{
         font-size:15px;
         height:75px;
-        min-height:75px;
+        min-height:70px;
     }
 }

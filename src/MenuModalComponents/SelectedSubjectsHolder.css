@@ -3,12 +3,12 @@
     flex-direction: column;
     width:35%;
     background-color:#0a161b;
-    height:88vh;
-    min-height: 700px;
+    height:100%;
+    /* min-height: 700px; */
     min-width: 150px;
     padding-right: 3vw;
+    /* padding-bottom: 3vh; */
     overflow:scroll;
-    
 }
 /* .selectedSubjectsHolder::-webkit-scrollbar {
   display: none;

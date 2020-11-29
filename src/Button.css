@@ -31,6 +31,7 @@
 
     height:80px;
     width:80px;
+    font-size:50px;
 
     border-style: solid;
     border-width: thin;
@@ -65,5 +66,14 @@
         bottom: 1vh;
         right: 1vw;
         background-color:#17223B;
+    }
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait)  {
+    .menuButton{
+        bottom: 7.5vh;
+        right: 6.5vw;
+        background-color:#17223B;
+        /* background-color:red; */
     }
 }
