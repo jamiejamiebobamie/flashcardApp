@@ -24,3 +24,5 @@ The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gestur
 Heroku: [https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)<br/>
 Netlify: [https://cs-refresh.netlify.app](https://cs-refresh.netlify.app)<br/>
 Github: [https://jamiejamiebobamie.github.io/flashcardApp/](https://jamiejamiebobamie.github.io/flashcardApp/)<br/>
+
+(attempting to regress / downgrade to react-spring v8 from v9 as that seems to fix the issue.)
