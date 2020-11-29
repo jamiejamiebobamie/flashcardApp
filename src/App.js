@@ -28,6 +28,15 @@ class App extends Component{
            cardIndex:0,
            menuModalDisplay:'none',
         };
+
+        fetch('http://localhost:5000/api/v1/test/tabs')
+           .then(response => response.json())
+               .then((data) => {
+                   this.setState({possibleSubjects: data.tabs})
+                   console.log(data);
+               }).catch((error) => {
+                   console.error('Error:', error);
+               });
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
      this.decrementCardIndex = this.decrementCardIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
@@ -43,7 +52,33 @@ class App extends Component{
              this.setState({menuModalDisplay:'none'})
              // future: query backend for cards for selected subjects
              // right now: filter this.state.responseCards by selectedSubjects
-             this.filterCards()
+
+
+            // Get data from the API with fetch
+            fetch('http://localhost:5000/api/v1/test/cards', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json'},
+                        body: JSON.stringify(this.state.selectedSubjects)
+                        }
+                    ).then(response => response.json())
+                        .then((data) => {
+                            this.setState({cards: data.cards})
+                            console.log(data);
+                        }).catch((error) => {
+                            console.error('Error:', error);
+                            // this.filterCards()
+                        });
+
+             // fetch('https://play-tictactoe-ai.herokuapp.com/api/v1/turn/o/board/xox!o!!x')
+             // fetch('http://localhost:5000/api/v1/test/cards')
+             //    .then(response => response.json())
+             //        .then((data) => {
+             //            this.setState({cards: data.cards})
+             //            console.log(data);
+             //        }).catch((error) => {
+             //            console.error('Error:', error);
+             //            this.filterCards()
+             //        });
          } else {
              this.setState({menuModalDisplay:'flex'})
          }
