@@ -38,8 +38,13 @@
     border-radius:1vw;
     border-color:#9ba3a5;
 
+    opacity: .7;
+
+
     color:#9ba3a5;
-    background-color:#1E2C34;
+    /* background-color:#1E2C34; */
+    background-color:transparent;
+
 
     display: flex;
     flex-direction: column;
@@ -70,10 +75,11 @@
 
 @media only screen and (max-width: 768px) {
     .menuButton{
+        background-color:#0a161b;
 
         bottom: 8vh;
         right: 8vw;
-        background-color:#17223B;
+        /* background-color:#17223B; */
         /* background-color:red; */
 
     }
@@ -84,6 +90,18 @@
         bottom: 1vh;
         right: 1vw;
         /* background-color:#17223B; */
+        /* opacity: 1; */
+    }
+}
+
+@media only screen and (max-width: 768px) and (orientation: landscape)  {
+    .menuButton{
+        bottom: 1vh;
+        right: 1vw;
+        /* border-color:#0a161b;
+        border-width: medium; */
+        /* border-style: none; */
+        /* opacity: 1; */
     }
 }
 

@@ -4,6 +4,8 @@
     font-size:20px;
     color:#9ba3a5;
 
+    /* opacity: .5; */
+
     /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
     -webkit-touch-callout: none; /* iOS Safari */
      -webkit-user-select: none; /* Safari */

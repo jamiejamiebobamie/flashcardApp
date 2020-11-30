@@ -61,7 +61,7 @@ export default function FlashcardHolder(props) {
         />
         :
         <Card
-            isMobile = {props.isMobile}
+            isMobile = { props.isMobile }
             front = { blankCardContent }
             back = { blankCardContent }
             Domain = { null }
@@ -70,15 +70,15 @@ export default function FlashcardHolder(props) {
             onReleaseFunction = { (dir) => { } }
         />
     const backgroundMessage = calledFunction ?
-          <div className='backgroundMessage' >{calledFunction}</div>
+          <div className='backgroundMessage'>{ calledFunction }</div>
                            :
                            null
     return <div className='flashcardHolder'>
                 { card }
                 { backgroundMessage }
                 <IndexDisplay
-                    currentIndex={props.stats.currentIndex+1}
-                    length={props.stats.length}
+                    currentIndex = { props.stats.currentIndex + 1 }
+                    length = { props.stats.length }
                 />
           </div>
 }

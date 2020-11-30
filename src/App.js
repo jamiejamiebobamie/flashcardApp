@@ -122,17 +122,36 @@ class App extends Component{
                  this.setState({ cardIndex: this.state.cards.length - 1 })
           }
       }
-      shuffleCards(){
-          if (this.state.cards.length){
-              let shuffleCards = [...this.state.cards]
-              for(let i = shuffleCards.length - 1; i >= 0; i--){
-                  let randomIndex = Math.floor( Math.random() * i )
-                  let temp = shuffleCards[i]
-                  shuffleCards[i] = shuffleCards[randomIndex]
-                  shuffleCards[randomIndex] = temp
-              }
-              this.setState({cards: shuffleCards})
-          }
+      
+    // shuffle ALL cards
+    //   shuffleCards(){
+    //       if (this.state.cards.length){
+    //           let shuffleCards = [...this.state.cards]
+    //           for(let i = shuffleCards.length - 1; i >= 0; i--){
+    //               let randomIndex = Math.floor( Math.random() * i )
+    //               let temp = shuffleCards[i]
+    //               shuffleCards[i] = shuffleCards[randomIndex]
+    //               shuffleCards[randomIndex] = temp
+    //           }
+    //           this.setState({cards: shuffleCards})
+    //       }
+    // }
+
+    // NOT TESTED.
+    // shuffle current card
+    shuffleCards(){
+        if (this.state.cards.length){
+            let shuffleCards = [...this.state.cards]
+            let randomIndex = this.state.cardIndex
+            while (randomIndex === this.state.cardIndex){
+                randomIndex =
+                    Math.floor( Math.random() * this.state.cards.length - 1 )
+            }
+            let temp = shuffleCards[this.state.cardIndex]
+            shuffleCards[this.state.cardIndex] = shuffleCards[randomIndex]
+            shuffleCards[randomIndex] = temp
+            this.setState({cards: shuffleCards})
+        }
     }
     removeCard(){
         if (this.state.cards.length){
