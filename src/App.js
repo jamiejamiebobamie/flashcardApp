@@ -29,7 +29,7 @@ class App extends Component{
            menuModalDisplay:'none',
         };
 
-        fetch('http://localhost:5000/api/v1/test/tabs')
+        fetch('http://localhost:5000/api/v1/tabs')
            .then(response => response.json())
                .then((data) => {
                    this.setState({possibleSubjects: data.tabs})
@@ -55,7 +55,7 @@ class App extends Component{
 
 
             // Get data from the API with fetch
-            fetch('http://localhost:5000/api/v1/test/cards', {
+            fetch('http://localhost:5000/api/v1/cards', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json'},
                         body: JSON.stringify(this.state.selectedSubjects)

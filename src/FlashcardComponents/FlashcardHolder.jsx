@@ -7,7 +7,6 @@ import Card from "./Card"
 import IndexDisplay from './IndexDisplay';
 import './IndexDisplay.css';
 
-import Button from '../Button';
 import '../Button.css';
 
 export default function FlashcardHolder(props) {
@@ -74,39 +73,6 @@ export default function FlashcardHolder(props) {
           <div className='backgroundMessage' >{calledFunction}</div>
                            :
                            null
-    // const controls = props.stats.length ?
-    //                     props.isMobile ?
-    //                     <IndexDisplay
-    //                         currentIndex={props.stats.currentIndex+1}
-    //                         length={props.stats.length}
-    //                     />
-    //                     :
-    //                     <div className='controls'>
-    //                                     <Button
-    //                                         content={0x2190}
-    //                                         title={'Last Card'}
-    //                                         clickFunc={props.functions.decrementCardIndex}
-    //                                     />
-    //                                     <IndexDisplay
-    //                                         isMobile={props.isMobile}
-    //                                         currentIndex={props.stats.currentIndex+1}
-    //                                         length={props.stats.length}
-    //                                     />
-    //                                     <Button
-    //                                         content={0x2192}
-    //                                         title={'Next Card'}
-    //                                         clickFunc={props.functions.incrementCardIndex}
-    //                                     />
-    //                     </div>
-    //                 :
-    //                 null
-    const controls = props.stats.length ?
-                    <IndexDisplay
-                        currentIndex={props.stats.currentIndex+1}
-                        length={props.stats.length}
-                    />
-                    :
-                    null
     return <div className='flashcardHolder'>
                 { card }
                 { backgroundMessage }
