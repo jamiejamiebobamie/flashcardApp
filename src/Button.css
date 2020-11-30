@@ -51,6 +51,7 @@
     align-items: center;
     text-align:center;
 
+
     /* text-align: justify; */
 
     /* font-size: 20px; */
@@ -101,7 +102,7 @@
         /* height:80px;
         width:1vw; */
         background-color:red;
-        padding-bottom: 15px;
+        padding-top: 10px;
         height:70px;
         /* width:70px; */
 
