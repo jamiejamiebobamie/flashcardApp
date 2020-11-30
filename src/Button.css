@@ -33,7 +33,7 @@
     width:80px;
     font-size:50px;
 
-    -webkit-text-size-adjust: 115%;
+    -webkit-text-size-adjust: 105%;
 
     border-style: solid;
     border-width: thin;
@@ -71,10 +71,13 @@
 
 @media only screen and (max-width: 768px) {
     .menuButton{
-
+        /* height:80px;
+        width:70px; */
         bottom: 8vh;
         right: 8vw;
         background-color:#17223B;
+        /* background-color:red; */
+
     }
 }
 
@@ -82,7 +85,7 @@
     .menuButton{
         bottom: 1vh;
         right: 1vw;
-        background-color:#17223B;
+        /* background-color:#17223B; */
     }
 }
 
@@ -90,6 +93,18 @@
     .menuButton{
         bottom: 7.5vh;
         right: 6.5vw;
-        background-color:#17223B;
+        /* background-color:#17223B; */
     }
+}
+
+@supports (-webkit-touch-callout: none) and (max-width: 768px)  {
+    .menuButton{
+        height:80px;
+        width:70px;
+        background-color:red;
+
+    }
+
+  /* CSS specific to iOS devices */
+
 }
