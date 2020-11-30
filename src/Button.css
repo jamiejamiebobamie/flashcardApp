@@ -99,8 +99,8 @@
 
 @supports (-webkit-touch-callout: none) and (max-width: 768px)  {
     .menuButton{
-        height:50px;
-        width:50px;
+        height:80px;
+        width:1vw;
         background-color:red;
 
     }
