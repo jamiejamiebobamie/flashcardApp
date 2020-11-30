@@ -28,7 +28,7 @@ class App extends Component{
            cardIndex:0,
            menuModalDisplay:'none',
         };
-
+        // Get data from the API with fetch
         fetch('http://localhost:5000/api/v1/tabs')
            .then(response => response.json())
                .then((data) => {
@@ -50,10 +50,6 @@ class App extends Component{
          if (this.state.menuModalDisplay === 'flex'){
              // close menu modal
              this.setState({menuModalDisplay:'none'})
-             // future: query backend for cards for selected subjects
-             // right now: filter this.state.responseCards by selectedSubjects
-
-
             // Get data from the API with fetch
             fetch('http://localhost:5000/api/v1/cards', {
                         method: 'POST',
@@ -66,19 +62,8 @@ class App extends Component{
                             console.log(data);
                         }).catch((error) => {
                             console.error('Error:', error);
-                            // this.filterCards()
+                            this.filterCards()
                         });
-
-             // fetch('https://play-tictactoe-ai.herokuapp.com/api/v1/turn/o/board/xox!o!!x')
-             // fetch('http://localhost:5000/api/v1/test/cards')
-             //    .then(response => response.json())
-             //        .then((data) => {
-             //            this.setState({cards: data.cards})
-             //            console.log(data);
-             //        }).catch((error) => {
-             //            console.error('Error:', error);
-             //            this.filterCards()
-             //        });
          } else {
              this.setState({menuModalDisplay:'flex'})
          }
@@ -121,42 +106,42 @@ class App extends Component{
              this.setState({selectedSubjects: newSelectedSubjects})
          }
      }
- incrementCardIndex(){
-     if (this.state.cards.length){
-         this.state.cardIndex < this.state.cards.length - 1 ?
-            this.setState({ cardIndex: this.state.cardIndex+1 })
-            :
-            this.setState({ cardIndex: 0 })
-     }
-  }
-  decrementCardIndex(){
-      if (this.state.cards.length){
-          this.state.cardIndex > 0 ?
-             this.setState({ cardIndex: this.state.cardIndex-1 })
-             :
-             this.setState({ cardIndex: this.state.cards.length - 1 })
+     incrementCardIndex(){
+         if (this.state.cards.length){
+             this.state.cardIndex < this.state.cards.length - 1 ?
+                this.setState({ cardIndex: this.state.cardIndex+1 })
+                :
+                this.setState({ cardIndex: 0 })
+         }
       }
-  }
-  shuffleCards(){
-      if (this.state.cards.length){
-          let shuffleCards = [...this.state.cards]
-          for(let i = shuffleCards.length - 1; i >= 0; i--){
-              let randomIndex = Math.floor( Math.random() * i )
-              let temp = shuffleCards[i]
-              shuffleCards[i] = shuffleCards[randomIndex]
-              shuffleCards[randomIndex] = temp
+      decrementCardIndex(){
+          if (this.state.cards.length){
+              this.state.cardIndex > 0 ?
+                 this.setState({ cardIndex: this.state.cardIndex-1 })
+                 :
+                 this.setState({ cardIndex: this.state.cards.length - 1 })
           }
-          this.setState({cards: shuffleCards})
       }
-  }
+      shuffleCards(){
+          if (this.state.cards.length){
+              let shuffleCards = [...this.state.cards]
+              for(let i = shuffleCards.length - 1; i >= 0; i--){
+                  let randomIndex = Math.floor( Math.random() * i )
+                  let temp = shuffleCards[i]
+                  shuffleCards[i] = shuffleCards[randomIndex]
+                  shuffleCards[randomIndex] = temp
+              }
+              this.setState({cards: shuffleCards})
+          }
+    }
     removeCard(){
-    if (this.state.cards.length){
-        let cards = [...this.state.cards]
-        cards.splice(this.state.cardIndex,1)
-        if (this.state.cardIndex === this.state.cards.length-1){
-            this.setState({cardIndex: 0})
-        }
-        this.setState({cards: cards})
+        if (this.state.cards.length){
+            let cards = [...this.state.cards]
+            cards.splice(this.state.cardIndex,1)
+            if (this.state.cardIndex === this.state.cards.length-1){
+                this.setState({cardIndex: 0})
+            }
+            this.setState({cards: cards})
         }
     }
     handleResize(e){
@@ -181,34 +166,25 @@ class App extends Component{
         return (
             <div className='App'>
                 <Modal
-                    isMobile = {this.state.isMobile}
+                    isMobile = { this.state.isMobile }
                     tabs = { this.state.possibleSubjects }
                     selectedSubjects = { this.state.selectedSubjects }
                     menuModalDisplay = { this.state.menuModalDisplay }
-                    functions = {
-                        {
-                          addOrRemoveSubject:
-                                this.addOrRemoveSubjectFromSelectedSubjects,
-                          toggleDarkAndLightMode:
-                                this.toggleDarkAndLightMode
-                        }
-                  }
+                    functions = { { addOrRemoveSubject:
+                                this.addOrRemoveSubjectFromSelectedSubjects } }
                 />
                 <FlashcardHolder
-                    isMobile = {this.state.isMobile}
+                    isMobile = { this.state.isMobile }
                     cardContent = { this.state.cards.length ?
                                         this.state.cards[this.state.cardIndex]
                                         :
-                                        null
-                                }
+                                        null }
                     stats = { { currentIndex: this.state.cardIndex,
-                                length: this.state.cards.length }
-                            }
-                    functions={ { incrementCardIndex: this.incrementCardIndex,
+                                length: this.state.cards.length } }
+                    functions = { { incrementCardIndex: this.incrementCardIndex,
                                   decrementCardIndex: this.decrementCardIndex,
                                   shuffleCards: this.shuffleCards,
-                                  removeCard: this.removeCard }
-                              }
+                                  removeCard: this.removeCard } }
                  />
                  <Button
                       className = 'menuButton'
