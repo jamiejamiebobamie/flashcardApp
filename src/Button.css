@@ -71,8 +71,7 @@
 
 @media only screen and (max-width: 768px) {
     .menuButton{
-        /* height:80px;
-        width:70px; */
+
         bottom: 8vh;
         right: 8vw;
         background-color:#17223B;
@@ -102,6 +101,9 @@
         /* height:80px;
         width:1vw; */
         background-color:red;
+        padding-bottom: 15px;
+        height:50px;
+        /* width:70px; */
 
     }
 
