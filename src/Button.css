@@ -1,4 +1,4 @@
-.button, .menuButton{
+.button{
     text-align:center;
     background-color:transparent;
     color:#9ba3a5;
@@ -33,22 +33,36 @@
     width:80px;
     font-size:50px;
 
+    -webkit-text-size-adjust: 115%;
+
     border-style: solid;
     border-width: thin;
+    border-radius:1vw;
     border-color:#9ba3a5;
 
+    color:#9ba3a5;
     background-color:#1E2C34;
 
     display: flex;
     flex-direction: column;
     /* padding-bottom: 15px; */
     /* justify-content: center; */
+    align-self:center;
     align-items: center;
+    text-align:center;
+
     /* text-align: justify; */
 
     /* font-size: 20px; */
 
-    -webkit-text-size-adjust: 130%;
+    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+    -webkit-touch-callout: none; /* iOS Safari */
+     -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+         -ms-user-select: none; /* Internet Explorer/Edge */
+             user-select: none; /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
 .active, .button:hover, .menuButton:hover{
@@ -57,6 +71,7 @@
 
 @media only screen and (max-width: 768px) {
     .menuButton{
+
         bottom: 8vh;
         right: 8vw;
         background-color:#17223B;
@@ -76,6 +91,5 @@
         bottom: 7.5vh;
         right: 6.5vw;
         background-color:#17223B;
-        /* background-color:red; */
     }
 }
