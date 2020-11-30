@@ -33,8 +33,6 @@
     width:80px;
     font-size:50px;
 
-    -webkit-text-size-adjust: 70%;
-
     border-style: solid;
     border-width: thin;
     border-radius:1vw;
@@ -97,12 +95,19 @@
     }
 }
 
+/* the width and font-size of the menu button are changing on iOS devices.
+attempting to fix it but having issues changing the width relative to the
+font-size. the width of the button seems to be dependent on the font-size so
+I'm compromising by downsizing the font-size so the button isn't too large. */
 @supports (-webkit-touch-callout: none) and (max-width: 768px)  {
     .menuButton{
         /* height:80px;
         width:1vw; */
-        background-color:red;
-        padding-top: 7px;
+        /* background-color:red; */
+
+        -webkit-text-size-adjust: 70%;
+
+        padding-top: 8px;
         height:70px;
         /* width:70px; */
 
