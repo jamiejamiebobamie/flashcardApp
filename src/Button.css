@@ -33,7 +33,7 @@
     width:80px;
     font-size:50px;
 
-    -webkit-text-size-adjust: 105%;
+    -webkit-text-size-adjust: 110%;
 
     border-style: solid;
     border-width: thin;
@@ -100,7 +100,7 @@
 @supports (-webkit-touch-callout: none) and (max-width: 768px)  {
     .menuButton{
         height:80px;
-        width:70px;
+        width:50px;
         background-color:red;
 
     }
