@@ -29,7 +29,7 @@ class App extends Component{
            menuModalDisplay:'none',
         };
         // Get data from the API with fetch
-        fetch('http://localhost:5000/api/v1/tabs')
+        fetch('https://cs-flashcard-api.herokuapp.com/api/v1/tabs')
            .then(response => response.json())
                .then((data) => {
                    this.setState({possibleSubjects: data.tabs})
@@ -51,7 +51,7 @@ class App extends Component{
              // close menu modal
              this.setState({menuModalDisplay:'none'})
             // Get data from the API with fetch
-            fetch('http://localhost:5000/api/v1/cards', {
+            fetch('https://cs-flashcard-api.herokuapp.com/api/v1/cards', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json'},
                         body: JSON.stringify(this.state.selectedSubjects)
@@ -122,7 +122,7 @@ class App extends Component{
                  this.setState({ cardIndex: this.state.cards.length - 1 })
           }
       }
-      
+
     // shuffle ALL cards
     //   shuffleCards(){
     //       if (this.state.cards.length){
