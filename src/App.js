@@ -37,6 +37,7 @@ class App extends Component{
                }).catch((error) => {
                    console.error('Error:', error);
                });
+     this.flagFlashcard = this.flagFlashcard.bind(this);
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
      this.decrementCardIndex = this.decrementCardIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
@@ -45,6 +46,22 @@ class App extends Component{
      this.shuffleCards = this.shuffleCards.bind(this);
      this.removeCard = this.removeCard.bind(this);
      this.handleResize = this.handleResize.bind(this);
+     }
+     // need some way of communicating flagged status to backend.
+        // either timeout function checking every minute or an event action
+        // that is triggered when the user does something (like open or close
+        // the menu modal.)
+     flagFlashcard(){
+         let cards = [...this.state.cards]
+         cards[this.state.cardIndex].flagged =
+            cards[this.state.cardIndex].flagged === undefined
+            ||
+            cards[this.state.cardIndex].flagged === false ?
+                true : false;
+         this.setState({cards:cards})
+         setTimeout(()=>{
+             console.log(this.state.cards[this.state.cardIndex])
+         },100)
      }
      toggleMenuModal(){
          if (this.state.menuModalDisplay === 'flex'){
@@ -59,7 +76,7 @@ class App extends Component{
                     ).then(response => response.json())
                         .then((data) => {
                             this.setState({cards: data.cards})
-                            console.log(data);
+                            // console.log(data);
                         }).catch((error) => {
                             console.error('Error:', error);
                             this.filterCards()
@@ -174,6 +191,7 @@ class App extends Component{
                              });
      this.setState({ isPortrait: window.innerWidth <
                                     window.innerHeight });
+    console.log(this.state.cards[this.state.cardIndex])
     };
     componentDidMount() {
      window.addEventListener("resize", this.handleResize);
@@ -203,7 +221,9 @@ class App extends Component{
                     functions = { { incrementCardIndex: this.incrementCardIndex,
                                   decrementCardIndex: this.decrementCardIndex,
                                   shuffleCards: this.shuffleCards,
-                                  removeCard: this.removeCard } }
+                                  removeCard: this.removeCard,
+                                  flagFlashcard: this.flagFlashcard
+                               } }
                  />
                  <Button
                       className = 'menuButton'

@@ -5,10 +5,14 @@ import React, { useState } from 'react'
 import { useSpring, animated as a, config } from 'react-spring'
 import { useGesture  } from 'react-use-gesture'
 
+import IndexDisplay from './IndexDisplay';
+import './IndexDisplay.css';
+
+
+
 import './Card.css'
 
 export default function Card(props) {
-
   // show front / back of card state.
   const [flipped, setFlip] = useState(false)
 
@@ -57,7 +61,6 @@ export default function Card(props) {
                     down ? yDelta : 0
           // set({ x: x, y: y })
           set({ xy: [x,y] })
-
           if (props.onReleaseFunction && trigger){
               // no matter the function called,
                   // display the card front-facing
@@ -84,11 +87,15 @@ export default function Card(props) {
           }
       },
     }, config)
-
+  const index = <IndexDisplay
+                    currentIndex = { props.currentIndex + 1 }
+                    length = { props.length }
+                />
   return (
     <a.div
         className="Card"
         onMouseUp= { () => {
+                console.log(dragFunctionCalled)
                 dragFunctionCalled ?
                     setDragFunctionCalled(false)
                     :
@@ -108,6 +115,7 @@ export default function Card(props) {
                   <p>front</p>
               </div>
               <p className="content">{props.front}</p>
+              { index }
           </a.div>
           <a.div className="c"
                   style={{ opacity: opacity.interpolate(o => 1 - o), transform:
@@ -118,6 +126,7 @@ export default function Card(props) {
                   <p>back</p>
               </div>
               <p className="content">{props.back}</p>
+              { index }
           </a.div>
     </a.div>
   )

@@ -4,8 +4,8 @@ import "./FlashcardHolder.css"
 
 import Card from "./Card"
 
-import IndexDisplay from './IndexDisplay';
-import './IndexDisplay.css';
+import Button from '../Button'
+import '../Button.css'
 
 import '../Button.css';
 
@@ -19,6 +19,8 @@ export default function FlashcardHolder(props) {
         'Click on the menu button below to select subjects to study.'
     const card = props.cardContent ?
         <Card
+            currentIndex = { props.stats.currentIndex }
+            length = { props.stats.length }
             isMobile = {props.isMobile}
             front = { props.cardContent.front }
             back = { props.cardContent.back }
@@ -61,6 +63,7 @@ export default function FlashcardHolder(props) {
         />
         :
         <Card
+
             isMobile = { props.isMobile }
             front = { blankCardContent }
             back = { blankCardContent }
@@ -73,12 +76,19 @@ export default function FlashcardHolder(props) {
           <div className='backgroundMessage'>{ calledFunction }</div>
                            :
                            null
+   const flagButton = props.stats.length?
+                    <Button
+                      className='flagButton'
+                      title = "Flag for edit"
+                      clickFunc = { props.functions.flagFlashcard }
+                      content = { 0x2691 }
+                      active = { props.cardContent.flagged }
+                 />
+                 :
+                 null
     return <div className='flashcardHolder'>
                 { card }
                 { backgroundMessage }
-                <IndexDisplay
-                    currentIndex = { props.stats.currentIndex + 1 }
-                    length = { props.stats.length }
-                />
+                { flagButton }
           </div>
 }
