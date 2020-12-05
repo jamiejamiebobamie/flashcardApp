@@ -119,7 +119,8 @@ class App extends Component{
                      }
                  ).then(response => response.json())
                      .then((data) => {
-                         this.setState({cards: data.cards})
+                         let shuffleCards = this.shuffleAllCards(data.cards)
+                         this.setState({cards: shuffleCards})
                          // console.log(data);
                      }).catch((error) => {
                          console.error('Error:', error);
@@ -186,17 +187,16 @@ class App extends Component{
                  this.setState({ cardIndex: this.state.cards.length - 1 })
           }
       }
-      shuffleAllCards(){
-          if (this.state.cards.length){
-              let shuffleCards = [...this.state.cards]
-              for(let i = shuffleCards.length - 1; i >= 0; i--){
+      shuffleAllCards(unshuffledCards){
+          if (unshuffledCards.length){
+              for(let i = unshuffledCards.length - 1; i >= 0; i--){
                   let randomIndex = Math.floor( Math.random() * i )
-                  let temp = shuffleCards[i]
-                  shuffleCards[i] = shuffleCards[randomIndex]
-                  shuffleCards[randomIndex] = temp
+                  let temp = unshuffledCards[i]
+                  unshuffledCards[i] = unshuffledCards[randomIndex]
+                  unshuffledCards[randomIndex] = temp
               }
-              this.setState({cards: shuffleCards})
           }
+          return unshuffledCards // that are now shuffled...
     }
     shuffleCard(){
         if (this.state.cards.length){
@@ -288,7 +288,7 @@ class App extends Component{
                        content = { 0x2630 }
                        active = { this.state.menuModalDisplay === 'flex' }
                   />
-                  {this.flagCardButton()}
+                  { this.flagCardButton() }
             </div>
         )
     }
