@@ -31,32 +31,28 @@ class App extends Component{
            cards:[],
            cardIndex:0,
            menuModalDisplay:'none',
-        };
-        // Get data from the API with fetch
-        fetch('https://cs-flashcard-api.herokuapp.com/api/v1/tabs')
-           .then(response => response.json())
-               .then((data) => {
-                   this.setState({possibleSubjects: data.tabs})
-                   console.log(data);
-               }).catch((error) => {
-                   console.error('Error:', error);
-               });
+    };
+    // Get data from the API with fetch to populate the possible subjects tabs
+    fetch('https://cs-flashcard-api.herokuapp.com/api/v1/tabs')
+       .then(response => response.json())
+           .then((data) => {
+               this.setState({possibleSubjects: data.tabs})
+               console.log(data);
+           }).catch((error) => {
+               console.error('Error:', error);
+     });
      this.flagFlashcard = this.flagFlashcard.bind(this);
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
      this.decrementCardIndex = this.decrementCardIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
      this.toggleDarkOrLightMode = this.toggleDarkOrLightMode.bind(this);
      this.addOrRemoveSubjectFromSelectedSubjects =
-        this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
+                        this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
      this.shuffleCard = this.shuffleCard.bind(this);
      this.shuffleAllCards = this.shuffleAllCards.bind(this);
      this.removeCard = this.removeCard.bind(this);
      this.handleResize = this.handleResize.bind(this);
      }
-     // need some way of communicating flagged status to backend.
-        // either timeout function checking every minute or an event action
-        // that is triggered when the user does something (like open or close
-        // the menu modal.)
      flagFlashcard(){
          let cards = [...this.state.cards]
          cards[this.state.cardIndex].flagged =
@@ -74,12 +70,43 @@ class App extends Component{
              // close menu modal
              this.setState({menuModalDisplay:'none'})
              if (this.state.requestNewCards){
+                 this.sendFlaggedCardsToBackend()
                  this.requestNewCards()
              }
          } else {
              // open menu modal
              this.setState({menuModalDisplay:'flex'})
          }
+     }
+     sendFlaggedCardsToBackend(){
+         let flaggedCards = []
+         let cards = [...this.state.cards]
+         for (let i = 0; i < cards.length; i++){
+             if ( cards[i].flagged ){
+                 let flaggedCard = {
+                     Domain: cards[i].Domain,
+                     Subdomain: cards[i].Subdomain,
+                     Topic: cards[i].Topic,
+                     front: cards[i].front,
+                 }
+                 flaggedCards.push(flaggedCard)
+                 cards[i].flagged = false;
+             }
+         }
+         // Send data to the API with fetch
+         fetch('https://cs-flashcard-api.herokuapp.com/api/v1/flagged', {
+                     method: 'POST',
+                     headers: { 'Content-Type': 'application/json'},
+                     body: JSON.stringify(flaggedCards)
+                     }
+                 ).then(response => response.json())
+                     .then((success) => {
+                         console.log('success:', success);
+                     }).catch((error) => {
+                         console.error('Error:', error);
+                         this.filterCards()
+                     });
+         this.setState({cards:cards})
      }
      requestNewCards(){
          // Get data from the API with fetch
@@ -194,23 +221,21 @@ class App extends Component{
         }
     }
     handleResize(e){
-     this.setState({ windowWidth: window.innerWidth });
-     this.setState({ windowHeight: window.innerHeight });
-     this.setState({ isMobile: (window.innerWidth <= 420
+        this.setState({ windowWidth: window.innerWidth });
+        this.setState({ windowHeight: window.innerHeight });
+        this.setState({ isMobile: (window.innerWidth <= 420
                                  && window.innerHeight <= 750)
                                ||
                                (window.innerWidth <= 750
-                                 && window.innerHeight <= 420)
-                             });
-     this.setState({ isPortrait: window.innerWidth <
+                                 && window.innerHeight <= 420) });
+        this.setState({ isPortrait: window.innerWidth <
                                     window.innerHeight });
-    console.log(this.state.cards[this.state.cardIndex])
     };
     componentDidMount() {
-     window.addEventListener("resize", this.handleResize);
+        window.addEventListener("resize", this.handleResize);
     }
     componentWillUnmount() {
-     window.addEventListener("resize", this.handleResize);
+        window.addEventListener("resize", this.handleResize);
     }
     render(){
         return (
