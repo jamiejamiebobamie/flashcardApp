@@ -49,9 +49,9 @@ export default function FlashcardHolder(props) {
                             }
                         } else if (y){
                             if (y>0){
-                                props.functions.shuffleCards()
+                                props.functions.shuffleCard()
                                 showMessage("SHUFFLE")
-                            }else if (y<0){
+                            } else if (y<0){
                                 props.functions.removeCard()
                                 showMessage("REMOVE")
                             }
@@ -74,16 +74,6 @@ export default function FlashcardHolder(props) {
           <div className='backgroundMessage'>{ calledFunction }</div>
                            :
                            null
-   // const flagButton = props.stats.length?
-   //                  <Button
-   //                    className='flagButton'
-   //                    title = "Flag for edit"
-   //                    clickFunc = { props.functions.flagFlashcard }
-   //                    content = { 0x2691 }
-   //                    active = { props.cardContent.flagged }
-   //               />
-   //               :
-   //               null
     return <div className='flashcardHolder'>
                 { card }
                 { backgroundMessage }
