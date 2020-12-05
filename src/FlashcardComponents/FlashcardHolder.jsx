@@ -4,10 +4,8 @@ import "./FlashcardHolder.css"
 
 import Card from "./Card"
 
-import Button from '../Button'
-import '../Button.css'
+import Button from '../MenuModalComponents/Button'
 
-import '../Button.css';
 
 export default function FlashcardHolder(props) {
     const [calledFunction,setBackgroundMessage] = useState(null)

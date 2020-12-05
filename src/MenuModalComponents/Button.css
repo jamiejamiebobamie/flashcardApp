@@ -62,11 +62,46 @@
 
 
 .menuButton{
+    z-index: 4;
+    bottom: 5vh;
+    right: 3vw;
+
+
+    height:80px;
+    width:80px;
+    font-size:50px;
+
+    border-style: solid;
+    border-width: thin;
+    border-radius:1vw;
+    border-color:#9ba3a5;
+
+    opacity: .7;
+
+
+    color:#9ba3a5;
+    /* background-color:#1E2C34; */
+    background-color:transparent;
+
+
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom: 15px; */
+    /* justify-content: center; */
+    align-self:center;
+    align-items: center;
+    text-align:center;
+}
+
+
+.menuButtonAlone{
+
     position: absolute;
 
     z-index: 4;
     bottom: 5vh;
-    right: 8vw;
+    right: 3vw;
+
 
     height:80px;
     width:80px;
@@ -113,7 +148,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .menuButton{
+    .menuButtonAlone{
         background-color:#0a161b;
 
         bottom: 8vh;
@@ -125,7 +160,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .menuButton{
+    .menuButtonAlone{
         bottom: 1vh;
         right: 1vw;
         /* background-color:#17223B; */
@@ -134,7 +169,7 @@
 }
 
 @media only screen and (max-width: 768px) and (orientation: landscape)  {
-    .menuButton{
+    .menuButtonAlone{
         bottom: 1vh;
         right: 1vw;
         /* border-color:#0a161b;
@@ -145,7 +180,7 @@
 }
 
 @media only screen and (max-width: 768px) and (orientation: portrait)  {
-    .menuButton{
+    .menuButtonAlone{
         bottom: 7.5vh;
         right: 6.5vw;
         /* background-color:#17223B; */
@@ -157,7 +192,7 @@ attempting to fix it but having issues changing the width relative to the
 font-size. the width of the button seems to be dependent on the font-size so
 I'm compromising by downsizing the font-size so the button isn't too large. */
 @supports (-webkit-touch-callout: none) and (max-width: 768px)  {
-    .menuButton{
+    .menuButtonAlone{
         /* height:80px;
         width:1vw; */
         /* background-color:red; */

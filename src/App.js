@@ -3,7 +3,8 @@ import './App.css';
 import response from './SimulatedResponse/sampleResponse'
 import Modal from './MenuModalComponents/Modal'
 import FlashcardHolder from './FlashcardComponents/FlashcardHolder'
-import Button from "./Button.jsx"
+import Controls from "./MenuModalComponents/Controls.jsx"
+
 
 class App extends Component{
     constructor(props) {
@@ -23,6 +24,9 @@ class App extends Component{
                                         && window.innerHeight <= 420),
            isPortrait: window.innerWidth < window.innerHeight,
 
+           isDarkMode: true,
+           requestNewCards:false,
+
            selectedSubjects: [],
            cards:[],
            cardIndex:0,
@@ -41,9 +45,11 @@ class App extends Component{
      this.incrementCardIndex = this.incrementCardIndex.bind(this);
      this.decrementCardIndex = this.decrementCardIndex.bind(this);
      this.toggleMenuModal = this.toggleMenuModal.bind(this);
+     this.toggleDarkOrLightMode = this.toggleDarkOrLightMode.bind(this);
      this.addOrRemoveSubjectFromSelectedSubjects =
         this.addOrRemoveSubjectFromSelectedSubjects.bind(this);
-     this.shuffleCards = this.shuffleCards.bind(this);
+     this.shuffleCard = this.shuffleCard.bind(this);
+     this.shuffleAllCards = this.shuffleAllCards.bind(this);
      this.removeCard = this.removeCard.bind(this);
      this.handleResize = this.handleResize.bind(this);
      }
@@ -67,24 +73,32 @@ class App extends Component{
          if (this.state.menuModalDisplay === 'flex'){
              // close menu modal
              this.setState({menuModalDisplay:'none'})
-            // Get data from the API with fetch
-            fetch('https://cs-flashcard-api.herokuapp.com/api/v1/cards', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json'},
-                        body: JSON.stringify(this.state.selectedSubjects)
-                        }
-                    ).then(response => response.json())
-                        .then((data) => {
-                            this.setState({cards: data.cards})
-                            // console.log(data);
-                        }).catch((error) => {
-                            console.error('Error:', error);
-                            this.filterCards()
-                        });
+             if (this.state.requestNewCards){
+                 this.requestNewCards()
+             }
          } else {
+             // open menu modal
              this.setState({menuModalDisplay:'flex'})
          }
      }
+     requestNewCards(){
+         // Get data from the API with fetch
+         fetch('https://cs-flashcard-api.herokuapp.com/api/v1/cards', {
+                     method: 'POST',
+                     headers: { 'Content-Type': 'application/json'},
+                     body: JSON.stringify(this.state.selectedSubjects)
+                     }
+                 ).then(response => response.json())
+                     .then((data) => {
+                         this.setState({cards: data.cards})
+                         // console.log(data);
+                     }).catch((error) => {
+                         console.error('Error:', error);
+                         this.filterCards()
+                     });
+         this.setState({requestNewCards: false})
+     }
+     // simulated response if backend fails.
      filterCards(){
          if (this.state.selectedSubjects){
              let filteredCards = []
@@ -104,6 +118,9 @@ class App extends Component{
              this.setState({cards: filteredCards})
          }
      }
+     toggleDarkOrLightMode(){
+         this.setState({isDarkMode:!this.state.isDarkMode})
+     }
      addOrRemoveSubjectFromSelectedSubjects(subject){
          let subjectIsPresent = false;
          let newSelectedSubjects = [...this.state.selectedSubjects]
@@ -122,6 +139,7 @@ class App extends Component{
              newSelectedSubjects.push(subject)
              this.setState({selectedSubjects: newSelectedSubjects})
          }
+         this.setState({requestNewCards: true})
      }
      incrementCardIndex(){
          if (this.state.cards.length){
@@ -139,24 +157,19 @@ class App extends Component{
                  this.setState({ cardIndex: this.state.cards.length - 1 })
           }
       }
-
-    // shuffle ALL cards
-    //   shuffleCards(){
-    //       if (this.state.cards.length){
-    //           let shuffleCards = [...this.state.cards]
-    //           for(let i = shuffleCards.length - 1; i >= 0; i--){
-    //               let randomIndex = Math.floor( Math.random() * i )
-    //               let temp = shuffleCards[i]
-    //               shuffleCards[i] = shuffleCards[randomIndex]
-    //               shuffleCards[randomIndex] = temp
-    //           }
-    //           this.setState({cards: shuffleCards})
-    //       }
-    // }
-
-    // NOT TESTED.
-    // shuffle current card
-    shuffleCards(){
+      shuffleAllCards(){
+          if (this.state.cards.length){
+              let shuffleCards = [...this.state.cards]
+              for(let i = shuffleCards.length - 1; i >= 0; i--){
+                  let randomIndex = Math.floor( Math.random() * i )
+                  let temp = shuffleCards[i]
+                  shuffleCards[i] = shuffleCards[randomIndex]
+                  shuffleCards[randomIndex] = temp
+              }
+              this.setState({cards: shuffleCards})
+          }
+    }
+    shuffleCard(){
         if (this.state.cards.length){
             let shuffleCards = [...this.state.cards]
             let randomIndex = this.state.cardIndex
@@ -220,21 +233,32 @@ class App extends Component{
                                 length: this.state.cards.length } }
                     functions = { { incrementCardIndex: this.incrementCardIndex,
                                   decrementCardIndex: this.decrementCardIndex,
-                                  shuffleCards: this.shuffleCards,
+                                  shuffleCard: this.shuffleCard,
                                   removeCard: this.removeCard,
                                   flagFlashcard: this.flagFlashcard
                                } }
                  />
-                 <Button
-                      className = 'menuButton'
-                      title = "Select Cards"
-                      clickFunc = { this.toggleMenuModal }
-                      content = { 0x2630 }
-                      active = { this.state.menuModalDisplay === 'flex' }
-                 />
+                 <Controls
+                     functions = { { toggleMenuModal: this.toggleMenuModal,
+                                   shuffleAllCards: this.shuffleAllCards,
+                                   toggleDarkOrLightMode: this.toggleDarkOrLightMode,
+                                   requestNewCards: this.requestNewCards,
+                                } }
+                     menuModalDisplay = { this.state.menuModalDisplay }
+                     isDarkMode = { this.state.isDarkMode }
+                     userShouldRequestNewCards = { this.state.userShouldRequestNewCards }
+
+                  />
             </div>
         )
     }
 }
 
 export default App;
+// <Button
+//      className = 'menuButton'
+//      title = "Select Cards"
+//      clickFunc = { this.toggleMenuModal }
+//      content = { 0x2630 }
+//      active = { this.state.menuModalDisplay === 'flex' }
+// />
