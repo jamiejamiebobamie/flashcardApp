@@ -4,7 +4,7 @@ import "./FlashcardHolder.css"
 
 import Card from "./Card"
 
-import Button from '../MenuModalComponents/Button'
+import Button from '../Button'
 
 
 export default function FlashcardHolder(props) {
@@ -74,19 +74,18 @@ export default function FlashcardHolder(props) {
           <div className='backgroundMessage'>{ calledFunction }</div>
                            :
                            null
-   const flagButton = props.stats.length?
-                    <Button
-                      className='flagButton'
-                      title = "Flag for edit"
-                      clickFunc = { props.functions.flagFlashcard }
-                      content = { 0x2691 }
-                      active = { props.cardContent.flagged }
-                 />
-                 :
-                 null
+   // const flagButton = props.stats.length?
+   //                  <Button
+   //                    className='flagButton'
+   //                    title = "Flag for edit"
+   //                    clickFunc = { props.functions.flagFlashcard }
+   //                    content = { 0x2691 }
+   //                    active = { props.cardContent.flagged }
+   //               />
+   //               :
+   //               null
     return <div className='flashcardHolder'>
                 { card }
                 { backgroundMessage }
-                { flagButton }
           </div>
 }

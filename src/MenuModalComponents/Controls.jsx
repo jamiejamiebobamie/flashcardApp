@@ -1,5 +1,5 @@
 import "./Controls.css"
-import Button from "./Button.jsx"
+import Button from "../Button.jsx"
 
 export default function Controls(props){
 

@@ -4,7 +4,7 @@ import response from './SimulatedResponse/sampleResponse'
 import Modal from './MenuModalComponents/Modal'
 import FlashcardHolder from './FlashcardComponents/FlashcardHolder'
 import Controls from "./MenuModalComponents/Controls.jsx"
-
+import Button from "./Button.jsx"
 
 class App extends Component{
     constructor(props) {
@@ -54,16 +54,18 @@ class App extends Component{
      this.handleResize = this.handleResize.bind(this);
      }
      flagFlashcard(){
-         let cards = [...this.state.cards]
-         cards[this.state.cardIndex].flagged =
-            cards[this.state.cardIndex].flagged === undefined
-            ||
-            cards[this.state.cardIndex].flagged === false ?
-                true : false;
-         this.setState({cards:cards})
-         setTimeout(()=>{
-             console.log(this.state.cards[this.state.cardIndex])
-         },100)
+         if (this.state.cards.length){
+             let cards = [...this.state.cards]
+             cards[this.state.cardIndex].flagged =
+                cards[this.state.cardIndex].flagged === undefined
+                ||
+                cards[this.state.cardIndex].flagged === false ?
+                    true : false;
+             this.setState({cards:cards})
+             setTimeout(()=>{
+                 console.log(this.state.cards[this.state.cardIndex])
+             },100)
+         }
      }
      toggleMenuModal(){
          if (this.state.menuModalDisplay === 'flex'){
@@ -237,6 +239,22 @@ class App extends Component{
     componentWillUnmount() {
         window.addEventListener("resize", this.handleResize);
     }
+    flagCardButton(){
+        let content = null
+        if ( this.state.menuModalDisplay === 'none'
+             && this.state.cards.length ) {
+                 content = (<Button
+                   className='flagButton'
+                   title = "Flag for edit"
+                   clickFunc = { this.flagFlashcard }
+                   content = { 0x2691 }
+                   active = {  this.state.cards.length ?
+                           this.state.cards[this.state.cardIndex].flagged
+                           : false }
+                  />)
+             }
+        return content
+    }
     render(){
         return (
             <div className='App'>
@@ -263,23 +281,32 @@ class App extends Component{
                                   flagFlashcard: this.flagFlashcard
                                } }
                  />
-                 <Controls
-                     functions = { { toggleMenuModal: this.toggleMenuModal,
-                                   shuffleAllCards: this.shuffleAllCards,
-                                   toggleDarkOrLightMode: this.toggleDarkOrLightMode,
-                                   requestNewCards: this.requestNewCards,
-                                } }
-                     menuModalDisplay = { this.state.menuModalDisplay }
-                     isDarkMode = { this.state.isDarkMode }
-                     userShouldRequestNewCards = { this.state.userShouldRequestNewCards }
-
+                  <Button
+                      className='menuButtonAlone'
+                       title = "Select Cards"
+                       clickFunc = { this.toggleMenuModal }
+                       content = { 0x2630 }
+                       active = { this.state.menuModalDisplay === 'flex' }
                   />
+                  {this.flagCardButton()}
             </div>
         )
     }
 }
 
 export default App;
+
+
+// <Controls
+//     functions = { { toggleMenuModal: this.toggleMenuModal,
+//                   shuffleAllCards: this.shuffleAllCards,
+//                   toggleDarkOrLightMode: this.toggleDarkOrLightMode,
+//                   requestNewCards: this.requestNewCards,
+//                } }
+//     menuModalDisplay = { this.state.menuModalDisplay }
+//     isDarkMode = { this.state.isDarkMode }
+//     userShouldRequestNewCards = { this.state.userShouldRequestNewCards }
+//  />
 // <Button
 //      className = 'menuButton'
 //      title = "Select Cards"

@@ -21,7 +21,8 @@
 
 }
 
-.flagButton{
+
+/* .flagButton{
     position: absolute;
 
     z-index: 4;
@@ -33,8 +34,37 @@
     font-size:50px;
 
     border-style: none;
-    /* border-style: solid;
-    border-width: thin;
+    color:#9ba3a5;
+    background-color:transparent;
+
+    display: flex;
+    align-self: center;
+    text-align:center;
+
+    font-size:2em;
+
+    -webkit-touch-callout: none;
+     -webkit-user-select: none;
+      -khtml-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+
+} */
+
+.flagButton{
+    position: absolute;
+
+    z-index: 4;
+    bottom: 1vh;
+    left: 1vw;
+
+    height:50px;
+    width:50px;
+    font-size:50px;
+
+    border-style: none;
+    /* border-width: thin;
     border-radius:1vw;
     border-color:#9ba3a5; */
 
@@ -43,21 +73,22 @@
 
     display: flex;
     /* flex-direction: column; */
-    /* align-items: center; */
-    /* justify-content: center; */
+    /* justify-content: flex-end; */
+    justify-content: center;
+    align-items: center;
     align-self: center;
-    text-align:center;
+    text-align: center;
+    align-content: center;
 
     font-size:2em;
 
-    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
-    -webkit-touch-callout: none; /* iOS Safari */
-     -webkit-user-select: none; /* Safari */
-      -khtml-user-select: none; /* Konqueror HTML */
-        -moz-user-select: none; /* Old versions of Firefox */
-         -ms-user-select: none; /* Internet Explorer/Edge */
-             user-select: none; /* Non-prefixed version, currently
-                                   supported by Chrome, Edge, Opera and Firefox */
+    -webkit-touch-callout: none;
+     -webkit-user-select: none;
+      -khtml-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+
 }
 
 
@@ -155,7 +186,20 @@
         right: 8vw;
         /* background-color:#17223B; */
         /* background-color:red; */
+    }
 
+    .flagButton{
+        bottom: 1vh;
+        left: 1vw;
+
+        border-style: solid;
+        border-width: thin;
+        border-radius:1vw;
+        border-color:#9ba3a5;
+
+        background-color:#0a161b;
+
+        opacity: .7;
     }
 }
 
@@ -166,6 +210,7 @@
         /* background-color:#17223B; */
         /* opacity: 1; */
     }
+
 }
 
 @media only screen and (max-width: 768px) and (orientation: landscape)  {
@@ -184,6 +229,11 @@
         bottom: 7.5vh;
         right: 6.5vw;
         /* background-color:#17223B; */
+    }
+    .flagButton{
+
+        bottom: 7.5vh;
+        left: 6.5vw;
     }
 }
 
