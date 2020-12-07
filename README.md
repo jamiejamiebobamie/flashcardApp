@@ -4,7 +4,7 @@ This is a flashcard web app, built with react and node.
 
 Here's a [recorded demo](https://www.youtube.com/watch?v=nuvaG-IUBWo) of the site.
 
-Users select which computer science topics to review.
+Users select which computer science topics to review.</br>
 ![flashcard app](public/_menu.gif)
 
 And then cycle through the cards with touch gestures.
