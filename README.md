@@ -19,10 +19,6 @@ There are five gestures:
 <li>and tap card: flip card to see front or back.</li>
 </ol>
 
-The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gesture) and [react-spring](https://www.react-spring.io) for the animations and interactivity, which are unfortunately not working on the [live site](https://cs-refresh.herokuapp.com).
+The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gesture) and [react-spring](https://www.react-spring.io) for the animations and interactivity.
 
-Heroku: [https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)<br/>
-Netlify: [https://cs-refresh.netlify.app](https://cs-refresh.netlify.app)<br/>
-Github: [https://jamiejamiebobamie.github.io/flashcardApp/](https://jamiejamiebobamie.github.io/flashcardApp/)<br/>
-
-(attempting to regress / downgrade to react-spring v8 from v9 as that seems to fix the issue.)
+[https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)
