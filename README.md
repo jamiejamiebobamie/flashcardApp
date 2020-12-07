@@ -7,7 +7,7 @@ Here's a [recorded demo](https://www.youtube.com/watch?v=nuvaG-IUBWo) of the sit
 Users select which computer science topics to review.</br>
 ![flashcard app](public/_menu.gif)
 
-And then cycle through the cards with touch gestures.
+And then cycle through the cards with touch gestures.</br>
 ![flashcard app](public/_cycleCards.gif)
 
 There are five gestures:
