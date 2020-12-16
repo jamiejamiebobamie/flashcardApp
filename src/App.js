@@ -104,7 +104,7 @@ class App extends Component{
                          let shuffleCards = this.shuffleAllCards(data.cards)
                          for (let i = 0; i < shuffleCards.length; i++){
                              if (shuffleCards[i].flagged.length){
-                                 if (shuffleCards[i].flagged[1] === 't')
+                                 if (shuffleCards[i].flagged[0] === 't')
                                     shuffleCards[i].flagged = true;
                                 else
                                     shuffleCards[i].flagged = false;
