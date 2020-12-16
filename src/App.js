@@ -62,9 +62,22 @@ class App extends Component{
                 cards[this.state.cardIndex].flagged === false ?
                     true : false;
              this.setState({cards:cards})
+             let flaggedCard = cards[this.state.cardIndex];
              setTimeout(()=>{
                  console.log(this.state.cards[this.state.cardIndex])
-             },100)
+                 // Send the card to  to the API with fetch
+                 fetch('https://cs-flashcard-api.herokuapp.com/api/v1/flagged', {
+                             method: 'POST',
+                             headers: { 'Content-Type': 'application/json'},
+                             body: JSON.stringify(flaggedCard)
+                             }
+                         ).then(response => response.json())
+                             .then((success) => {
+                                 console.log('success:', success);
+                             }).catch((error) => {
+                                 console.error('Error:', error);
+                             });
+                 },100)
          }
      }
      toggleMenuModal(){
@@ -72,43 +85,12 @@ class App extends Component{
              // close menu modal
              this.setState({menuModalDisplay:'none'})
              if (this.state.requestNewCards){
-                 this.sendFlaggedCardsToBackend()
                  this.requestNewCards()
              }
          } else {
              // open menu modal
              this.setState({menuModalDisplay:'flex'})
          }
-     }
-     sendFlaggedCardsToBackend(){
-         let flaggedCards = []
-         let cards = [...this.state.cards]
-         for (let i = 0; i < cards.length; i++){
-             if ( cards[i].flagged ){
-                 let flaggedCard = {
-                     Domain: cards[i].Domain,
-                     Subdomain: cards[i].Subdomain,
-                     Topic: cards[i].Topic,
-                     front: cards[i].front,
-                 }
-                 flaggedCards.push(flaggedCard)
-                 cards[i].flagged = false;
-             }
-         }
-         // Send data to the API with fetch
-         fetch('https://cs-flashcard-api.herokuapp.com/api/v1/flagged', {
-                     method: 'POST',
-                     headers: { 'Content-Type': 'application/json'},
-                     body: JSON.stringify(flaggedCards)
-                     }
-                 ).then(response => response.json())
-                     .then((success) => {
-                         console.log('success:', success);
-                     }).catch((error) => {
-                         console.error('Error:', error);
-                         this.filterCards()
-                     });
-         this.setState({cards:cards})
      }
      requestNewCards(){
          // Get data from the API with fetch
@@ -120,8 +102,16 @@ class App extends Component{
                  ).then(response => response.json())
                      .then((data) => {
                          let shuffleCards = this.shuffleAllCards(data.cards)
+                         for (let i = 0; i < shuffleCards.length; i++){
+                             if (shuffleCards[i].flagged.length){
+                                 if (shuffleCards[i].flagged[1] === 't')
+                                    shuffleCards[i].flagged = true;
+                                else
+                                    shuffleCards[i].flagged = false;
+                             }
+                         }
                          this.setState({cards: shuffleCards})
-                         // console.log(data);
+                         setTimeout(()=>console.log(data),500)
                      }).catch((error) => {
                          console.error('Error:', error);
                          this.filterCards()
@@ -199,12 +189,12 @@ class App extends Component{
           return unshuffledCards // that are now shuffled...
     }
     shuffleCard(){
-        if (this.state.cards.length){
+        if (this.state.cards.length>1){
             let shuffleCards = [...this.state.cards]
             let randomIndex = this.state.cardIndex
-            while (randomIndex === this.state.cardIndex){
+            while (randomIndex === this.state.cardIndex || randomIndex < 0){
                 randomIndex =
-                    Math.floor( Math.random() * this.state.cards.length - 1 )
+                    Math.floor( Math.random() * shuffleCards.length - 1 )
             }
             let temp = shuffleCards[this.state.cardIndex]
             shuffleCards[this.state.cardIndex] = shuffleCards[randomIndex]
@@ -242,15 +232,26 @@ class App extends Component{
     flagCardButton(){
         let content = null
         if ( this.state.menuModalDisplay === 'none'
-             && this.state.cards.length ) {
+             && this.state.cards.length
+             && this.state.cardIndex < this.state.cards.length
+             && this.state.cards[this.state.cardIndex] !== undefined
+          ) {
                  content = (<Button
                    className='flagButton'
                    title = "Flag for edit"
                    clickFunc = { this.flagFlashcard }
                    content = { 0x2691 }
-                   active = {  this.state.cards.length ?
-                           this.state.cards[this.state.cardIndex].flagged
-                           : false }
+                   active = {  this.state.cards.length
+                                &&
+                                this.state.cardIndex < this.state.cards.length
+                                &&
+                                this.state.cards[this.state.cardIndex].flagged
+                                    !== undefined
+                                ?
+                                this.state.cards[this.state.cardIndex].flagged
+                                :
+                                false
+                            }
                   />)
              }
         return content

@@ -95,7 +95,6 @@ export default function Card(props) {
     <a.div
         className="Card"
         onMouseUp= { () => {
-                console.log(dragFunctionCalled)
                 dragFunctionCalled ?
                     setDragFunctionCalled(false)
                     :
