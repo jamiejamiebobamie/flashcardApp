@@ -1,0 +1,115 @@
+.wrapper{
+    position: absolute;
+    z-index: 20;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+}
+
+.arrow, .message{
+    color:#84e8b0;
+    align-self: center;
+    margin:1.5vw;
+}
+
+.right, .left{
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.right{
+    right: 5%;
+    top: 50%;
+}
+
+.left{
+    left: 5%;
+    top: 40%;
+}
+
+.up, .down{
+    flex-direction: column;
+    right: auto;
+    left: auto;
+    padding-top: 3vw;
+    padding-bottom: 3vw;
+}
+
+.up{
+    top: 0%;
+}
+
+.down{
+    bottom: 5%;
+}
+
+.menu{
+    flex-direction: column;
+    text-align: center;
+    right: 1.5%;
+    bottom: 20%;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    width:100px;
+    height:200px;
+
+}
+
+.arrowleft {
+  animation: leftAnim 1s ease-in-out infinite;
+}
+.arrowright {
+  animation: rightAnim 1s ease-in-out infinite;
+}
+.arrowup {
+  animation: upAnim 1s ease-in-out infinite;
+}
+.arrowdown {
+  animation: downAnim 1s ease-in-out infinite;
+}
+
+@keyframes leftAnim {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, 0);
+  }
+}
+
+@keyframes rightAnim {
+  0%,
+  100% {
+      transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-10px, 0);
+  }
+}
+
+@keyframes upAnim {
+  0%,
+  100% {
+      transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0px, 10px);
+  }
+}
+
+
+@keyframes downAnim {
+  0%,
+  100% {
+      transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0px, -10px);
+  }
+}

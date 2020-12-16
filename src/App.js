@@ -5,14 +5,16 @@ import Modal from './MenuModalComponents/Modal'
 import FlashcardHolder from './FlashcardComponents/FlashcardHolder'
 import Controls from "./MenuModalComponents/Controls.jsx"
 import Button from "./Button.jsx"
+import HelpMessage from "./HelpMessage.jsx"
+
 
 class App extends Component{
     constructor(props) {
     super(props);
     this.state = {
            // testing: simulated response
-           responseCards: response.flashcards,
-           possibleSubjects:response.tabs,
+           responseCards:[],
+           possibleSubjects:[],
 
            windowWidth: window.innerWidth,
            windowHeight: window.innerHeight,
@@ -31,6 +33,8 @@ class App extends Component{
            cards:[],
            cardIndex:0,
            menuModalDisplay:'none',
+           displaySwipeHelpMessages:false,
+           displayMenuHelpMessage:false,
     };
     // Get data from the API with fetch to populate the possible subjects tabs
     fetch('https://cs-flashcard-api.herokuapp.com/api/v1/tabs')
@@ -86,7 +90,9 @@ class App extends Component{
              this.setState({menuModalDisplay:'none'})
              if (this.state.requestNewCards){
                  this.requestNewCards()
+                 this.setState({requestNewCards: false})
              }
+             this.setState({displayMenuHelpMessage:true})
          } else {
              // open menu modal
              this.setState({menuModalDisplay:'flex'})
@@ -116,7 +122,6 @@ class App extends Component{
                          console.error('Error:', error);
                          this.filterCards()
                      });
-         this.setState({requestNewCards: false})
      }
      // simulated response if backend fails.
      filterCards(){
@@ -160,9 +165,13 @@ class App extends Component{
              this.setState({selectedSubjects: newSelectedSubjects})
          }
          this.setState({requestNewCards: true})
+         this.setState({displayMenuHelpMessage:true})
      }
      incrementCardIndex(){
          if (this.state.cards.length){
+             if (this.state.displaySwipeHelpMessages){
+                 this.setState({displaySwipeHelpMessages:false});
+             }
              this.state.cardIndex < this.state.cards.length - 1 ?
                 this.setState({ cardIndex: this.state.cardIndex+1 })
                 :
@@ -171,6 +180,9 @@ class App extends Component{
       }
       decrementCardIndex(){
           if (this.state.cards.length){
+              if (this.state.displaySwipeHelpMessages){
+                  this.setState({displaySwipeHelpMessages:false});
+              }
               this.state.cardIndex > 0 ?
                  this.setState({ cardIndex: this.state.cardIndex-1 })
                  :
@@ -189,7 +201,10 @@ class App extends Component{
           return unshuffledCards // that are now shuffled...
     }
     shuffleCard(){
-        if (this.state.cards.length>1){
+        if (this.state.cards.length>2){
+            if (this.state.displaySwipeHelpMessages){
+                this.setState({displaySwipeHelpMessages:false});
+            }
             let shuffleCards = [...this.state.cards]
             let randomIndex = this.state.cardIndex
             while (randomIndex === this.state.cardIndex || randomIndex < 0){
@@ -200,10 +215,15 @@ class App extends Component{
             shuffleCards[this.state.cardIndex] = shuffleCards[randomIndex]
             shuffleCards[randomIndex] = temp
             this.setState({cards: shuffleCards})
+        } else {
+            this.incrementCardIndex()
         }
     }
     removeCard(){
         if (this.state.cards.length){
+            if (this.state.displaySwipeHelpMessages){
+                this.setState({displaySwipeHelpMessages:false});
+            }
             let cards = [...this.state.cards]
             cards.splice(this.state.cardIndex,1)
             if (this.state.cardIndex === this.state.cards.length-1){
@@ -256,9 +276,30 @@ class App extends Component{
              }
         return content
     }
+    swipeHelpMessages(){
+        const content = this.state.displaySwipeHelpMessages ?
+        <div>
+            <HelpMessage point="left"/>
+            <HelpMessage point="right"/>
+            <HelpMessage point="up"/>
+            <HelpMessage point="down"/>
+        </div>
+        :
+        null;
+        return content;
+    }
+    menuHelpMessage(){
+        const content = this.state.displayMenuHelpMessage ?
+        <HelpMessage/>
+        :
+        null;
+        return content;
+    }
     render(){
         return (
             <div className='App'>
+                { this.swipeHelpMessages() }
+                { this.menuHelpMessage() }
                 <Modal
                     isMobile = { this.state.isMobile }
                     tabs = { this.state.possibleSubjects }

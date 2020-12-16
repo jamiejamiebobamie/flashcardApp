@@ -6,6 +6,8 @@
     min-height: 700px;
     min-width: 300px;
     overflow:scroll;
+    margin-top: 4vh;
+    padding-bottom: 2vh;
 }
 
 /* mobile portrait */

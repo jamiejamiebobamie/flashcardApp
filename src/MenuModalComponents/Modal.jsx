@@ -5,7 +5,15 @@ import SelectedSubjectsHolder from './SelectedSubjectsHolder';
 
 export default function Modal(props){
 
-    const menuContent = props.isMobile ?
+    const menuContent =
+        // https://loading.io/css/
+        !props.tabs.length?
+        <div className="modal" style= {{ display: props.menuModalDisplay }}>
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+
+        :
+        props.isMobile ?
         <div className="modal" style= {{ display: props.menuModalDisplay }}>
             <TabHolder
                 selectedSubjects = { props.selectedSubjects }
