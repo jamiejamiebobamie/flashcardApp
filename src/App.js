@@ -33,6 +33,7 @@ class App extends Component{
            displaySwipeHelpMessages:false,
            flashMenuIcon:false,
            displayClickHelpMessage:true,
+           clickMessageHaveNotBeenDisplayed:true
     };
     // Get data from the API with fetch to populate the possible subjects tabs
     fetch('https://cs-flashcard-api.herokuapp.com/api/v1/tabs')
@@ -93,8 +94,10 @@ class App extends Component{
                  this.setState({requestNewCards: false})
              }
              this.setState({flashMenuIcon:false})
-             if (this.state.displayClickHelpMessage){
+             if (this.state.displayClickHelpMessage
+                 || this.state.clickMessageHaveNotBeenDisplayed){
                  this.setState({displayClickHelpMessage:false})
+                 this.setState({clickMessageHaveNotBeenDisplayed:false})
                  this.setState({displaySwipeHelpMessages:true})
              }
          } else {
