@@ -59,13 +59,14 @@ export default function Card(props) {
                     (200 + window.innerHeight) * dir.y
                     :
                     down ? yDelta : 0
-          // set({ x: x, y: y })
           set({ xy: [x,y] })
           if (props.onReleaseFunction && trigger){
               // no matter the function called,
                   // display the card front-facing
-              if (flipped)
-                setFlip(false)
+              if (flipped){
+                  setFlip(false)
+                  console.log('hi')
+              }
               // call the appropriate function depending on direction flicked.
               props.onReleaseFunction(dir)
               // stops the card from flipping onMouseUp.
@@ -75,16 +76,11 @@ export default function Card(props) {
                   // of the screen to come in from offscreen
                   setCardOpacity(0)
                   set({ xy: [dir.x*-3000,dir.y*-3000] })
-
-                  // set({ x: dir.x*-3000, y: dir.y*-3000 })
-
                   // make the card visible and bring it back on screen
                     // from the opposite direction from which it was thrown.
                   setTimeout(()=>{
                       setCardOpacity(1)
                       set({ xy: [0,0] })},500)
-                      // toggle-off swipe help messages
-                      props.toggleOffSwipeHelpMessages()
               },500)
           }
       },
@@ -96,13 +92,17 @@ export default function Card(props) {
   return (
     <a.div
         className="Card"
-        onMouseUp= { () => {
-                dragFunctionCalled ?
-                    setDragFunctionCalled(false)
-                    :
-                    props.toggleOffClickHelpMessage()
-                    setFlip(!flipped)
-                } }
+        onMouseUp= { () => {   if (dragFunctionCalled){
+                                    setDragFunctionCalled(false)
+                                    // toggle-off swipe help messages
+                                    props.toggleOffSwipeHelpMessages()
+                                } else {
+                                    // toggle-off click help message
+                                    props.toggleOffClickHelpMessage()
+                                    setFlip(!flipped)
+                                }
+                            }
+                    }
         {...bind()}
         style={{ opacity: entireCardOpacity,
             transform: xy.interpolate((x, y) => `translate3d(${x}px, ${y}px, 0)`)

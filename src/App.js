@@ -125,6 +125,7 @@ class App extends Component{
                              }
                          }
                          this.setState({cards: shuffleCards})
+                         this.setState({ cardIndex: 0 })
                          // setTimeout(()=>console.log(data),500)
                      }).catch((error) => {
                          console.error('Error:', error);
