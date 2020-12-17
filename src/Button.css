@@ -125,7 +125,7 @@
 }
 
 
-.menuButtonAlone{
+.menuButtonAlone, .flashingMenuButton{
 
     position: absolute;
 
@@ -179,7 +179,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .menuButtonAlone{
+    .menuButtonAlone, .flashingMenuButton{
         background-color:#0a161b;
 
         bottom: 8vh;
@@ -204,7 +204,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .menuButtonAlone{
+    .menuButtonAlone, .flashingMenuButton{
         bottom: 1vh;
         right: 1vw;
         /* background-color:#17223B; */
@@ -214,7 +214,7 @@
 }
 
 @media only screen and (max-width: 768px) and (orientation: landscape)  {
-    .menuButtonAlone{
+    .menuButtonAlone, .flashingMenuButton{
         bottom: 1vh;
         right: 1vw;
         /* border-color:#0a161b;
@@ -225,7 +225,7 @@
 }
 
 @media only screen and (max-width: 768px) and (orientation: portrait)  {
-    .menuButtonAlone{
+    .menuButtonAlone, .flashingMenuButton{
         bottom: 7.5vh;
         right: 6.5vw;
         /* background-color:#17223B; */
@@ -242,7 +242,7 @@ attempting to fix it but having issues changing the width relative to the
 font-size. the width of the button seems to be dependent on the font-size so
 I'm compromising by downsizing the font-size so the button isn't too large. */
 @supports (-webkit-touch-callout: none) and (max-width: 768px)  {
-    .menuButtonAlone{
+    .menuButtonAlone, .flashingMenuButton{
         /* height:80px;
         width:1vw; */
         /* background-color:red; */
@@ -257,4 +257,22 @@ I'm compromising by downsizing the font-size so the button isn't too large. */
 
   /* CSS specific to iOS devices */
 
+}
+
+.flashingMenuButton{
+  opacity: 1;
+  animation: flash 2s ease-in-out infinite;
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    border-color: #84e8b0;
+    color:#84e8b0;
+  }
+
+  50% {
+    border-color:#9ba3a5;
+    color:#9ba3a5;
+  }
 }

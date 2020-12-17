@@ -9,7 +9,7 @@ export default function Modal(props){
         // https://loading.io/css/
         !props.tabs.length?
         <div className="modal" style= {{ display: props.menuModalDisplay }}>
-            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
 
         :

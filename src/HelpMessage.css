@@ -1,6 +1,7 @@
 .wrapper{
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .arrow, .message{

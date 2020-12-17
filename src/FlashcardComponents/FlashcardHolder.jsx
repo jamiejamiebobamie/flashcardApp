@@ -35,6 +35,10 @@ export default function FlashcardHolder(props) {
                             :
                             null
                         }
+            toggleOffClickHelpMessage =
+                { props.functions.toggleOffClickHelpMessage }
+            toggleOffSwipeHelpMessages =
+                { props.functions.toggleOffSwipeHelpMessages }
             onReleaseFunction = { (dir) => {
                         const {x,y} = dir
                         if (x){
@@ -59,7 +63,10 @@ export default function FlashcardHolder(props) {
         />
         :
         <Card
-
+            toggleOffClickHelpMessage =
+                { props.functions.toggleOffClickHelpMessage }
+            toggleOffSwipeHelpMessages =
+                { props.functions.toggleOffSwipeHelpMessages }
             isMobile = { props.isMobile }
             front = { blankCardContent }
             back = { blankCardContent }

@@ -83,6 +83,8 @@ export default function Card(props) {
                   setTimeout(()=>{
                       setCardOpacity(1)
                       set({ xy: [0,0] })},500)
+                      // toggle-off swipe help messages
+                      props.toggleOffSwipeHelpMessages()
               },500)
           }
       },
@@ -98,13 +100,15 @@ export default function Card(props) {
                 dragFunctionCalled ?
                     setDragFunctionCalled(false)
                     :
+                    props.toggleOffClickHelpMessage()
                     setFlip(!flipped)
                 } }
         {...bind()}
         style={{ opacity: entireCardOpacity,
             transform: xy.interpolate((x, y) => `translate3d(${x}px, ${y}px, 0)`)
         }}>
-          <a.div className="c"
+          <a.div
+                className="c"
                  style={{ opacity,
                           transform:
                             transform.interpolate(t => `${t} rotateY(180deg)`)
