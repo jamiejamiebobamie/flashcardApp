@@ -20,3 +20,88 @@ body{
     /* should disable double tapping zoom action on mobile */
     touch-action: manipulation;
 }
+
+.help{
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+    -webkit-touch-callout: none; /* iOS Safari */
+     -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+         -ms-user-select: none; /* Internet Explorer/Edge */
+             user-select: none; /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1) translate(0px,0px);
+  }
+
+  50% {
+    transform: scale(1.05) translate(10px,15px);
+  }
+}
+
+.swipe{
+    bottom:5%;
+}
+
+.click{
+    /* bottom:35%; */
+    /* width:100vw; */
+    /* height:100vh; */
+    top:0%;
+    left:0%;
+    padding-top: 60px;
+    padding-left: 50px;
+    animation: pulse 1s ease-in-out infinite;
+
+}
+
+.menu{
+    bottom:5%;
+    
+}
+
+@media only screen and (max-width: 768px) and (orientation: landscape)  {
+    .swipe{
+        transform: scale(.9);
+        /* bottom:0%; */
+        /* left:0%; */
+        width:100vw;
+        height:100vh;
+    }
+    .click{
+        /* background-color:green; */
+        /* width:100vw;
+        height:100vh;
+        top:0%;
+        left:0%;
+        padding-top: 60px;
+        padding-left: 50px; */
+
+        top:0%;
+        left:0%;
+        padding-top: 30px;
+        padding-left: 50px;
+
+    }
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait)  {
+    .swipe{
+        bottom:15%;
+    }
+    .click{
+        /* background-color:pink; */
+
+        /* bottom:35%; */
+    }
+}

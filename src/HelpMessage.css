@@ -1,59 +1,58 @@
 .wrapper{
-    position: absolute;
-    z-index: 20;
-    background-color: transparent;
     display: flex;
     justify-content: space-between;
-    padding: 1vw;
 }
 
 .arrow, .message{
-    color:#84e8b0;
     align-self: center;
-    margin:1.5vw;
+    margin:5px;
 }
 
-.right, .left{
-    padding-left: 1vw;
-    padding-right: 1vw;
+.message{
+    border-style: solid;
+    border-color: #84e8b0;
+     border-radius: 200px;
+     border-width: thin;
+     padding: 20px;
+     min-width:200px;
+     font-size: 1em;
+     background-color:#84e8b0;
+     color:#0a161b;
 }
 
-.right{
-    right: 5%;
-    top: 50%;
-}
+.arrow{
+    font-size: 2em;
+    color:#84e8b0;
 
-.left{
-    left: 5%;
-    top: 40%;
 }
 
 .up, .down{
     flex-direction: column;
-    right: auto;
-    left: auto;
-    padding-top: 3vw;
-    padding-bottom: 3vw;
+    align-self: center;
+    text-align: center;
 }
 
-.up{
-    top: 0%;
-}
-
-.down{
-    bottom: 5%;
-}
 
 .menu{
-    flex-direction: column;
+    /* flex-direction: column; */
     text-align: center;
-    right: 1.5%;
-    bottom: 20%;
+    right: 15%;
+    bottom: 3%;
     padding-top: 1vw;
     padding-bottom: 1vw;
-    width:100px;
-    height:200px;
+    /* padding-left: 10vw; */
+    /* align-items: flex-end; */
 
+    /* justify-content: flex-end; */
+
+
+    /* width:200px; */
+    /* height:100px; */
+    /* background-color: red; */
+}
+
+.card{
+    text-align: center;
 }
 
 .arrowleft {
@@ -112,4 +111,28 @@
   50% {
     transform: translate(0px, -10px);
   }
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait)  {
+    .menu{
+        right: 20%;
+        bottom: 6%;
+        /* background-color: orange; */
+    }
+}
+
+@media only screen and (max-width: 768px) and (orientation: landscape)  {
+    .message{
+         padding: 15px;
+         min-width:150px;
+         font-size: 1em;
+         background-color:#84e8b0;
+         color:#0a161b;
+    }
+
+    .menu{
+        right: 15%;
+        bottom: 0%;
+        /* background-color: pink; */
+    }
 }

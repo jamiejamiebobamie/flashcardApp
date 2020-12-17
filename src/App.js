@@ -35,6 +35,7 @@ class App extends Component{
            menuModalDisplay:'none',
            displaySwipeHelpMessages:false,
            displayMenuHelpMessage:false,
+           displayClickHelpMessage:false,
     };
     // Get data from the API with fetch to populate the possible subjects tabs
     fetch('https://cs-flashcard-api.herokuapp.com/api/v1/tabs')
@@ -92,7 +93,9 @@ class App extends Component{
                  this.requestNewCards()
                  this.setState({requestNewCards: false})
              }
-             this.setState({displayMenuHelpMessage:true})
+             // this.setState({displayMenuHelpMessage:false})
+             // this.setState({displaySwipeHelpMessages:true})
+
          } else {
              // open menu modal
              this.setState({menuModalDisplay:'flex'})
@@ -276,21 +279,38 @@ class App extends Component{
              }
         return content
     }
+    clickHelpMessage(){
+        const content = this.state.displayClickHelpMessage ?
+        <div className="click help">
+            <HelpMessage messageType="card"/>
+            </div>
+            :
+            null;
+            return content;
+        }
+        swipeHelp
     swipeHelpMessages(){
-        const content = this.state.displaySwipeHelpMessages ?
-        <div>
-            <HelpMessage point="left"/>
-            <HelpMessage point="right"/>
-            <HelpMessage point="up"/>
-            <HelpMessage point="down"/>
+        const content = this.state.displaySwipeHelpMessages
+
+         ?
+        <div className="swipe help">
+            <HelpMessage messageType="up"/>
+            <HelpMessage messageType="left"/>
+            <HelpMessage messageType="right"/>
+            <HelpMessage messageType="down"/>
         </div>
         :
         null;
         return content;
     }
     menuHelpMessage(){
-        const content = this.state.displayMenuHelpMessage ?
-        <HelpMessage/>
+        const content = this.state.displayMenuHelpMessage
+        // &&
+        // this.state.menuModalDisplay === 'display'
+        ?
+        <div className="menu help">
+            <HelpMessage messageType="menu"/>
+        </div>
         :
         null;
         return content;
@@ -298,6 +318,7 @@ class App extends Component{
     render(){
         return (
             <div className='App'>
+                { this.clickHelpMessage() }
                 { this.swipeHelpMessages() }
                 { this.menuHelpMessage() }
                 <Modal
