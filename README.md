@@ -24,4 +24,4 @@ The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gestur
 [https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)
 The app is currently:
 
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=</cs-refresh>&path=<ROUTE>&style=<STYLE>)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=</cs-refresh>&path=<https://cs-refresh.herokuapp.com>&style=<STYLE>)
