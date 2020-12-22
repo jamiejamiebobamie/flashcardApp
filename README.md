@@ -1,5 +1,3 @@
-The app is currently:
-
 ![Heroku](https://pyheroku-badge.herokuapp.com/?app=cs-refresh)
 
 [CS Refresh](https://cs-refresh.herokuapp.com)
