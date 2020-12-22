@@ -22,3 +22,5 @@ There are five gestures:
 The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gesture) and [react-spring](https://www.react-spring.io) for the animations and interactivity.
 
 [https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)
+The app is currently:
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=</cs-refresh>&path=<ROUTE>&style=<STYLE>)
