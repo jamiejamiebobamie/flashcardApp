@@ -26,4 +26,3 @@ The app is currently:
 
 ![Heroku](https://pyheroku-badge.herokuapp.com/?app=cs-refresh&path=https://cs-refresh.herokuapp.com&style=flat-square)
 
-
