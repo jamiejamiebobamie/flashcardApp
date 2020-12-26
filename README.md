@@ -1,3 +1,5 @@
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=cs-refresh)
+
 [CS Refresh](https://cs-refresh.herokuapp.com)
 
 This is a flashcard web app, built with react and node.
@@ -22,3 +24,4 @@ There are five gestures:
 The site uses [react-use-gesture](https://www.npmjs.com/package/react-use-gesture) and [react-spring](https://www.react-spring.io) for the animations and interactivity.
 
 [https://cs-refresh.herokuapp.com](https://cs-refresh.herokuapp.com)
+
