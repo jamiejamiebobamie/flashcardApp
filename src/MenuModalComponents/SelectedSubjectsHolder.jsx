@@ -5,6 +5,7 @@ export default function SelectedSubjectsHolder(props){
     const selectedSubjects = props.selectedSubjects.map(
                                 (selectedSubject) =>
                                     <SelectedSubject
+                                        key={selectedSubject}
                                         addOrRemoveSubject =
                                             { props.addOrRemoveSubject }
                                         subject = { selectedSubject }

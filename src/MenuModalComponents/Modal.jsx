@@ -1,5 +1,5 @@
+// import React, { useEffect } from 'react'; 
 import './Modal.css';
-
 import TabHolder from './TabHolder.jsx';
 import SelectedSubjectsHolder from './SelectedSubjectsHolder';
 
@@ -30,5 +30,6 @@ export default function Modal(props){
                 selectedSubjects = { props.selectedSubjects }
                 addOrRemoveSubject = { props.functions.addOrRemoveSubject }/>
         </div>
+
     return menuContent
 }

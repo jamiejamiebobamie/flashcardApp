@@ -38,6 +38,18 @@ body{
                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
+
+.swipe-help-wrapper{
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    cursor: pointer !important;
+    z-index: 999999 !important;
+}
+
+
 @keyframes pulse {
   0%,
   100% {

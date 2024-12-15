@@ -124,6 +124,9 @@
     text-align:center;
 }
 
+button{
+    cursor: pointer !important;
+}
 
 .menuButtonAlone, .flashingMenuButton{
 
